@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Orientation Feedback</title>
+<style>
+  body{font-family:system-ui;margin:1.5rem;max-width:960px}
+  table{width:100%;border-collapse:collapse;margin-top:.5rem}
+  th,td{border:1px solid #ddd;padding:.35rem;text-align:center}
+  button{padding:.4rem .75rem;margin-top:.8rem;border:0;border-radius:4px;cursor:pointer}
+  .small{font-size:.9rem;color:#666;margin-left:.5rem}
+</style>
+</head>
+<body>
+
+<h2>Orientation Feedback</h2>
+
+<label>Grader&nbsp;
+  <input id="grader" placeholder="Your name" required>
+</label>
+&nbsp;&nbsp;
+<label>Date&nbsp;
+  <input type="date" id="shiftDate" required>
+</label>
+
+<table id="tbl">
+  <thead>
+    <tr>
+      <th>Orientee</th><th>Effort<br>(0-3)</th><th>Compr.<br>(0-3)</th>
+      <th>Client App<br>(0-3)</th><th>Comments</th><th></th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
+
+<button id="addRow">+ Add orientee</button><br>
+<button id="submit">Submit batch</button><span id="msg" class="small"></span>
+
+<script>
+/* ---------- EDIT THIS LIST WHEN THE ROSTER CHANGES ---------- */
+const ORIENTEES = [
+  "Jenny Nguyen",
+  "Bob Smith",
+  "Chris Patel"
+];
+/* ------------------------------------------------------------- */
+
+/* --- CONFIG: YOUR MAKE WEBHOOK URL --- */
+const HOOK = "https://hook.us2.make.com/c49p6h10m1wjomhlls3rrw80yczb91fi";
+
+/* --- DOM shortcuts --- */
+const tbody = document.querySelector("#tbl tbody");
+document.getElementById("addRow").onclick = addRow;
+addRow();                                // start with one blank row
+
+/* --- Row builder with orientee dropdown --- */
+function addRow(){
+  const opts = ['<option value="" disabled selected>Select…</option>',
+                ...ORIENTEES.map(n=>`<option>${n}</option>`)
+               ].join('');
+  const r = tbody.insertRow();
+  r.innerHTML = `
+    <td><select required>${opts}</select></td>
+    <td><input type="number" min="0" max="3" required></td>
+    <td><input type="number" min="0" max="3" required></td>
+    <td><input type="number" min="0" max="3" required></td>
+    <td><input></td>
+    <td><button onclick="this.closest('tr').remove()">🗑️</button></td>`;
+}
+
+/* --- Helpers for week label / weekday --- */
+function getWeekDay(d){                  // "Mon", "Tue", …
+  return d.toLocaleDateString('en-US',{weekday:'short'});
+}
+function getWeekLabel(d){                // "Week 1 (Remote)" / "Week 2 (In Person)"
+  const anchor = new Date('2025-01-06'); // Monday of first Remote week
+  const weekNum = Math.floor((d - anchor)/604800000) % 2 ? 2 : 1;
+  return weekNum === 1 ? "Week 1 (Remote)" : "Week 2 (In Person)";
+}
+
+/* --- Submit handler --- */
+document.getElementById("submit").onclick = async () =>{
+  const grader = document.getElementById("grader").value.trim();
+  const date   = document.getElementById("shiftDate").value;
+  if(!grader||!date) return alert("Fill grader and date.");
+  const items=[...tbody.rows].map(r=>({
+      name: r.cells[0].firstChild.value,
+      effort: r.cells[1].firstChild.valueAsNumber,
+      comprehension: r.cells[2].firstChild.valueAsNumber,
+      clientApp: r.cells[3].firstChild.valueAsNumber,
+      feedback: r.cells[4].firstChild.value.trim()
+  })).filter(i=>i.name);
+  if(!items.length) return alert("Add at least one orientee.");
+
+  const dObj = new Date(date);
+  const payload = {
+    grader,
+    date,
+    weekDay:   getWeekDay(dObj),
+    weekLabel: getWeekLabel(dObj),
+    items
+  };
+
+  document.getElementById("msg").textContent="Sending…";
+  try{
+    await fetch(HOOK,{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify(payload)
+    });
+    document.getElementById("msg").textContent="✓ Sent!";
+    tbody.innerHTML=""; addRow();                      // clear rows
+  }catch(e){
+    document.getElementById("msg").textContent="Error – try again";
+  }
+};
+</script>
+</body>
+</html>
