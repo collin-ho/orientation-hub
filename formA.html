@@ -19,8 +19,23 @@
   <input id="grader" placeholder="Your name" required>
 </label>
 &nbsp;&nbsp;
-<label>Date&nbsp;
-  <input type="date" id="shiftDate" required>
+<label>Week&nbsp;
+  <select id="weekLabel" required>
+    <option value="" disabled selected>Select…</option>
+    <option value="Week 1 (Remote)">Week 1&nbsp;(Remote)</option>
+    <option value="Week 2 (In Person)">Week 2&nbsp;(In&nbsp;Person)</option>
+  </select>
+</label>
+&nbsp;&nbsp;
+<label>Day&nbsp;
+  <select id="weekDay" required>
+    <option value="" disabled selected>Select…</option>
+    <option value="Mon">Mon</option>
+    <option value="Tue">Tue</option>
+    <option value="Wed">Wed</option>
+    <option value="Thu">Thu</option>
+    <option value="Fri">Fri</option>
+  </select>
 </label>
 
 <table id="tbl">
@@ -83,9 +98,10 @@ function getWeekLabel(d){                // "Week 1 (Remote)" / "Week 2 (In Pers
 
 /* --- Submit handler --- */
 document.getElementById("submit").onclick = async () =>{
-  const grader = document.getElementById("grader").value.trim();
-  const date   = document.getElementById("shiftDate").value;
-  if(!grader||!date) return alert("Fill grader and date.");
+  const grader   = document.getElementById("grader").value.trim();
+  const weekLabel= document.getElementById("weekLabel").value;
+  const weekDay  = document.getElementById("weekDay").value;
+  if(!grader || !weekLabel || !weekDay) return alert("Fill grader, week, and day.");
   const items=[...tbody.rows].map(r=>({
       name: r.cells[0].firstChild.value,
       effort: r.cells[1].firstChild.valueAsNumber,
@@ -95,12 +111,10 @@ document.getElementById("submit").onclick = async () =>{
   })).filter(i=>i.name);
   if(!items.length) return alert("Add at least one orientee.");
 
-  const dObj = new Date(date);
   const payload = {
     grader,
-    date,
-    weekDay:   getWeekDay(dObj),
-    weekLabel: getWeekLabel(dObj),
+    weekLabel,
+    weekDay,
     items
   };
 
