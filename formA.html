@@ -52,16 +52,19 @@
 <button id="submit">Submit batch</button><span id="msg" class="small"></span>
 
 <script>
-/* ---------- EDIT THIS LIST WHEN THE ROSTER CHANGES ---------- */
-const ORIENTEES = [
-  "Christopher Maxwell",
-  "Rob McLaughlin",
-  "Randall Sullivan",
-  "Vincent Romeo",
-  "Timothy Ladison",
-  "Jason Thorp"
-];
-/* ------------------------------------------------------------- */
+let ORIENTEES = [];
+// Fetch orientees from backend on page load
+fetch('http://localhost:4000/orientees')
+  .then(res => res.json())
+  .then(list => {
+    ORIENTEES = list.map(o => o.name);
+    tbody.innerHTML = '';
+    addRow();
+  })
+  .catch(() => {
+    ORIENTEES = [];
+    tbody.innerHTML = '<tr><td colspan="6">Could not load orientees</td></tr>';
+  });
 
 /* --- CONFIG: YOUR MAKE WEBHOOK URL --- */
 const HOOK = "https://hook.us2.make.com/c49p6h10m1wjomhlls3rrw80yczb91fi";
@@ -69,7 +72,6 @@ const HOOK = "https://hook.us2.make.com/c49p6h10m1wjomhlls3rrw80yczb91fi";
 /* --- DOM shortcuts --- */
 const tbody = document.querySelector("#tbl tbody");
 document.getElementById("addRow").onclick = addRow;
-addRow();                                // start with one blank row
 
 /* --- Row builder with orientee dropdown --- */
 function addRow(){
