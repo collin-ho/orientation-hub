@@ -54,7 +54,7 @@
 <script>
 let ORIENTEES = [];
 // Fetch orientees from backend on page load
-fetch('http://137.184.49.184:4000/orientees')
+fetch('https://137.184.49.184/orientees')
   .then(res => res.json())
   .then(list => {
     ORIENTEES = list.map(o => o.name);
@@ -67,7 +67,7 @@ fetch('http://137.184.49.184:4000/orientees')
   });
 
 /* --- CONFIG: YOUR MAKE WEBHOOK URL --- */
-const HOOK = "http://137.184.49.184:4000/orientation-feedback";
+const HOOK = "https://137.184.49.184/orientation-feedback";
 
 /* --- DOM shortcuts --- */
 const tbody = document.querySelector("#tbl tbody");
