@@ -51,7 +51,7 @@ app.post('/orientation-feedback', async (req, res) => {
         throw new Error(`Orientee not found: "${orienteeName}"`);
       }
       // Build task
-      const taskName = `Orientation Feedback: ${orienteeName} (${weekLabel} ${weekDay})`;
+      const taskName = grader;
       const contentLines = [
         `Grader: ${grader}`,
         `Orientee: ${orienteeName}`,
