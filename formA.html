@@ -54,7 +54,7 @@
 <script>
 let ORIENTEES = [];
 // Fetch orientees from backend on page load
-fetch('https://137.184.49.184/orientees')
+fetch('https://feedbackotn.duckdns.org/orientees')
   .then(res => res.json())
   .then(list => {
     ORIENTEES = list.map(o => o.name);
@@ -67,7 +67,7 @@ fetch('https://137.184.49.184/orientees')
   });
 
 /* --- CONFIG: YOUR MAKE WEBHOOK URL --- */
-const HOOK = "https://137.184.49.184/orientation-feedback";
+const HOOK = "https://feedbackotn.duckdns.org/orientation-feedback";
 
 /* --- DOM shortcuts --- */
 const tbody = document.querySelector("#tbl tbody");
