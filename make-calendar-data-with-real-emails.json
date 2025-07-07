@@ -1,0 +1,3592 @@
+{
+  "metadata": {
+    "classTitle": "PD Orientation - July 7 Start Date",
+    "company": "Cogent Analytics",
+    "timezone": "-04:00",
+    "totalLessons": 67,
+    "startDate": "2025-07-07",
+    "createdFor": "Make.com Calendar Automation",
+    "generatedAt": "2025-07-03T12:38:37.974Z",
+    "instructions": "Use this JSON to feed Make.com scenarios for sending calendar invites",
+    "dataSource": "lesson-templates.json (single source of truth)",
+    "emailSource": "ClickUp User Discovery API",
+    "instructorCoverage": {
+      "totalInstructors": 21,
+      "emailsFound": 21,
+      "emailsNotFound": 0
+    }
+  },
+  "calendarEvents": [
+    {
+      "id": 1,
+      "title": "Welcome & Introductions",
+      "startDateTime": "2025-07-07T08:30:00-04:00",
+      "endDateTime": "2025-07-07T09:00:00-04:00",
+      "instructors": [
+        "Adam Williams",
+        "Tim Grabrovaz"
+      ],
+      "instructorEmails": [
+        "awilliams@cogentanalytics.com",
+        "timg@cogentanalytics.com"
+      ],
+      "subject": "General Orientation",
+      "description": "Welcome & Introductions",
+      "location": "Virtual Meeting",
+      "isRequired": true,
+      "week": "Week 1 (Remote)",
+      "weekDay": "Mon",
+      "duration": 30
+    },
+    {
+      "id": 2,
+      "title": "Vision, Values & Process",
+      "startDateTime": "2025-07-07T09:00:00-04:00",
+      "endDateTime": "2025-07-07T10:00:00-04:00",
+      "instructors": [
+        "Tim Grabrovaz"
+      ],
+      "instructorEmails": [
+        "timg@cogentanalytics.com"
+      ],
+      "subject": "Vision, Mission, and Values",
+      "description": "Vision, Values & Process - Vision, Mission, and Values",
+      "location": "Virtual Meeting",
+      "isRequired": true,
+      "week": "Week 1 (Remote)",
+      "weekDay": "Mon",
+      "duration": 60
+    },
+    {
+      "id": 3,
+      "title": "The Why",
+      "startDateTime": "2025-07-07T10:00:00-04:00",
+      "endDateTime": "2025-07-07T11:00:00-04:00",
+      "instructors": [
+        "Tim Grabrovaz"
+      ],
+      "instructorEmails": [
+        "timg@cogentanalytics.com"
+      ],
+      "subject": "People",
+      "description": "The Why - People",
+      "location": "Virtual Meeting",
+      "isRequired": true,
+      "week": "Week 1 (Remote)",
+      "weekDay": "Mon",
+      "duration": 60
+    },
+    {
+      "id": 4,
+      "title": "Engagement Approach & Opening Week",
+      "startDateTime": "2025-07-07T11:00:00-04:00",
+      "endDateTime": "2025-07-07T12:00:00-04:00",
+      "instructors": [
+        "Adam Williams"
+      ],
+      "instructorEmails": [
+        "awilliams@cogentanalytics.com"
+      ],
+      "subject": "Project Management",
+      "description": "Engagement Approach & Opening Week - Project Management",
+      "location": "Virtual Meeting",
+      "isRequired": true,
+      "week": "Week 1 (Remote)",
+      "weekDay": "Mon",
+      "duration": 60
+    },
+    {
+      "id": 5,
+      "title": "Lunch & Feedback",
+      "startDateTime": "2025-07-07T12:00:00-04:00",
+      "endDateTime": "2025-07-07T13:00:00-04:00",
+      "instructors": [],
+      "instructorEmails": [],
+      "subject": "General Orientation",
+      "description": "Lunch & Feedback",
+      "location": "Virtual Meeting",
+      "isRequired": false,
+      "week": "Week 1 (Remote)",
+      "weekDay": "Mon",
+      "duration": 60
+    },
+    {
+      "id": 6,
+      "title": "Meet The Owner (individual meeting)",
+      "startDateTime": "2025-07-07T13:00:00-04:00",
+      "endDateTime": "2025-07-07T14:00:00-04:00",
+      "instructors": [
+        "Rob Braiman"
+      ],
+      "instructorEmails": [
+        "rbraiman@cogentanalytics.com"
+      ],
+      "subject": "Vision, Mission, and Values",
+      "description": "Meet The Owner (individual meeting) - Vision, Mission, and Values",
+      "location": "Virtual Meeting",
+      "isRequired": true,
+      "week": "Week 1 (Remote)",
+      "weekDay": "Mon",
+      "duration": 60
+    },
+    {
+      "id": 7,
+      "title": "CADS: BS, IS & Ratios",
+      "startDateTime": "2025-07-07T14:00:00-04:00",
+      "endDateTime": "2025-07-07T15:00:00-04:00",
+      "instructors": [
+        "Tim Grabrovaz"
+      ],
+      "instructorEmails": [
+        "timg@cogentanalytics.com"
+      ],
+      "subject": "Measurement",
+      "description": "CADS: BS, IS & Ratios - Measurement",
+      "location": "Virtual Meeting",
+      "isRequired": true,
+      "week": "Week 1 (Remote)",
+      "weekDay": "Mon",
+      "duration": 60
+    },
+    {
+      "id": 8,
+      "title": "Discovery Review & TO",
+      "startDateTime": "2025-07-07T15:00:00-04:00",
+      "endDateTime": "2025-07-07T17:00:00-04:00",
+      "instructors": [
+        "Tim Grabrovaz"
+      ],
+      "instructorEmails": [
+        "timg@cogentanalytics.com"
+      ],
+      "subject": "Discovery",
+      "description": "Discovery Review & TO - Discovery",
+      "location": "Virtual Meeting",
+      "isRequired": true,
+      "week": "Week 1 (Remote)",
+      "weekDay": "Mon",
+      "duration": 120
+    },
+    {
+      "id": 9,
+      "title": "Homework Build A TO Doc",
+      "startDateTime": "2025-07-07T17:00:00-04:00",
+      "endDateTime": "2025-07-07T21:00:00-04:00",
+      "instructors": [],
+      "instructorEmails": [],
+      "subject": "General Orientation",
+      "description": "Homework Build A TO Doc",
+      "location": "Virtual Meeting",
+      "isRequired": false,
+      "week": "Week 1 (Remote)",
+      "weekDay": "Mon",
+      "duration": 240
+    },
+    {
+      "id": 10,
+      "title": "Review TO Homework",
+      "startDateTime": "2025-07-08T09:00:00-04:00",
+      "endDateTime": "2025-07-08T10:00:00-04:00",
+      "instructors": [
+        "Tim Grabrovaz"
+      ],
+      "instructorEmails": [
+        "timg@cogentanalytics.com"
+      ],
+      "subject": "Discovery",
+      "description": "Review TO Homework - Discovery",
+      "location": "Virtual Meeting",
+      "isRequired": false,
+      "week": "Week 1 (Remote)",
+      "weekDay": "Tue",
+      "duration": 60
+    },
+    {
+      "id": 11,
+      "title": "Measurement",
+      "startDateTime": "2025-07-08T10:00:00-04:00",
+      "endDateTime": "2025-07-08T12:00:00-04:00",
+      "instructors": [
+        "Joshua Harvey"
+      ],
+      "instructorEmails": [
+        "jharvey@cogentanalytics.com"
+      ],
+      "subject": "Measurement",
+      "description": "Measurement - Measurement",
+      "location": "Virtual Meeting",
+      "isRequired": true,
+      "week": "Week 1 (Remote)",
+      "weekDay": "Tue",
+      "duration": 120
+    },
+    {
+      "id": 12,
+      "title": "The Strategy Call: Reel Lumber & ROI Scheduling",
+      "startDateTime": "2025-07-08T12:00:00-04:00",
+      "endDateTime": "2025-07-08T13:00:00-04:00",
+      "instructors": [
+        "Kai Hungerford"
+      ],
+      "instructorEmails": [
+        "khungerford@cogentanalytics.com"
+      ],
+      "subject": "Project Management",
+      "description": "The Strategy Call: Reel Lumber & ROI Scheduling - Project Management",
+      "location": "Virtual Meeting",
+      "isRequired": true,
+      "week": "Week 1 (Remote)",
+      "weekDay": "Tue",
+      "duration": 60
+    },
+    {
+      "id": 13,
+      "title": "Lunch & Feedback",
+      "startDateTime": "2025-07-08T13:00:00-04:00",
+      "endDateTime": "2025-07-08T14:00:00-04:00",
+      "instructors": [],
+      "instructorEmails": [],
+      "subject": "General Orientation",
+      "description": "Lunch & Feedback",
+      "location": "Virtual Meeting",
+      "isRequired": false,
+      "week": "Week 1 (Remote)",
+      "weekDay": "Tue",
+      "duration": 60
+    },
+    {
+      "id": 14,
+      "title": "Liquidity",
+      "startDateTime": "2025-07-08T14:00:00-04:00",
+      "endDateTime": "2025-07-08T15:00:00-04:00",
+      "instructors": [
+        "Josh Bresler"
+      ],
+      "instructorEmails": [
+        "jabresler@cogentanalytics.com"
+      ],
+      "subject": "Measurement",
+      "description": "Liquidity - Measurement",
+      "location": "Virtual Meeting",
+      "isRequired": true,
+      "week": "Week 1 (Remote)",
+      "weekDay": "Tue",
+      "duration": 60
+    },
+    {
+      "id": 15,
+      "title": "Project Plan Creation (Group Build)",
+      "startDateTime": "2025-07-08T15:00:00-04:00",
+      "endDateTime": "2025-07-08T17:00:00-04:00",
+      "instructors": [
+        "Tim Grabrovaz"
+      ],
+      "instructorEmails": [
+        "timg@cogentanalytics.com"
+      ],
+      "subject": "Project Management",
+      "description": "Project Plan Creation (Group Build) - Project Management",
+      "location": "Virtual Meeting",
+      "isRequired": true,
+      "week": "Week 1 (Remote)",
+      "weekDay": "Tue",
+      "duration": 120
+    },
+    {
+      "id": 16,
+      "title": "Homework Build A PP",
+      "startDateTime": "2025-07-08T17:00:00-04:00",
+      "endDateTime": "2025-07-08T21:00:00-04:00",
+      "instructors": [],
+      "instructorEmails": [],
+      "subject": "General Orientation",
+      "description": "Homework Build A PP",
+      "location": "Virtual Meeting",
+      "isRequired": false,
+      "week": "Week 1 (Remote)",
+      "weekDay": "Tue",
+      "duration": 240
+    },
+    {
+      "id": 17,
+      "title": "Project Plan Presentations",
+      "startDateTime": "2025-07-09T09:00:00-04:00",
+      "endDateTime": "2025-07-09T12:00:00-04:00",
+      "instructors": [
+        "Raul Ruiz"
+      ],
+      "instructorEmails": [
+        "rruiz@cogentanalytics.com"
+      ],
+      "subject": "Client Alignment & Project Control",
+      "description": "Project Plan Presentations - Client Alignment & Project Control",
+      "location": "Virtual Meeting",
+      "isRequired": true,
+      "week": "Week 1 (Remote)",
+      "weekDay": "Wed",
+      "duration": 180
+    },
+    {
+      "id": 18,
+      "title": "Travel & Expenses",
+      "startDateTime": "2025-07-09T12:00:00-04:00",
+      "endDateTime": "2025-07-09T13:00:00-04:00",
+      "instructors": [
+        "Randi Rhinehardt"
+      ],
+      "instructorEmails": [
+        "rrhinehardt@cogentanalytics.com"
+      ],
+      "subject": "Project Management",
+      "description": "Travel & Expenses - Project Management",
+      "location": "Virtual Meeting",
+      "isRequired": true,
+      "week": "Week 1 (Remote)",
+      "weekDay": "Wed",
+      "duration": 60
+    },
+    {
+      "id": 19,
+      "title": "Lunch & Feedback",
+      "startDateTime": "2025-07-09T13:00:00-04:00",
+      "endDateTime": "2025-07-09T14:00:00-04:00",
+      "instructors": [],
+      "instructorEmails": [],
+      "subject": "General Orientation",
+      "description": "Lunch & Feedback",
+      "location": "Virtual Meeting",
+      "isRequired": false,
+      "week": "Week 1 (Remote)",
+      "weekDay": "Wed",
+      "duration": 60
+    },
+    {
+      "id": 20,
+      "title": "Processes",
+      "startDateTime": "2025-07-09T14:00:00-04:00",
+      "endDateTime": "2025-07-09T15:00:00-04:00",
+      "instructors": [
+        "Isabelle Welch"
+      ],
+      "instructorEmails": [
+        "iwelch@cogentanalytics.com"
+      ],
+      "subject": "Project Management",
+      "description": "Processes - Project Management",
+      "location": "Virtual Meeting",
+      "isRequired": true,
+      "week": "Week 1 (Remote)",
+      "weekDay": "Wed",
+      "duration": 60
+    },
+    {
+      "id": 21,
+      "title": "CMS Show",
+      "startDateTime": "2025-07-09T15:00:00-04:00",
+      "endDateTime": "2025-07-09T16:00:00-04:00",
+      "instructors": [
+        "Ryland McClain-Rubin"
+      ],
+      "instructorEmails": [
+        "rmcclainrubin@cogentanalytics.com"
+      ],
+      "subject": "Measurement",
+      "description": "CMS Show - Measurement",
+      "location": "Virtual Meeting",
+      "isRequired": true,
+      "week": "Week 1 (Remote)",
+      "weekDay": "Wed",
+      "duration": 60
+    },
+    {
+      "id": 22,
+      "title": "CMS Build",
+      "startDateTime": "2025-07-09T16:00:00-04:00",
+      "endDateTime": "2025-07-09T17:00:00-04:00",
+      "instructors": [
+        "Ryland McClain-Rubin"
+      ],
+      "instructorEmails": [
+        "rmcclainrubin@cogentanalytics.com"
+      ],
+      "subject": "Measurement",
+      "description": "CMS Build - Measurement",
+      "location": "Virtual Meeting",
+      "isRequired": true,
+      "week": "Week 1 (Remote)",
+      "weekDay": "Wed",
+      "duration": 60
+    },
+    {
+      "id": 23,
+      "title": "Homework Build a CMS",
+      "startDateTime": "2025-07-09T17:00:00-04:00",
+      "endDateTime": "2025-07-09T19:00:00-04:00",
+      "instructors": [],
+      "instructorEmails": [],
+      "subject": "General Orientation",
+      "description": "Homework Build a CMS",
+      "location": "Virtual Meeting",
+      "isRequired": false,
+      "week": "Week 1 (Remote)",
+      "weekDay": "Wed",
+      "duration": 120
+    },
+    {
+      "id": 24,
+      "title": "Review CMS Homework",
+      "startDateTime": "2025-07-10T09:00:00-04:00",
+      "endDateTime": "2025-07-10T10:00:00-04:00",
+      "instructors": [
+        "Ryland McClain-Rubin"
+      ],
+      "instructorEmails": [
+        "rmcclainrubin@cogentanalytics.com"
+      ],
+      "subject": "Measurement",
+      "description": "Review CMS Homework - Measurement",
+      "location": "Virtual Meeting",
+      "isRequired": false,
+      "week": "Week 1 (Remote)",
+      "weekDay": "Thu",
+      "duration": 60
+    },
+    {
+      "id": 25,
+      "title": "Project Management",
+      "startDateTime": "2025-07-10T10:00:00-04:00",
+      "endDateTime": "2025-07-10T11:00:00-04:00",
+      "instructors": [
+        "Dakota Madison"
+      ],
+      "instructorEmails": [
+        "dmadison@cogentanalytics.com"
+      ],
+      "subject": "Project Management",
+      "description": "Project Management - Project Management",
+      "location": "Virtual Meeting",
+      "isRequired": true,
+      "week": "Week 1 (Remote)",
+      "weekDay": "Thu",
+      "duration": 60
+    },
+    {
+      "id": 26,
+      "title": "LBR",
+      "startDateTime": "2025-07-10T11:00:00-04:00",
+      "endDateTime": "2025-07-10T12:00:00-04:00",
+      "instructors": [
+        "Kai Hungerford",
+        "Josh Bresler"
+      ],
+      "instructorEmails": [
+        "khungerford@cogentanalytics.com",
+        "jabresler@cogentanalytics.com"
+      ],
+      "subject": "Measurement",
+      "description": "LBR - Measurement",
+      "location": "Virtual Meeting",
+      "isRequired": true,
+      "week": "Week 1 (Remote)",
+      "weekDay": "Thu",
+      "duration": 60
+    },
+    {
+      "id": 27,
+      "title": "Break Even & Overhead & Pricing Tool",
+      "startDateTime": "2025-07-10T12:00:00-04:00",
+      "endDateTime": "2025-07-10T13:00:00-04:00",
+      "instructors": [
+        "Kai Hungerford",
+        "Josh Bresler"
+      ],
+      "instructorEmails": [
+        "khungerford@cogentanalytics.com",
+        "jabresler@cogentanalytics.com"
+      ],
+      "subject": "Measurement",
+      "description": "Break Even & Overhead & Pricing Tool - Measurement",
+      "location": "Virtual Meeting",
+      "isRequired": true,
+      "week": "Week 1 (Remote)",
+      "weekDay": "Thu",
+      "duration": 60
+    },
+    {
+      "id": 28,
+      "title": "Lunch & Feedback",
+      "startDateTime": "2025-07-10T13:00:00-04:00",
+      "endDateTime": "2025-07-10T14:00:00-04:00",
+      "instructors": [],
+      "instructorEmails": [],
+      "subject": "General Orientation",
+      "description": "Lunch & Feedback",
+      "location": "Virtual Meeting",
+      "isRequired": false,
+      "week": "Week 1 (Remote)",
+      "weekDay": "Thu",
+      "duration": 60
+    },
+    {
+      "id": 29,
+      "title": "Key Stakeholder Interviews",
+      "startDateTime": "2025-07-10T14:00:00-04:00",
+      "endDateTime": "2025-07-10T15:00:00-04:00",
+      "instructors": [
+        "Tim Grabrovaz"
+      ],
+      "instructorEmails": [
+        "timg@cogentanalytics.com"
+      ],
+      "subject": "People",
+      "description": "Key Stakeholder Interviews - People",
+      "location": "Virtual Meeting",
+      "isRequired": true,
+      "week": "Week 1 (Remote)",
+      "weekDay": "Thu",
+      "duration": 60
+    },
+    {
+      "id": 30,
+      "title": "WPR Creation (Group Build)",
+      "startDateTime": "2025-07-10T15:00:00-04:00",
+      "endDateTime": "2025-07-10T17:00:00-04:00",
+      "instructors": [
+        "Tim Grabrovaz"
+      ],
+      "instructorEmails": [
+        "timg@cogentanalytics.com"
+      ],
+      "subject": "Project Management",
+      "description": "WPR Creation (Group Build) - Project Management",
+      "location": "Virtual Meeting",
+      "isRequired": true,
+      "week": "Week 1 (Remote)",
+      "weekDay": "Thu",
+      "duration": 120
+    },
+    {
+      "id": 31,
+      "title": "Homework Build a WPR",
+      "startDateTime": "2025-07-10T17:00:00-04:00",
+      "endDateTime": "2025-07-10T21:00:00-04:00",
+      "instructors": [],
+      "instructorEmails": [],
+      "subject": "General Orientation",
+      "description": "Homework Build a WPR",
+      "location": "Virtual Meeting",
+      "isRequired": false,
+      "week": "Week 1 (Remote)",
+      "weekDay": "Thu",
+      "duration": 240
+    },
+    {
+      "id": 32,
+      "title": "WPR Presentations",
+      "startDateTime": "2025-07-11T09:00:00-04:00",
+      "endDateTime": "2025-07-11T12:00:00-04:00",
+      "instructors": [
+        "Billy Hardison"
+      ],
+      "instructorEmails": [
+        "bhardison@cogentanalytics.com"
+      ],
+      "subject": "Client Alignment & Project Control",
+      "description": "WPR Presentations - Client Alignment & Project Control",
+      "location": "Virtual Meeting",
+      "isRequired": true,
+      "week": "Week 1 (Remote)",
+      "weekDay": "Fri",
+      "duration": 180
+    },
+    {
+      "id": 33,
+      "title": "Social Styles",
+      "startDateTime": "2025-07-11T12:00:00-04:00",
+      "endDateTime": "2025-07-11T13:00:00-04:00",
+      "instructors": [
+        "Tim Grabrovaz"
+      ],
+      "instructorEmails": [
+        "timg@cogentanalytics.com"
+      ],
+      "subject": "People",
+      "description": "Social Styles - People",
+      "location": "Virtual Meeting",
+      "isRequired": true,
+      "week": "Week 1 (Remote)",
+      "weekDay": "Fri",
+      "duration": 60
+    },
+    {
+      "id": 34,
+      "title": "Lunch",
+      "startDateTime": "2025-07-11T13:00:00-04:00",
+      "endDateTime": "2025-07-11T14:00:00-04:00",
+      "instructors": [],
+      "instructorEmails": [],
+      "subject": "General Orientation",
+      "description": "Lunch",
+      "location": "Virtual Meeting",
+      "isRequired": false,
+      "week": "Week 1 (Remote)",
+      "weekDay": "Fri",
+      "duration": 60
+    },
+    {
+      "id": 35,
+      "title": "PD Success Metrics",
+      "startDateTime": "2025-07-11T14:00:00-04:00",
+      "endDateTime": "2025-07-11T15:00:00-04:00",
+      "instructors": [
+        "Adam Williams"
+      ],
+      "instructorEmails": [
+        "awilliams@cogentanalytics.com"
+      ],
+      "subject": "Vision, Mission, and Values",
+      "description": "PD Success Metrics - Vision, Mission, and Values",
+      "location": "Virtual Meeting",
+      "isRequired": true,
+      "week": "Week 1 (Remote)",
+      "weekDay": "Fri",
+      "duration": 60
+    },
+    {
+      "id": 36,
+      "title": "Graduation",
+      "startDateTime": "2025-07-11T15:00:00-04:00",
+      "endDateTime": "2025-07-11T17:00:00-04:00",
+      "instructors": [
+        "Adam Williams"
+      ],
+      "instructorEmails": [
+        "awilliams@cogentanalytics.com"
+      ],
+      "subject": "General Orientation",
+      "description": "Graduation",
+      "location": "Virtual Meeting",
+      "isRequired": true,
+      "week": "Week 1 (Remote)",
+      "weekDay": "Fri",
+      "duration": 120
+    },
+    {
+      "id": 37,
+      "title": "Working With PAT's",
+      "startDateTime": "2025-07-14T09:00:00-04:00",
+      "endDateTime": "2025-07-14T10:00:00-04:00",
+      "instructors": [
+        "Kaitlyn Tedder"
+      ],
+      "instructorEmails": [
+        "ktedder@cogentanalytics.com"
+      ],
+      "subject": "Project Management",
+      "description": "Working With PAT's - Project Management",
+      "location": "Cogent Analytics Office",
+      "isRequired": true,
+      "week": "Week 2 (In Person)",
+      "weekDay": "Mon",
+      "duration": 60
+    },
+    {
+      "id": 38,
+      "title": "Sales Trend Analysis",
+      "startDateTime": "2025-07-14T10:00:00-04:00",
+      "endDateTime": "2025-07-14T11:00:00-04:00",
+      "instructors": [
+        "Ryland McClain-Rubin"
+      ],
+      "instructorEmails": [
+        "rmcclainrubin@cogentanalytics.com"
+      ],
+      "subject": "Measurement",
+      "description": "Sales Trend Analysis - Measurement",
+      "location": "Cogent Analytics Office",
+      "isRequired": true,
+      "week": "Week 2 (In Person)",
+      "weekDay": "Mon",
+      "duration": 60
+    },
+    {
+      "id": 39,
+      "title": "Referrals",
+      "startDateTime": "2025-07-14T11:00:00-04:00",
+      "endDateTime": "2025-07-14T11:30:00-04:00",
+      "instructors": [
+        "CJ Johnson"
+      ],
+      "instructorEmails": [
+        "cjohnson@cogentanalytics.com"
+      ],
+      "subject": "Project Management",
+      "description": "Referrals - Project Management",
+      "location": "Cogent Analytics Office",
+      "isRequired": true,
+      "week": "Week 2 (In Person)",
+      "weekDay": "Mon",
+      "duration": 30
+    },
+    {
+      "id": 40,
+      "title": "Fever Chart (People & Meetings)",
+      "startDateTime": "2025-07-14T11:30:00-04:00",
+      "endDateTime": "2025-07-14T13:00:00-04:00",
+      "instructors": [
+        "Raul Ruiz"
+      ],
+      "instructorEmails": [
+        "rruiz@cogentanalytics.com"
+      ],
+      "subject": "Client Alignment & Project Control",
+      "description": "Fever Chart (People & Meetings) - Client Alignment & Project Control",
+      "location": "Cogent Analytics Office",
+      "isRequired": true,
+      "week": "Week 2 (In Person)",
+      "weekDay": "Mon",
+      "duration": 90
+    },
+    {
+      "id": 41,
+      "title": "Lunch",
+      "startDateTime": "2025-07-14T13:00:00-04:00",
+      "endDateTime": "2025-07-14T14:00:00-04:00",
+      "instructors": [],
+      "instructorEmails": [],
+      "subject": "General Orientation",
+      "description": "Lunch",
+      "location": "Cogent Analytics Office",
+      "isRequired": false,
+      "week": "Week 2 (In Person)",
+      "weekDay": "Mon",
+      "duration": 60
+    },
+    {
+      "id": 42,
+      "title": "Accountability Framework",
+      "startDateTime": "2025-07-14T14:00:00-04:00",
+      "endDateTime": "2025-07-14T15:00:00-04:00",
+      "instructors": [
+        "Tim Grabrovaz"
+      ],
+      "instructorEmails": [
+        "timg@cogentanalytics.com"
+      ],
+      "subject": "People",
+      "description": "Accountability Framework - People",
+      "location": "Cogent Analytics Office",
+      "isRequired": true,
+      "week": "Week 2 (In Person)",
+      "weekDay": "Mon",
+      "duration": 60
+    },
+    {
+      "id": 43,
+      "title": "Connective Tissue: CMS Strategy w/ B.E., OHA, LBR, & Pricing",
+      "startDateTime": "2025-07-14T15:00:00-04:00",
+      "endDateTime": "2025-07-14T17:00:00-04:00",
+      "instructors": [
+        "Dakota Madison"
+      ],
+      "instructorEmails": [
+        "dmadison@cogentanalytics.com"
+      ],
+      "subject": "Measurement",
+      "description": "Connective Tissue: CMS Strategy w/ B.E., OHA, LBR, & Pricing - Measurement",
+      "location": "Cogent Analytics Office",
+      "isRequired": true,
+      "week": "Week 2 (In Person)",
+      "weekDay": "Mon",
+      "duration": 120
+    },
+    {
+      "id": 44,
+      "title": "Homework ClickUp",
+      "startDateTime": "2025-07-14T17:00:00-04:00",
+      "endDateTime": "2025-07-14T19:00:00-04:00",
+      "instructors": [],
+      "instructorEmails": [],
+      "subject": "General Orientation",
+      "description": "Homework ClickUp",
+      "location": "Cogent Analytics Office",
+      "isRequired": false,
+      "week": "Week 2 (In Person)",
+      "weekDay": "Mon",
+      "duration": 120
+    },
+    {
+      "id": 45,
+      "title": "Tour of Office with Isabelle",
+      "startDateTime": "2025-07-15T08:30:00-04:00",
+      "endDateTime": "2025-07-15T09:00:00-04:00",
+      "instructors": [
+        "Isabelle Welch"
+      ],
+      "instructorEmails": [
+        "iwelch@cogentanalytics.com"
+      ],
+      "subject": "General Orientation",
+      "description": "Tour of Office with Isabelle",
+      "location": "Cogent Analytics Office",
+      "isRequired": true,
+      "week": "Week 2 (In Person)",
+      "weekDay": "Tue",
+      "duration": 30
+    },
+    {
+      "id": 46,
+      "title": "Brand Marketing",
+      "startDateTime": "2025-07-15T09:00:00-04:00",
+      "endDateTime": "2025-07-15T10:00:00-04:00",
+      "instructors": [
+        "SarahRose Mosh"
+      ],
+      "instructorEmails": [
+        "srmosh@cogentanalytics.com"
+      ],
+      "subject": "Brand MTKG",
+      "description": "Brand Marketing - Brand MTKG",
+      "location": "Cogent Analytics Office",
+      "isRequired": true,
+      "week": "Week 2 (In Person)",
+      "weekDay": "Tue",
+      "duration": 60
+    },
+    {
+      "id": 47,
+      "title": "Absolute Capacity & Utilization",
+      "startDateTime": "2025-07-15T10:00:00-04:00",
+      "endDateTime": "2025-07-15T11:00:00-04:00",
+      "instructors": [
+        "Kai Hungerford"
+      ],
+      "instructorEmails": [
+        "khungerford@cogentanalytics.com"
+      ],
+      "subject": "Process",
+      "description": "Absolute Capacity & Utilization - Process",
+      "location": "Cogent Analytics Office",
+      "isRequired": true,
+      "week": "Week 2 (In Person)",
+      "weekDay": "Tue",
+      "duration": 60
+    },
+    {
+      "id": 48,
+      "title": "Lost Time Pareto",
+      "startDateTime": "2025-07-15T11:00:00-04:00",
+      "endDateTime": "2025-07-15T12:00:00-04:00",
+      "instructors": [
+        "Kai Hungerford"
+      ],
+      "instructorEmails": [
+        "khungerford@cogentanalytics.com"
+      ],
+      "subject": "Process",
+      "description": "Lost Time Pareto - Process",
+      "location": "Cogent Analytics Office",
+      "isRequired": true,
+      "week": "Week 2 (In Person)",
+      "weekDay": "Tue",
+      "duration": 60
+    },
+    {
+      "id": 49,
+      "title": "Budget",
+      "startDateTime": "2025-07-15T12:00:00-04:00",
+      "endDateTime": "2025-07-15T13:00:00-04:00",
+      "instructors": [
+        "Josh Bresler"
+      ],
+      "instructorEmails": [
+        "jabresler@cogentanalytics.com"
+      ],
+      "subject": "Measurement",
+      "description": "Budget - Measurement",
+      "location": "Cogent Analytics Office",
+      "isRequired": true,
+      "week": "Week 2 (In Person)",
+      "weekDay": "Tue",
+      "duration": 60
+    },
+    {
+      "id": 50,
+      "title": "Lunch",
+      "startDateTime": "2025-07-15T13:00:00-04:00",
+      "endDateTime": "2025-07-15T14:00:00-04:00",
+      "instructors": [],
+      "instructorEmails": [],
+      "subject": "General Orientation",
+      "description": "Lunch",
+      "location": "Cogent Analytics Office",
+      "isRequired": false,
+      "week": "Week 2 (In Person)",
+      "weekDay": "Tue",
+      "duration": 60
+    },
+    {
+      "id": 51,
+      "title": "Marketing",
+      "startDateTime": "2025-07-15T14:00:00-04:00",
+      "endDateTime": "2025-07-15T14:30:00-04:00",
+      "instructors": [
+        "Ronnie Blanton"
+      ],
+      "instructorEmails": [
+        "rblanton@cogentanalytics.com"
+      ],
+      "subject": "Professional Services",
+      "description": "Marketing - Professional Services",
+      "location": "Cogent Analytics Office",
+      "isRequired": true,
+      "week": "Week 2 (In Person)",
+      "weekDay": "Tue",
+      "duration": 30
+    },
+    {
+      "id": 52,
+      "title": "Accounting",
+      "startDateTime": "2025-07-15T14:30:00-04:00",
+      "endDateTime": "2025-07-15T15:00:00-04:00",
+      "instructors": [
+        "Nathan Stone"
+      ],
+      "instructorEmails": [
+        "nstone@cogentanalytics.com"
+      ],
+      "subject": "Discovery",
+      "description": "Accounting - Discovery",
+      "location": "Cogent Analytics Office",
+      "isRequired": true,
+      "week": "Week 2 (In Person)",
+      "weekDay": "Tue",
+      "duration": 30
+    },
+    {
+      "id": 53,
+      "title": "Talent Solutions",
+      "startDateTime": "2025-07-15T15:00:00-04:00",
+      "endDateTime": "2025-07-15T15:30:00-04:00",
+      "instructors": [
+        "Shane Wilson"
+      ],
+      "instructorEmails": [
+        "swilson@cogentanalytics.com"
+      ],
+      "subject": "Discovery",
+      "description": "Talent Solutions - Discovery",
+      "location": "Cogent Analytics Office",
+      "isRequired": true,
+      "week": "Week 2 (In Person)",
+      "weekDay": "Tue",
+      "duration": 30
+    },
+    {
+      "id": 54,
+      "title": "Biz Dev",
+      "startDateTime": "2025-07-15T15:30:00-04:00",
+      "endDateTime": "2025-07-15T16:00:00-04:00",
+      "instructors": [
+        "Ethan Prehoda"
+      ],
+      "instructorEmails": [
+        "eprehoda@cogentanalytics.com"
+      ],
+      "subject": "Discovery",
+      "description": "Biz Dev - Discovery",
+      "location": "Cogent Analytics Office",
+      "isRequired": true,
+      "week": "Week 2 (In Person)",
+      "weekDay": "Tue",
+      "duration": 30
+    },
+    {
+      "id": 55,
+      "title": "ProServe",
+      "startDateTime": "2025-07-15T16:00:00-04:00",
+      "endDateTime": "2025-07-15T17:00:00-04:00",
+      "instructors": [
+        "Ethan Prehoda"
+      ],
+      "instructorEmails": [
+        "eprehoda@cogentanalytics.com"
+      ],
+      "subject": "Professional Services",
+      "description": "ProServe - Professional Services",
+      "location": "Cogent Analytics Office",
+      "isRequired": true,
+      "week": "Week 2 (In Person)",
+      "weekDay": "Tue",
+      "duration": 60
+    },
+    {
+      "id": 56,
+      "title": "Homework Opportunity Wall",
+      "startDateTime": "2025-07-15T17:00:00-04:00",
+      "endDateTime": "2025-07-15T18:00:00-04:00",
+      "instructors": [],
+      "instructorEmails": [],
+      "subject": "General Orientation",
+      "description": "Homework Opportunity Wall",
+      "location": "Cogent Analytics Office",
+      "isRequired": false,
+      "week": "Week 2 (In Person)",
+      "weekDay": "Tue",
+      "duration": 60
+    },
+    {
+      "id": 57,
+      "title": "Opportunity Wall (Group Build) & Process Flow/Area Sequence",
+      "startDateTime": "2025-07-16T09:00:00-04:00",
+      "endDateTime": "2025-07-16T11:00:00-04:00",
+      "instructors": [
+        "Billy Hardison"
+      ],
+      "instructorEmails": [
+        "bhardison@cogentanalytics.com"
+      ],
+      "subject": "Process",
+      "description": "Opportunity Wall (Group Build) & Process Flow/Area Sequence - Process",
+      "location": "Cogent Analytics Office",
+      "isRequired": true,
+      "week": "Week 2 (In Person)",
+      "weekDay": "Wed",
+      "duration": 120
+    },
+    {
+      "id": 58,
+      "title": "Client Alignment & Project Control",
+      "startDateTime": "2025-07-16T11:00:00-04:00",
+      "endDateTime": "2025-07-16T13:00:00-04:00",
+      "instructors": [
+        "Dakota Madison"
+      ],
+      "instructorEmails": [
+        "dmadison@cogentanalytics.com"
+      ],
+      "subject": "Client Alignment & Project Control",
+      "description": "Client Alignment & Project Control - Client Alignment & Project Control",
+      "location": "Cogent Analytics Office",
+      "isRequired": true,
+      "week": "Week 2 (In Person)",
+      "weekDay": "Wed",
+      "duration": 120
+    },
+    {
+      "id": 59,
+      "title": "Lunch",
+      "startDateTime": "2025-07-16T13:00:00-04:00",
+      "endDateTime": "2025-07-16T14:00:00-04:00",
+      "instructors": [],
+      "instructorEmails": [],
+      "subject": "General Orientation",
+      "description": "Lunch",
+      "location": "Cogent Analytics Office",
+      "isRequired": false,
+      "week": "Week 2 (In Person)",
+      "weekDay": "Wed",
+      "duration": 60
+    },
+    {
+      "id": 60,
+      "title": "Meet the VP",
+      "startDateTime": "2025-07-16T14:00:00-04:00",
+      "endDateTime": "2025-07-16T14:30:00-04:00",
+      "instructors": [
+        "Caleb Connerty"
+      ],
+      "instructorEmails": [
+        "cconnerty@cogentanalytics.com"
+      ],
+      "subject": "Vision, Mission, and Values",
+      "description": "Meet the VP - Vision, Mission, and Values",
+      "location": "Cogent Analytics Office",
+      "isRequired": true,
+      "week": "Week 2 (In Person)",
+      "weekDay": "Wed",
+      "duration": 30
+    },
+    {
+      "id": 61,
+      "title": "BMS",
+      "startDateTime": "2025-07-16T14:30:00-04:00",
+      "endDateTime": "2025-07-16T16:00:00-04:00",
+      "instructors": [
+        "Ryland McClain-Rubin"
+      ],
+      "instructorEmails": [
+        "rmcclainrubin@cogentanalytics.com"
+      ],
+      "subject": "General Orientation",
+      "description": "BMS",
+      "location": "Cogent Analytics Office",
+      "isRequired": true,
+      "week": "Week 2 (In Person)",
+      "weekDay": "Wed",
+      "duration": 90
+    },
+    {
+      "id": 62,
+      "title": "Meet Your AD",
+      "startDateTime": "2025-07-16T16:00:00-04:00",
+      "endDateTime": "2025-07-16T17:00:00-04:00",
+      "instructors": [
+        "Adam Williams"
+      ],
+      "instructorEmails": [
+        "awilliams@cogentanalytics.com"
+      ],
+      "subject": "Vision, Mission, and Values",
+      "description": "Meet Your AD - Vision, Mission, and Values",
+      "location": "Cogent Analytics Office",
+      "isRequired": true,
+      "week": "Week 2 (In Person)",
+      "weekDay": "Wed",
+      "duration": 60
+    },
+    {
+      "id": 63,
+      "title": "Homework CMS",
+      "startDateTime": "2025-07-16T17:00:00-04:00",
+      "endDateTime": "2025-07-16T18:00:00-04:00",
+      "instructors": [],
+      "instructorEmails": [],
+      "subject": "General Orientation",
+      "description": "Homework CMS",
+      "location": "Cogent Analytics Office",
+      "isRequired": false,
+      "week": "Week 2 (In Person)",
+      "weekDay": "Wed",
+      "duration": 60
+    },
+    {
+      "id": 64,
+      "title": "Connecting The Why, Strategy, Objectives and Deliverables",
+      "startDateTime": "2025-07-17T09:00:00-04:00",
+      "endDateTime": "2025-07-17T12:00:00-04:00",
+      "instructors": [
+        "Raul Ruiz"
+      ],
+      "instructorEmails": [
+        "rruiz@cogentanalytics.com"
+      ],
+      "subject": "Client Alignment & Project Control",
+      "description": "Connecting The Why, Strategy, Objectives and Deliverables - Client Alignment & Project Control",
+      "location": "Cogent Analytics Office",
+      "isRequired": true,
+      "week": "Week 2 (In Person)",
+      "weekDay": "Thu",
+      "duration": 180
+    },
+    {
+      "id": 65,
+      "title": "Quarterly Strategic Plan",
+      "startDateTime": "2025-07-17T12:00:00-04:00",
+      "endDateTime": "2025-07-17T13:00:00-04:00",
+      "instructors": [
+        "Tim Grabrovaz"
+      ],
+      "instructorEmails": [
+        "timg@cogentanalytics.com"
+      ],
+      "subject": "LifeCycle",
+      "description": "Quarterly Strategic Plan - LifeCycle",
+      "location": "Cogent Analytics Office",
+      "isRequired": true,
+      "week": "Week 2 (In Person)",
+      "weekDay": "Thu",
+      "duration": 60
+    },
+    {
+      "id": 66,
+      "title": "Lunch",
+      "startDateTime": "2025-07-17T13:00:00-04:00",
+      "endDateTime": "2025-07-17T14:00:00-04:00",
+      "instructors": [],
+      "instructorEmails": [],
+      "subject": "General Orientation",
+      "description": "Lunch",
+      "location": "Cogent Analytics Office",
+      "isRequired": false,
+      "week": "Week 2 (In Person)",
+      "weekDay": "Thu",
+      "duration": 60
+    },
+    {
+      "id": 67,
+      "title": "Transition to LC - LC Engagement Plan - ROI Updates",
+      "startDateTime": "2025-07-17T14:00:00-04:00",
+      "endDateTime": "2025-07-17T16:00:00-04:00",
+      "instructors": [
+        "Pete Villari"
+      ],
+      "instructorEmails": [
+        "pvillari@cogentanalytics.com"
+      ],
+      "subject": "LifeCycle",
+      "description": "Transition to LC - LC Engagement Plan - ROI Updates - LifeCycle",
+      "location": "Cogent Analytics Office",
+      "isRequired": true,
+      "week": "Week 2 (In Person)",
+      "weekDay": "Thu",
+      "duration": 120
+    }
+  ],
+  "orienteeList": [
+    {
+      "name": "REPLACE_WITH_ACTUAL_ORIENTEE_NAME",
+      "email": "orientee@company.com",
+      "startDate": "2025-07-07",
+      "role": "Process Development Analyst",
+      "note": "Update this with real orientee information"
+    }
+  ],
+  "makeScenarioConfig": {
+    "triggerType": "webhook",
+    "emailTemplate": {
+      "fromEmail": "orientation@cogentanalytics.com",
+      "fromName": "Cogent Analytics - PD Orientation",
+      "subject": "{{title}} - PD Orientation Session",
+      "bodyTemplate": "You're invited to: {{title}}\n\nTime: {{startDateTime}} - {{endDateTime}}\nInstructor(s): {{instructors}}\nSubject: {{subject}}\nLocation: {{location}}\n\nDescription: {{description}}\n\nThis session is part of your PD Orientation program at Cogent Analytics.\n\nPlease confirm your attendance and let us know if you have any questions.\n\nBest regards,\nThe Orientation Team"
+    },
+    "calendarSettings": {
+      "timeZone": "America/New_York",
+      "reminderMinutes": [
+        15,
+        60
+      ],
+      "isOnlineMeeting": true,
+      "busyStatus": "busy",
+      "visibility": "private"
+    }
+  },
+  "bulkOperations": {
+    "sendAllInvites": {
+      "description": "Send calendar invites for all lessons at once",
+      "batchSize": 10,
+      "delayBetweenBatches": 5000
+    },
+    "sendWeeklyBatch": {
+      "description": "Send invites one week at a time",
+      "week1": [
+        {
+          "id": 1,
+          "title": "Welcome & Introductions",
+          "startDateTime": "2025-07-07T08:30:00-04:00",
+          "endDateTime": "2025-07-07T09:00:00-04:00",
+          "instructors": [
+            "Adam Williams",
+            "Tim Grabrovaz"
+          ],
+          "instructorEmails": [
+            "awilliams@cogentanalytics.com",
+            "timg@cogentanalytics.com"
+          ],
+          "subject": "General Orientation",
+          "description": "Welcome & Introductions",
+          "location": "Virtual Meeting",
+          "isRequired": true,
+          "week": "Week 1 (Remote)",
+          "weekDay": "Mon",
+          "duration": 30
+        },
+        {
+          "id": 2,
+          "title": "Vision, Values & Process",
+          "startDateTime": "2025-07-07T09:00:00-04:00",
+          "endDateTime": "2025-07-07T10:00:00-04:00",
+          "instructors": [
+            "Tim Grabrovaz"
+          ],
+          "instructorEmails": [
+            "timg@cogentanalytics.com"
+          ],
+          "subject": "Vision, Mission, and Values",
+          "description": "Vision, Values & Process - Vision, Mission, and Values",
+          "location": "Virtual Meeting",
+          "isRequired": true,
+          "week": "Week 1 (Remote)",
+          "weekDay": "Mon",
+          "duration": 60
+        },
+        {
+          "id": 3,
+          "title": "The Why",
+          "startDateTime": "2025-07-07T10:00:00-04:00",
+          "endDateTime": "2025-07-07T11:00:00-04:00",
+          "instructors": [
+            "Tim Grabrovaz"
+          ],
+          "instructorEmails": [
+            "timg@cogentanalytics.com"
+          ],
+          "subject": "People",
+          "description": "The Why - People",
+          "location": "Virtual Meeting",
+          "isRequired": true,
+          "week": "Week 1 (Remote)",
+          "weekDay": "Mon",
+          "duration": 60
+        },
+        {
+          "id": 4,
+          "title": "Engagement Approach & Opening Week",
+          "startDateTime": "2025-07-07T11:00:00-04:00",
+          "endDateTime": "2025-07-07T12:00:00-04:00",
+          "instructors": [
+            "Adam Williams"
+          ],
+          "instructorEmails": [
+            "awilliams@cogentanalytics.com"
+          ],
+          "subject": "Project Management",
+          "description": "Engagement Approach & Opening Week - Project Management",
+          "location": "Virtual Meeting",
+          "isRequired": true,
+          "week": "Week 1 (Remote)",
+          "weekDay": "Mon",
+          "duration": 60
+        },
+        {
+          "id": 5,
+          "title": "Lunch & Feedback",
+          "startDateTime": "2025-07-07T12:00:00-04:00",
+          "endDateTime": "2025-07-07T13:00:00-04:00",
+          "instructors": [],
+          "instructorEmails": [],
+          "subject": "General Orientation",
+          "description": "Lunch & Feedback",
+          "location": "Virtual Meeting",
+          "isRequired": false,
+          "week": "Week 1 (Remote)",
+          "weekDay": "Mon",
+          "duration": 60
+        },
+        {
+          "id": 6,
+          "title": "Meet The Owner (individual meeting)",
+          "startDateTime": "2025-07-07T13:00:00-04:00",
+          "endDateTime": "2025-07-07T14:00:00-04:00",
+          "instructors": [
+            "Rob Braiman"
+          ],
+          "instructorEmails": [
+            "rbraiman@cogentanalytics.com"
+          ],
+          "subject": "Vision, Mission, and Values",
+          "description": "Meet The Owner (individual meeting) - Vision, Mission, and Values",
+          "location": "Virtual Meeting",
+          "isRequired": true,
+          "week": "Week 1 (Remote)",
+          "weekDay": "Mon",
+          "duration": 60
+        },
+        {
+          "id": 7,
+          "title": "CADS: BS, IS & Ratios",
+          "startDateTime": "2025-07-07T14:00:00-04:00",
+          "endDateTime": "2025-07-07T15:00:00-04:00",
+          "instructors": [
+            "Tim Grabrovaz"
+          ],
+          "instructorEmails": [
+            "timg@cogentanalytics.com"
+          ],
+          "subject": "Measurement",
+          "description": "CADS: BS, IS & Ratios - Measurement",
+          "location": "Virtual Meeting",
+          "isRequired": true,
+          "week": "Week 1 (Remote)",
+          "weekDay": "Mon",
+          "duration": 60
+        },
+        {
+          "id": 8,
+          "title": "Discovery Review & TO",
+          "startDateTime": "2025-07-07T15:00:00-04:00",
+          "endDateTime": "2025-07-07T17:00:00-04:00",
+          "instructors": [
+            "Tim Grabrovaz"
+          ],
+          "instructorEmails": [
+            "timg@cogentanalytics.com"
+          ],
+          "subject": "Discovery",
+          "description": "Discovery Review & TO - Discovery",
+          "location": "Virtual Meeting",
+          "isRequired": true,
+          "week": "Week 1 (Remote)",
+          "weekDay": "Mon",
+          "duration": 120
+        },
+        {
+          "id": 9,
+          "title": "Homework Build A TO Doc",
+          "startDateTime": "2025-07-07T17:00:00-04:00",
+          "endDateTime": "2025-07-07T21:00:00-04:00",
+          "instructors": [],
+          "instructorEmails": [],
+          "subject": "General Orientation",
+          "description": "Homework Build A TO Doc",
+          "location": "Virtual Meeting",
+          "isRequired": false,
+          "week": "Week 1 (Remote)",
+          "weekDay": "Mon",
+          "duration": 240
+        },
+        {
+          "id": 10,
+          "title": "Review TO Homework",
+          "startDateTime": "2025-07-08T09:00:00-04:00",
+          "endDateTime": "2025-07-08T10:00:00-04:00",
+          "instructors": [
+            "Tim Grabrovaz"
+          ],
+          "instructorEmails": [
+            "timg@cogentanalytics.com"
+          ],
+          "subject": "Discovery",
+          "description": "Review TO Homework - Discovery",
+          "location": "Virtual Meeting",
+          "isRequired": false,
+          "week": "Week 1 (Remote)",
+          "weekDay": "Tue",
+          "duration": 60
+        },
+        {
+          "id": 11,
+          "title": "Measurement",
+          "startDateTime": "2025-07-08T10:00:00-04:00",
+          "endDateTime": "2025-07-08T12:00:00-04:00",
+          "instructors": [
+            "Joshua Harvey"
+          ],
+          "instructorEmails": [
+            "jharvey@cogentanalytics.com"
+          ],
+          "subject": "Measurement",
+          "description": "Measurement - Measurement",
+          "location": "Virtual Meeting",
+          "isRequired": true,
+          "week": "Week 1 (Remote)",
+          "weekDay": "Tue",
+          "duration": 120
+        },
+        {
+          "id": 12,
+          "title": "The Strategy Call: Reel Lumber & ROI Scheduling",
+          "startDateTime": "2025-07-08T12:00:00-04:00",
+          "endDateTime": "2025-07-08T13:00:00-04:00",
+          "instructors": [
+            "Kai Hungerford"
+          ],
+          "instructorEmails": [
+            "khungerford@cogentanalytics.com"
+          ],
+          "subject": "Project Management",
+          "description": "The Strategy Call: Reel Lumber & ROI Scheduling - Project Management",
+          "location": "Virtual Meeting",
+          "isRequired": true,
+          "week": "Week 1 (Remote)",
+          "weekDay": "Tue",
+          "duration": 60
+        },
+        {
+          "id": 13,
+          "title": "Lunch & Feedback",
+          "startDateTime": "2025-07-08T13:00:00-04:00",
+          "endDateTime": "2025-07-08T14:00:00-04:00",
+          "instructors": [],
+          "instructorEmails": [],
+          "subject": "General Orientation",
+          "description": "Lunch & Feedback",
+          "location": "Virtual Meeting",
+          "isRequired": false,
+          "week": "Week 1 (Remote)",
+          "weekDay": "Tue",
+          "duration": 60
+        },
+        {
+          "id": 14,
+          "title": "Liquidity",
+          "startDateTime": "2025-07-08T14:00:00-04:00",
+          "endDateTime": "2025-07-08T15:00:00-04:00",
+          "instructors": [
+            "Josh Bresler"
+          ],
+          "instructorEmails": [
+            "jabresler@cogentanalytics.com"
+          ],
+          "subject": "Measurement",
+          "description": "Liquidity - Measurement",
+          "location": "Virtual Meeting",
+          "isRequired": true,
+          "week": "Week 1 (Remote)",
+          "weekDay": "Tue",
+          "duration": 60
+        },
+        {
+          "id": 15,
+          "title": "Project Plan Creation (Group Build)",
+          "startDateTime": "2025-07-08T15:00:00-04:00",
+          "endDateTime": "2025-07-08T17:00:00-04:00",
+          "instructors": [
+            "Tim Grabrovaz"
+          ],
+          "instructorEmails": [
+            "timg@cogentanalytics.com"
+          ],
+          "subject": "Project Management",
+          "description": "Project Plan Creation (Group Build) - Project Management",
+          "location": "Virtual Meeting",
+          "isRequired": true,
+          "week": "Week 1 (Remote)",
+          "weekDay": "Tue",
+          "duration": 120
+        },
+        {
+          "id": 16,
+          "title": "Homework Build A PP",
+          "startDateTime": "2025-07-08T17:00:00-04:00",
+          "endDateTime": "2025-07-08T21:00:00-04:00",
+          "instructors": [],
+          "instructorEmails": [],
+          "subject": "General Orientation",
+          "description": "Homework Build A PP",
+          "location": "Virtual Meeting",
+          "isRequired": false,
+          "week": "Week 1 (Remote)",
+          "weekDay": "Tue",
+          "duration": 240
+        },
+        {
+          "id": 17,
+          "title": "Project Plan Presentations",
+          "startDateTime": "2025-07-09T09:00:00-04:00",
+          "endDateTime": "2025-07-09T12:00:00-04:00",
+          "instructors": [
+            "Raul Ruiz"
+          ],
+          "instructorEmails": [
+            "rruiz@cogentanalytics.com"
+          ],
+          "subject": "Client Alignment & Project Control",
+          "description": "Project Plan Presentations - Client Alignment & Project Control",
+          "location": "Virtual Meeting",
+          "isRequired": true,
+          "week": "Week 1 (Remote)",
+          "weekDay": "Wed",
+          "duration": 180
+        },
+        {
+          "id": 18,
+          "title": "Travel & Expenses",
+          "startDateTime": "2025-07-09T12:00:00-04:00",
+          "endDateTime": "2025-07-09T13:00:00-04:00",
+          "instructors": [
+            "Randi Rhinehardt"
+          ],
+          "instructorEmails": [
+            "rrhinehardt@cogentanalytics.com"
+          ],
+          "subject": "Project Management",
+          "description": "Travel & Expenses - Project Management",
+          "location": "Virtual Meeting",
+          "isRequired": true,
+          "week": "Week 1 (Remote)",
+          "weekDay": "Wed",
+          "duration": 60
+        },
+        {
+          "id": 19,
+          "title": "Lunch & Feedback",
+          "startDateTime": "2025-07-09T13:00:00-04:00",
+          "endDateTime": "2025-07-09T14:00:00-04:00",
+          "instructors": [],
+          "instructorEmails": [],
+          "subject": "General Orientation",
+          "description": "Lunch & Feedback",
+          "location": "Virtual Meeting",
+          "isRequired": false,
+          "week": "Week 1 (Remote)",
+          "weekDay": "Wed",
+          "duration": 60
+        },
+        {
+          "id": 20,
+          "title": "Processes",
+          "startDateTime": "2025-07-09T14:00:00-04:00",
+          "endDateTime": "2025-07-09T15:00:00-04:00",
+          "instructors": [
+            "Isabelle Welch"
+          ],
+          "instructorEmails": [
+            "iwelch@cogentanalytics.com"
+          ],
+          "subject": "Project Management",
+          "description": "Processes - Project Management",
+          "location": "Virtual Meeting",
+          "isRequired": true,
+          "week": "Week 1 (Remote)",
+          "weekDay": "Wed",
+          "duration": 60
+        },
+        {
+          "id": 21,
+          "title": "CMS Show",
+          "startDateTime": "2025-07-09T15:00:00-04:00",
+          "endDateTime": "2025-07-09T16:00:00-04:00",
+          "instructors": [
+            "Ryland McClain-Rubin"
+          ],
+          "instructorEmails": [
+            "rmcclainrubin@cogentanalytics.com"
+          ],
+          "subject": "Measurement",
+          "description": "CMS Show - Measurement",
+          "location": "Virtual Meeting",
+          "isRequired": true,
+          "week": "Week 1 (Remote)",
+          "weekDay": "Wed",
+          "duration": 60
+        },
+        {
+          "id": 22,
+          "title": "CMS Build",
+          "startDateTime": "2025-07-09T16:00:00-04:00",
+          "endDateTime": "2025-07-09T17:00:00-04:00",
+          "instructors": [
+            "Ryland McClain-Rubin"
+          ],
+          "instructorEmails": [
+            "rmcclainrubin@cogentanalytics.com"
+          ],
+          "subject": "Measurement",
+          "description": "CMS Build - Measurement",
+          "location": "Virtual Meeting",
+          "isRequired": true,
+          "week": "Week 1 (Remote)",
+          "weekDay": "Wed",
+          "duration": 60
+        },
+        {
+          "id": 23,
+          "title": "Homework Build a CMS",
+          "startDateTime": "2025-07-09T17:00:00-04:00",
+          "endDateTime": "2025-07-09T19:00:00-04:00",
+          "instructors": [],
+          "instructorEmails": [],
+          "subject": "General Orientation",
+          "description": "Homework Build a CMS",
+          "location": "Virtual Meeting",
+          "isRequired": false,
+          "week": "Week 1 (Remote)",
+          "weekDay": "Wed",
+          "duration": 120
+        },
+        {
+          "id": 24,
+          "title": "Review CMS Homework",
+          "startDateTime": "2025-07-10T09:00:00-04:00",
+          "endDateTime": "2025-07-10T10:00:00-04:00",
+          "instructors": [
+            "Ryland McClain-Rubin"
+          ],
+          "instructorEmails": [
+            "rmcclainrubin@cogentanalytics.com"
+          ],
+          "subject": "Measurement",
+          "description": "Review CMS Homework - Measurement",
+          "location": "Virtual Meeting",
+          "isRequired": false,
+          "week": "Week 1 (Remote)",
+          "weekDay": "Thu",
+          "duration": 60
+        },
+        {
+          "id": 25,
+          "title": "Project Management",
+          "startDateTime": "2025-07-10T10:00:00-04:00",
+          "endDateTime": "2025-07-10T11:00:00-04:00",
+          "instructors": [
+            "Dakota Madison"
+          ],
+          "instructorEmails": [
+            "dmadison@cogentanalytics.com"
+          ],
+          "subject": "Project Management",
+          "description": "Project Management - Project Management",
+          "location": "Virtual Meeting",
+          "isRequired": true,
+          "week": "Week 1 (Remote)",
+          "weekDay": "Thu",
+          "duration": 60
+        },
+        {
+          "id": 26,
+          "title": "LBR",
+          "startDateTime": "2025-07-10T11:00:00-04:00",
+          "endDateTime": "2025-07-10T12:00:00-04:00",
+          "instructors": [
+            "Kai Hungerford",
+            "Josh Bresler"
+          ],
+          "instructorEmails": [
+            "khungerford@cogentanalytics.com",
+            "jabresler@cogentanalytics.com"
+          ],
+          "subject": "Measurement",
+          "description": "LBR - Measurement",
+          "location": "Virtual Meeting",
+          "isRequired": true,
+          "week": "Week 1 (Remote)",
+          "weekDay": "Thu",
+          "duration": 60
+        },
+        {
+          "id": 27,
+          "title": "Break Even & Overhead & Pricing Tool",
+          "startDateTime": "2025-07-10T12:00:00-04:00",
+          "endDateTime": "2025-07-10T13:00:00-04:00",
+          "instructors": [
+            "Kai Hungerford",
+            "Josh Bresler"
+          ],
+          "instructorEmails": [
+            "khungerford@cogentanalytics.com",
+            "jabresler@cogentanalytics.com"
+          ],
+          "subject": "Measurement",
+          "description": "Break Even & Overhead & Pricing Tool - Measurement",
+          "location": "Virtual Meeting",
+          "isRequired": true,
+          "week": "Week 1 (Remote)",
+          "weekDay": "Thu",
+          "duration": 60
+        },
+        {
+          "id": 28,
+          "title": "Lunch & Feedback",
+          "startDateTime": "2025-07-10T13:00:00-04:00",
+          "endDateTime": "2025-07-10T14:00:00-04:00",
+          "instructors": [],
+          "instructorEmails": [],
+          "subject": "General Orientation",
+          "description": "Lunch & Feedback",
+          "location": "Virtual Meeting",
+          "isRequired": false,
+          "week": "Week 1 (Remote)",
+          "weekDay": "Thu",
+          "duration": 60
+        },
+        {
+          "id": 29,
+          "title": "Key Stakeholder Interviews",
+          "startDateTime": "2025-07-10T14:00:00-04:00",
+          "endDateTime": "2025-07-10T15:00:00-04:00",
+          "instructors": [
+            "Tim Grabrovaz"
+          ],
+          "instructorEmails": [
+            "timg@cogentanalytics.com"
+          ],
+          "subject": "People",
+          "description": "Key Stakeholder Interviews - People",
+          "location": "Virtual Meeting",
+          "isRequired": true,
+          "week": "Week 1 (Remote)",
+          "weekDay": "Thu",
+          "duration": 60
+        },
+        {
+          "id": 30,
+          "title": "WPR Creation (Group Build)",
+          "startDateTime": "2025-07-10T15:00:00-04:00",
+          "endDateTime": "2025-07-10T17:00:00-04:00",
+          "instructors": [
+            "Tim Grabrovaz"
+          ],
+          "instructorEmails": [
+            "timg@cogentanalytics.com"
+          ],
+          "subject": "Project Management",
+          "description": "WPR Creation (Group Build) - Project Management",
+          "location": "Virtual Meeting",
+          "isRequired": true,
+          "week": "Week 1 (Remote)",
+          "weekDay": "Thu",
+          "duration": 120
+        },
+        {
+          "id": 31,
+          "title": "Homework Build a WPR",
+          "startDateTime": "2025-07-10T17:00:00-04:00",
+          "endDateTime": "2025-07-10T21:00:00-04:00",
+          "instructors": [],
+          "instructorEmails": [],
+          "subject": "General Orientation",
+          "description": "Homework Build a WPR",
+          "location": "Virtual Meeting",
+          "isRequired": false,
+          "week": "Week 1 (Remote)",
+          "weekDay": "Thu",
+          "duration": 240
+        },
+        {
+          "id": 32,
+          "title": "WPR Presentations",
+          "startDateTime": "2025-07-11T09:00:00-04:00",
+          "endDateTime": "2025-07-11T12:00:00-04:00",
+          "instructors": [
+            "Billy Hardison"
+          ],
+          "instructorEmails": [
+            "bhardison@cogentanalytics.com"
+          ],
+          "subject": "Client Alignment & Project Control",
+          "description": "WPR Presentations - Client Alignment & Project Control",
+          "location": "Virtual Meeting",
+          "isRequired": true,
+          "week": "Week 1 (Remote)",
+          "weekDay": "Fri",
+          "duration": 180
+        },
+        {
+          "id": 33,
+          "title": "Social Styles",
+          "startDateTime": "2025-07-11T12:00:00-04:00",
+          "endDateTime": "2025-07-11T13:00:00-04:00",
+          "instructors": [
+            "Tim Grabrovaz"
+          ],
+          "instructorEmails": [
+            "timg@cogentanalytics.com"
+          ],
+          "subject": "People",
+          "description": "Social Styles - People",
+          "location": "Virtual Meeting",
+          "isRequired": true,
+          "week": "Week 1 (Remote)",
+          "weekDay": "Fri",
+          "duration": 60
+        },
+        {
+          "id": 34,
+          "title": "Lunch",
+          "startDateTime": "2025-07-11T13:00:00-04:00",
+          "endDateTime": "2025-07-11T14:00:00-04:00",
+          "instructors": [],
+          "instructorEmails": [],
+          "subject": "General Orientation",
+          "description": "Lunch",
+          "location": "Virtual Meeting",
+          "isRequired": false,
+          "week": "Week 1 (Remote)",
+          "weekDay": "Fri",
+          "duration": 60
+        },
+        {
+          "id": 35,
+          "title": "PD Success Metrics",
+          "startDateTime": "2025-07-11T14:00:00-04:00",
+          "endDateTime": "2025-07-11T15:00:00-04:00",
+          "instructors": [
+            "Adam Williams"
+          ],
+          "instructorEmails": [
+            "awilliams@cogentanalytics.com"
+          ],
+          "subject": "Vision, Mission, and Values",
+          "description": "PD Success Metrics - Vision, Mission, and Values",
+          "location": "Virtual Meeting",
+          "isRequired": true,
+          "week": "Week 1 (Remote)",
+          "weekDay": "Fri",
+          "duration": 60
+        },
+        {
+          "id": 36,
+          "title": "Graduation",
+          "startDateTime": "2025-07-11T15:00:00-04:00",
+          "endDateTime": "2025-07-11T17:00:00-04:00",
+          "instructors": [
+            "Adam Williams"
+          ],
+          "instructorEmails": [
+            "awilliams@cogentanalytics.com"
+          ],
+          "subject": "General Orientation",
+          "description": "Graduation",
+          "location": "Virtual Meeting",
+          "isRequired": true,
+          "week": "Week 1 (Remote)",
+          "weekDay": "Fri",
+          "duration": 120
+        }
+      ],
+      "week2": [
+        {
+          "id": 37,
+          "title": "Working With PAT's",
+          "startDateTime": "2025-07-14T09:00:00-04:00",
+          "endDateTime": "2025-07-14T10:00:00-04:00",
+          "instructors": [
+            "Kaitlyn Tedder"
+          ],
+          "instructorEmails": [
+            "ktedder@cogentanalytics.com"
+          ],
+          "subject": "Project Management",
+          "description": "Working With PAT's - Project Management",
+          "location": "Cogent Analytics Office",
+          "isRequired": true,
+          "week": "Week 2 (In Person)",
+          "weekDay": "Mon",
+          "duration": 60
+        },
+        {
+          "id": 38,
+          "title": "Sales Trend Analysis",
+          "startDateTime": "2025-07-14T10:00:00-04:00",
+          "endDateTime": "2025-07-14T11:00:00-04:00",
+          "instructors": [
+            "Ryland McClain-Rubin"
+          ],
+          "instructorEmails": [
+            "rmcclainrubin@cogentanalytics.com"
+          ],
+          "subject": "Measurement",
+          "description": "Sales Trend Analysis - Measurement",
+          "location": "Cogent Analytics Office",
+          "isRequired": true,
+          "week": "Week 2 (In Person)",
+          "weekDay": "Mon",
+          "duration": 60
+        },
+        {
+          "id": 39,
+          "title": "Referrals",
+          "startDateTime": "2025-07-14T11:00:00-04:00",
+          "endDateTime": "2025-07-14T11:30:00-04:00",
+          "instructors": [
+            "CJ Johnson"
+          ],
+          "instructorEmails": [
+            "cjohnson@cogentanalytics.com"
+          ],
+          "subject": "Project Management",
+          "description": "Referrals - Project Management",
+          "location": "Cogent Analytics Office",
+          "isRequired": true,
+          "week": "Week 2 (In Person)",
+          "weekDay": "Mon",
+          "duration": 30
+        },
+        {
+          "id": 40,
+          "title": "Fever Chart (People & Meetings)",
+          "startDateTime": "2025-07-14T11:30:00-04:00",
+          "endDateTime": "2025-07-14T13:00:00-04:00",
+          "instructors": [
+            "Raul Ruiz"
+          ],
+          "instructorEmails": [
+            "rruiz@cogentanalytics.com"
+          ],
+          "subject": "Client Alignment & Project Control",
+          "description": "Fever Chart (People & Meetings) - Client Alignment & Project Control",
+          "location": "Cogent Analytics Office",
+          "isRequired": true,
+          "week": "Week 2 (In Person)",
+          "weekDay": "Mon",
+          "duration": 90
+        },
+        {
+          "id": 41,
+          "title": "Lunch",
+          "startDateTime": "2025-07-14T13:00:00-04:00",
+          "endDateTime": "2025-07-14T14:00:00-04:00",
+          "instructors": [],
+          "instructorEmails": [],
+          "subject": "General Orientation",
+          "description": "Lunch",
+          "location": "Cogent Analytics Office",
+          "isRequired": false,
+          "week": "Week 2 (In Person)",
+          "weekDay": "Mon",
+          "duration": 60
+        },
+        {
+          "id": 42,
+          "title": "Accountability Framework",
+          "startDateTime": "2025-07-14T14:00:00-04:00",
+          "endDateTime": "2025-07-14T15:00:00-04:00",
+          "instructors": [
+            "Tim Grabrovaz"
+          ],
+          "instructorEmails": [
+            "timg@cogentanalytics.com"
+          ],
+          "subject": "People",
+          "description": "Accountability Framework - People",
+          "location": "Cogent Analytics Office",
+          "isRequired": true,
+          "week": "Week 2 (In Person)",
+          "weekDay": "Mon",
+          "duration": 60
+        },
+        {
+          "id": 43,
+          "title": "Connective Tissue: CMS Strategy w/ B.E., OHA, LBR, & Pricing",
+          "startDateTime": "2025-07-14T15:00:00-04:00",
+          "endDateTime": "2025-07-14T17:00:00-04:00",
+          "instructors": [
+            "Dakota Madison"
+          ],
+          "instructorEmails": [
+            "dmadison@cogentanalytics.com"
+          ],
+          "subject": "Measurement",
+          "description": "Connective Tissue: CMS Strategy w/ B.E., OHA, LBR, & Pricing - Measurement",
+          "location": "Cogent Analytics Office",
+          "isRequired": true,
+          "week": "Week 2 (In Person)",
+          "weekDay": "Mon",
+          "duration": 120
+        },
+        {
+          "id": 44,
+          "title": "Homework ClickUp",
+          "startDateTime": "2025-07-14T17:00:00-04:00",
+          "endDateTime": "2025-07-14T19:00:00-04:00",
+          "instructors": [],
+          "instructorEmails": [],
+          "subject": "General Orientation",
+          "description": "Homework ClickUp",
+          "location": "Cogent Analytics Office",
+          "isRequired": false,
+          "week": "Week 2 (In Person)",
+          "weekDay": "Mon",
+          "duration": 120
+        },
+        {
+          "id": 45,
+          "title": "Tour of Office with Isabelle",
+          "startDateTime": "2025-07-15T08:30:00-04:00",
+          "endDateTime": "2025-07-15T09:00:00-04:00",
+          "instructors": [
+            "Isabelle Welch"
+          ],
+          "instructorEmails": [
+            "iwelch@cogentanalytics.com"
+          ],
+          "subject": "General Orientation",
+          "description": "Tour of Office with Isabelle",
+          "location": "Cogent Analytics Office",
+          "isRequired": true,
+          "week": "Week 2 (In Person)",
+          "weekDay": "Tue",
+          "duration": 30
+        },
+        {
+          "id": 46,
+          "title": "Brand Marketing",
+          "startDateTime": "2025-07-15T09:00:00-04:00",
+          "endDateTime": "2025-07-15T10:00:00-04:00",
+          "instructors": [
+            "SarahRose Mosh"
+          ],
+          "instructorEmails": [
+            "srmosh@cogentanalytics.com"
+          ],
+          "subject": "Brand MTKG",
+          "description": "Brand Marketing - Brand MTKG",
+          "location": "Cogent Analytics Office",
+          "isRequired": true,
+          "week": "Week 2 (In Person)",
+          "weekDay": "Tue",
+          "duration": 60
+        },
+        {
+          "id": 47,
+          "title": "Absolute Capacity & Utilization",
+          "startDateTime": "2025-07-15T10:00:00-04:00",
+          "endDateTime": "2025-07-15T11:00:00-04:00",
+          "instructors": [
+            "Kai Hungerford"
+          ],
+          "instructorEmails": [
+            "khungerford@cogentanalytics.com"
+          ],
+          "subject": "Process",
+          "description": "Absolute Capacity & Utilization - Process",
+          "location": "Cogent Analytics Office",
+          "isRequired": true,
+          "week": "Week 2 (In Person)",
+          "weekDay": "Tue",
+          "duration": 60
+        },
+        {
+          "id": 48,
+          "title": "Lost Time Pareto",
+          "startDateTime": "2025-07-15T11:00:00-04:00",
+          "endDateTime": "2025-07-15T12:00:00-04:00",
+          "instructors": [
+            "Kai Hungerford"
+          ],
+          "instructorEmails": [
+            "khungerford@cogentanalytics.com"
+          ],
+          "subject": "Process",
+          "description": "Lost Time Pareto - Process",
+          "location": "Cogent Analytics Office",
+          "isRequired": true,
+          "week": "Week 2 (In Person)",
+          "weekDay": "Tue",
+          "duration": 60
+        },
+        {
+          "id": 49,
+          "title": "Budget",
+          "startDateTime": "2025-07-15T12:00:00-04:00",
+          "endDateTime": "2025-07-15T13:00:00-04:00",
+          "instructors": [
+            "Josh Bresler"
+          ],
+          "instructorEmails": [
+            "jabresler@cogentanalytics.com"
+          ],
+          "subject": "Measurement",
+          "description": "Budget - Measurement",
+          "location": "Cogent Analytics Office",
+          "isRequired": true,
+          "week": "Week 2 (In Person)",
+          "weekDay": "Tue",
+          "duration": 60
+        },
+        {
+          "id": 50,
+          "title": "Lunch",
+          "startDateTime": "2025-07-15T13:00:00-04:00",
+          "endDateTime": "2025-07-15T14:00:00-04:00",
+          "instructors": [],
+          "instructorEmails": [],
+          "subject": "General Orientation",
+          "description": "Lunch",
+          "location": "Cogent Analytics Office",
+          "isRequired": false,
+          "week": "Week 2 (In Person)",
+          "weekDay": "Tue",
+          "duration": 60
+        },
+        {
+          "id": 51,
+          "title": "Marketing",
+          "startDateTime": "2025-07-15T14:00:00-04:00",
+          "endDateTime": "2025-07-15T14:30:00-04:00",
+          "instructors": [
+            "Ronnie Blanton"
+          ],
+          "instructorEmails": [
+            "rblanton@cogentanalytics.com"
+          ],
+          "subject": "Professional Services",
+          "description": "Marketing - Professional Services",
+          "location": "Cogent Analytics Office",
+          "isRequired": true,
+          "week": "Week 2 (In Person)",
+          "weekDay": "Tue",
+          "duration": 30
+        },
+        {
+          "id": 52,
+          "title": "Accounting",
+          "startDateTime": "2025-07-15T14:30:00-04:00",
+          "endDateTime": "2025-07-15T15:00:00-04:00",
+          "instructors": [
+            "Nathan Stone"
+          ],
+          "instructorEmails": [
+            "nstone@cogentanalytics.com"
+          ],
+          "subject": "Discovery",
+          "description": "Accounting - Discovery",
+          "location": "Cogent Analytics Office",
+          "isRequired": true,
+          "week": "Week 2 (In Person)",
+          "weekDay": "Tue",
+          "duration": 30
+        },
+        {
+          "id": 53,
+          "title": "Talent Solutions",
+          "startDateTime": "2025-07-15T15:00:00-04:00",
+          "endDateTime": "2025-07-15T15:30:00-04:00",
+          "instructors": [
+            "Shane Wilson"
+          ],
+          "instructorEmails": [
+            "swilson@cogentanalytics.com"
+          ],
+          "subject": "Discovery",
+          "description": "Talent Solutions - Discovery",
+          "location": "Cogent Analytics Office",
+          "isRequired": true,
+          "week": "Week 2 (In Person)",
+          "weekDay": "Tue",
+          "duration": 30
+        },
+        {
+          "id": 54,
+          "title": "Biz Dev",
+          "startDateTime": "2025-07-15T15:30:00-04:00",
+          "endDateTime": "2025-07-15T16:00:00-04:00",
+          "instructors": [
+            "Ethan Prehoda"
+          ],
+          "instructorEmails": [
+            "eprehoda@cogentanalytics.com"
+          ],
+          "subject": "Discovery",
+          "description": "Biz Dev - Discovery",
+          "location": "Cogent Analytics Office",
+          "isRequired": true,
+          "week": "Week 2 (In Person)",
+          "weekDay": "Tue",
+          "duration": 30
+        },
+        {
+          "id": 55,
+          "title": "ProServe",
+          "startDateTime": "2025-07-15T16:00:00-04:00",
+          "endDateTime": "2025-07-15T17:00:00-04:00",
+          "instructors": [
+            "Ethan Prehoda"
+          ],
+          "instructorEmails": [
+            "eprehoda@cogentanalytics.com"
+          ],
+          "subject": "Professional Services",
+          "description": "ProServe - Professional Services",
+          "location": "Cogent Analytics Office",
+          "isRequired": true,
+          "week": "Week 2 (In Person)",
+          "weekDay": "Tue",
+          "duration": 60
+        },
+        {
+          "id": 56,
+          "title": "Homework Opportunity Wall",
+          "startDateTime": "2025-07-15T17:00:00-04:00",
+          "endDateTime": "2025-07-15T18:00:00-04:00",
+          "instructors": [],
+          "instructorEmails": [],
+          "subject": "General Orientation",
+          "description": "Homework Opportunity Wall",
+          "location": "Cogent Analytics Office",
+          "isRequired": false,
+          "week": "Week 2 (In Person)",
+          "weekDay": "Tue",
+          "duration": 60
+        },
+        {
+          "id": 57,
+          "title": "Opportunity Wall (Group Build) & Process Flow/Area Sequence",
+          "startDateTime": "2025-07-16T09:00:00-04:00",
+          "endDateTime": "2025-07-16T11:00:00-04:00",
+          "instructors": [
+            "Billy Hardison"
+          ],
+          "instructorEmails": [
+            "bhardison@cogentanalytics.com"
+          ],
+          "subject": "Process",
+          "description": "Opportunity Wall (Group Build) & Process Flow/Area Sequence - Process",
+          "location": "Cogent Analytics Office",
+          "isRequired": true,
+          "week": "Week 2 (In Person)",
+          "weekDay": "Wed",
+          "duration": 120
+        },
+        {
+          "id": 58,
+          "title": "Client Alignment & Project Control",
+          "startDateTime": "2025-07-16T11:00:00-04:00",
+          "endDateTime": "2025-07-16T13:00:00-04:00",
+          "instructors": [
+            "Dakota Madison"
+          ],
+          "instructorEmails": [
+            "dmadison@cogentanalytics.com"
+          ],
+          "subject": "Client Alignment & Project Control",
+          "description": "Client Alignment & Project Control - Client Alignment & Project Control",
+          "location": "Cogent Analytics Office",
+          "isRequired": true,
+          "week": "Week 2 (In Person)",
+          "weekDay": "Wed",
+          "duration": 120
+        },
+        {
+          "id": 59,
+          "title": "Lunch",
+          "startDateTime": "2025-07-16T13:00:00-04:00",
+          "endDateTime": "2025-07-16T14:00:00-04:00",
+          "instructors": [],
+          "instructorEmails": [],
+          "subject": "General Orientation",
+          "description": "Lunch",
+          "location": "Cogent Analytics Office",
+          "isRequired": false,
+          "week": "Week 2 (In Person)",
+          "weekDay": "Wed",
+          "duration": 60
+        },
+        {
+          "id": 60,
+          "title": "Meet the VP",
+          "startDateTime": "2025-07-16T14:00:00-04:00",
+          "endDateTime": "2025-07-16T14:30:00-04:00",
+          "instructors": [
+            "Caleb Connerty"
+          ],
+          "instructorEmails": [
+            "cconnerty@cogentanalytics.com"
+          ],
+          "subject": "Vision, Mission, and Values",
+          "description": "Meet the VP - Vision, Mission, and Values",
+          "location": "Cogent Analytics Office",
+          "isRequired": true,
+          "week": "Week 2 (In Person)",
+          "weekDay": "Wed",
+          "duration": 30
+        },
+        {
+          "id": 61,
+          "title": "BMS",
+          "startDateTime": "2025-07-16T14:30:00-04:00",
+          "endDateTime": "2025-07-16T16:00:00-04:00",
+          "instructors": [
+            "Ryland McClain-Rubin"
+          ],
+          "instructorEmails": [
+            "rmcclainrubin@cogentanalytics.com"
+          ],
+          "subject": "General Orientation",
+          "description": "BMS",
+          "location": "Cogent Analytics Office",
+          "isRequired": true,
+          "week": "Week 2 (In Person)",
+          "weekDay": "Wed",
+          "duration": 90
+        },
+        {
+          "id": 62,
+          "title": "Meet Your AD",
+          "startDateTime": "2025-07-16T16:00:00-04:00",
+          "endDateTime": "2025-07-16T17:00:00-04:00",
+          "instructors": [
+            "Adam Williams"
+          ],
+          "instructorEmails": [
+            "awilliams@cogentanalytics.com"
+          ],
+          "subject": "Vision, Mission, and Values",
+          "description": "Meet Your AD - Vision, Mission, and Values",
+          "location": "Cogent Analytics Office",
+          "isRequired": true,
+          "week": "Week 2 (In Person)",
+          "weekDay": "Wed",
+          "duration": 60
+        },
+        {
+          "id": 63,
+          "title": "Homework CMS",
+          "startDateTime": "2025-07-16T17:00:00-04:00",
+          "endDateTime": "2025-07-16T18:00:00-04:00",
+          "instructors": [],
+          "instructorEmails": [],
+          "subject": "General Orientation",
+          "description": "Homework CMS",
+          "location": "Cogent Analytics Office",
+          "isRequired": false,
+          "week": "Week 2 (In Person)",
+          "weekDay": "Wed",
+          "duration": 60
+        },
+        {
+          "id": 64,
+          "title": "Connecting The Why, Strategy, Objectives and Deliverables",
+          "startDateTime": "2025-07-17T09:00:00-04:00",
+          "endDateTime": "2025-07-17T12:00:00-04:00",
+          "instructors": [
+            "Raul Ruiz"
+          ],
+          "instructorEmails": [
+            "rruiz@cogentanalytics.com"
+          ],
+          "subject": "Client Alignment & Project Control",
+          "description": "Connecting The Why, Strategy, Objectives and Deliverables - Client Alignment & Project Control",
+          "location": "Cogent Analytics Office",
+          "isRequired": true,
+          "week": "Week 2 (In Person)",
+          "weekDay": "Thu",
+          "duration": 180
+        },
+        {
+          "id": 65,
+          "title": "Quarterly Strategic Plan",
+          "startDateTime": "2025-07-17T12:00:00-04:00",
+          "endDateTime": "2025-07-17T13:00:00-04:00",
+          "instructors": [
+            "Tim Grabrovaz"
+          ],
+          "instructorEmails": [
+            "timg@cogentanalytics.com"
+          ],
+          "subject": "LifeCycle",
+          "description": "Quarterly Strategic Plan - LifeCycle",
+          "location": "Cogent Analytics Office",
+          "isRequired": true,
+          "week": "Week 2 (In Person)",
+          "weekDay": "Thu",
+          "duration": 60
+        },
+        {
+          "id": 66,
+          "title": "Lunch",
+          "startDateTime": "2025-07-17T13:00:00-04:00",
+          "endDateTime": "2025-07-17T14:00:00-04:00",
+          "instructors": [],
+          "instructorEmails": [],
+          "subject": "General Orientation",
+          "description": "Lunch",
+          "location": "Cogent Analytics Office",
+          "isRequired": false,
+          "week": "Week 2 (In Person)",
+          "weekDay": "Thu",
+          "duration": 60
+        },
+        {
+          "id": 67,
+          "title": "Transition to LC - LC Engagement Plan - ROI Updates",
+          "startDateTime": "2025-07-17T14:00:00-04:00",
+          "endDateTime": "2025-07-17T16:00:00-04:00",
+          "instructors": [
+            "Pete Villari"
+          ],
+          "instructorEmails": [
+            "pvillari@cogentanalytics.com"
+          ],
+          "subject": "LifeCycle",
+          "description": "Transition to LC - LC Engagement Plan - ROI Updates - LifeCycle",
+          "location": "Cogent Analytics Office",
+          "isRequired": true,
+          "week": "Week 2 (In Person)",
+          "weekDay": "Thu",
+          "duration": 120
+        }
+      ]
+    }
+  },
+  "clickupData": {
+    "totalUsers": 182,
+    "instructorsFound": 21,
+    "instructorsNotFound": [],
+    "allClickupUsers": [
+      {
+        "name": "Jason Foley",
+        "email": "jfoley@clickup.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Caleb Connerty",
+        "email": "cconnerty@cogentanalytics.com",
+        "isInstructor": true,
+        "role": "Vice President"
+      },
+      {
+        "name": "Karen Maness",
+        "email": "kmaness@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Martin Denney",
+        "email": "mdenney@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Larry Scarborough",
+        "email": "lscarborough@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Kai Hungerford",
+        "email": "khungerford@cogentanalytics.com",
+        "isInstructor": true,
+        "role": "Measurement Specialist"
+      },
+      {
+        "name": "Rob Braiman",
+        "email": "rbraiman@cogentanalytics.com",
+        "isInstructor": true,
+        "role": "Owner"
+      },
+      {
+        "name": "Anne Creed",
+        "email": "acreed@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Randi Rhinehardt",
+        "email": "rrhinehardt@cogentanalytics.com",
+        "isInstructor": true,
+        "role": "Operations Specialist"
+      },
+      {
+        "name": "Chase Langeloh",
+        "email": "clangeloh@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Monica Lester",
+        "email": "mlester@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Margie Howell",
+        "email": "mhowell@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Gillian Peters",
+        "email": "gpeters@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Adam Williams",
+        "email": "awilliams@cogentanalytics.com",
+        "isInstructor": true,
+        "role": "Associate Director"
+      },
+      {
+        "name": "Jorge Colon",
+        "email": "jcolon@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Andrew Acer",
+        "email": "aacer@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Mandy Hall",
+        "email": "mnhall@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Matthew Laughlin",
+        "email": "mlaughlin@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Josh Bresler",
+        "email": "jabresler@cogentanalytics.com",
+        "isInstructor": true,
+        "role": "Measurement Specialist"
+      },
+      {
+        "name": "Peter Zurn",
+        "email": "pzurn@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Addison Williams",
+        "email": "acwilliams@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Robin Braiman",
+        "email": "rbbraiman@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Pete Villari",
+        "email": "pvillari@cogentanalytics.com",
+        "isInstructor": true,
+        "role": "LifeCycle Director"
+      },
+      {
+        "name": "ISHIR DevTeam",
+        "email": "ishirdevteam@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Michael Andreski",
+        "email": "mandreski@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Edmund Gillooley",
+        "email": "egillooley@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Nick Stewart",
+        "email": "nstewart@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Lorenzo Arguello",
+        "email": "larguello@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Justin Miller",
+        "email": "jmiller@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Lisa Richards",
+        "email": "lrichards@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Ashley Harris",
+        "email": "aharris@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Laurent Lheritier",
+        "email": "llheritier@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Chuck Price",
+        "email": "cprice@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "CJ Johnson",
+        "email": "cjohnson@cogentanalytics.com",
+        "isInstructor": true,
+        "role": "Business Development Specialist"
+      },
+      {
+        "name": "Zack Al-Mahayni",
+        "email": "zalmahayni@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Manuel J. Trevino",
+        "email": "mtrevino@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Rick Johnson",
+        "email": "rjohnson@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Nick Jordan",
+        "email": "njordan@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Roger Hutson",
+        "email": "rhutson@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Ian Defibaugh",
+        "email": "idefibaugh@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Carrie Irdais",
+        "email": "cirdais@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Mike Veach",
+        "email": "mveach@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Garrett Hernandez",
+        "email": "ghernandez@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Ethan Prehoda",
+        "email": "eprehoda@cogentanalytics.com",
+        "isInstructor": true,
+        "role": "Business Development Specialist"
+      },
+      {
+        "name": "Zack Saalfrank",
+        "email": "zsaalfrank@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Trevor Sprague",
+        "email": "tsprague@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Harrison McClain-Rubin",
+        "email": "hmcclain-rubin@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Lisa Bradshaw",
+        "email": "lbradshaw@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Jen Grabiec",
+        "email": "jgrabiec@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Dakota Madison",
+        "email": "dmadison@cogentanalytics.com",
+        "isInstructor": true,
+        "role": "Project Management Specialist"
+      },
+      {
+        "name": "Tomas Salazar",
+        "email": "tsalazar@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Philip Anthony",
+        "email": "panthony@dajtaxlaw.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Kevin Mercer",
+        "email": "kmercer@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Jim Capps",
+        "email": "jcapps@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Kaitlyn Tedder",
+        "email": "ktedder@cogentanalytics.com",
+        "isInstructor": true,
+        "role": "Project Management Specialist"
+      },
+      {
+        "name": "Mary Lundquist",
+        "email": "mlundquist@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Coleman Topalu",
+        "email": "ctopalu@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Nathan Stone",
+        "email": "nstone@cogentanalytics.com",
+        "isInstructor": true,
+        "role": "Accounting Specialist"
+      },
+      {
+        "name": "Laura Dortch",
+        "email": "ldortch@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "William Owens",
+        "email": "wowens@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Maura Kaiser",
+        "email": "mkaiser@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Billy Hardison",
+        "email": "bhardison@cogentanalytics.com",
+        "isInstructor": true,
+        "role": "Process Specialist"
+      },
+      {
+        "name": "Brian Welcher",
+        "email": "bwelcher@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Reginald Burgess",
+        "email": "rburgess@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Sofiane Tagredj",
+        "email": "stagredj@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Shailendra Tak",
+        "email": "shkumar@ishir.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Raul Ruiz",
+        "email": "rruiz@cogentanalytics.com",
+        "isInstructor": true,
+        "role": "Project Management Specialist"
+      },
+      {
+        "name": "Kurt Weidenbenner",
+        "email": "kweidenbenner@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Joshua Harvey",
+        "email": "jharvey@cogentanalytics.com",
+        "isInstructor": true,
+        "role": "Measurement Specialist"
+      },
+      {
+        "name": "Brian Spady",
+        "email": "bspady@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Michael Mayer",
+        "email": "mmayer@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "SarahRose Mosh",
+        "email": "srmosh@cogentanalytics.com",
+        "isInstructor": true,
+        "role": "Marketing Specialist"
+      },
+      {
+        "name": "Liubov Stewart",
+        "email": "lstewart@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "David Griffith",
+        "email": "dgriffith@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "William Sheely",
+        "email": "wsheely@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Vince Curasi",
+        "email": "vcurasi@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Ryland McClain-Rubin",
+        "email": "rmcclainrubin@cogentanalytics.com",
+        "isInstructor": true,
+        "role": "Measurement Specialist"
+      },
+      {
+        "name": "Gwen Krauss",
+        "email": "gkrauss@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Tosha Brown",
+        "email": "tbrown@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Jocelyn Goodman",
+        "email": "jgoodman@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Liam Morris",
+        "email": "lmorris@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Isabelle Welch",
+        "email": "iwelch@cogentanalytics.com",
+        "isInstructor": true,
+        "role": "Process Specialist"
+      },
+      {
+        "name": "Dan Rover",
+        "email": "drover@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Shane Wilson",
+        "email": "swilson@cogentanalytics.com",
+        "isInstructor": true,
+        "role": "Talent Solutions Specialist"
+      },
+      {
+        "name": "Paul Sandberg",
+        "email": "psandberg@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "William Hutchinson",
+        "email": "whutchinson@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Ronnie Blanton",
+        "email": "rblanton@cogentanalytics.com",
+        "isInstructor": true,
+        "role": "Marketing Specialist"
+      },
+      {
+        "name": "Samantha Turba",
+        "email": "sturba@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Jacob Vinson",
+        "email": "jvinson@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Rodney Bryner",
+        "email": "rbryner@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Tariq Ajaz",
+        "email": "tajaz@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "John Boler",
+        "email": "jboler@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Nirmala Pol",
+        "email": "npol@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Gregory Brown",
+        "email": "gbrown@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Geneva Yarborough",
+        "email": "gyarborough@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Grayson Roberts",
+        "email": "groberts@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "William McCorquodale",
+        "email": "bmccorquodale@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Phillip Athens",
+        "email": "pathens@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Alejandro Cantos",
+        "email": "acantos@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Haley Wood",
+        "email": "hwood@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Heather Joyner",
+        "email": "hjoyner@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Donald DeHaven",
+        "email": "ddehaven@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Dwight Tucker",
+        "email": "dtucker@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Tom Rodgers",
+        "email": "trodgers@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Yaw Ananga",
+        "email": "yananga@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Eli Shapiro",
+        "email": "eshapiro@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Richard Goldston",
+        "email": "rgoldston@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Michael Augerinos",
+        "email": "maugerinos@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "DQ Admin",
+        "email": "dqadmin@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "J.D. Ritenburg",
+        "email": "jdritenburg@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "C.C. Shivvers",
+        "email": "cshivvers@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Jonathan Thomas",
+        "email": "jthomas@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Jody Bender",
+        "email": "jbender@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Peter MacBeth",
+        "email": "pmacbeth@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "DeHan Jefferson",
+        "email": "djefferson@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Jonas Lundgren",
+        "email": "jlundgren@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Bill Henley",
+        "email": "bihenley@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Ben Sawyer",
+        "email": "bsawyer@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Rick Garcia",
+        "email": "rgarcia@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Kara Stadler",
+        "email": "kstadler@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Collin Hoben",
+        "email": "choben@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Paul Cord",
+        "email": "pcord@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Cheyanne Smith",
+        "email": "casmith@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Althea Turner",
+        "email": "aturner@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Kenneth Carrethers",
+        "email": "kcarrethers@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Andy Stroud",
+        "email": "astroud@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Rene Stephenson",
+        "email": "rstephenson@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Elliott Culp",
+        "email": "eculp@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Alex Sanchez Sobrino",
+        "email": "asobrino@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Kira Bizzell",
+        "email": "mbizzell@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Eric Briggs",
+        "email": "ebriggs@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Monte Jump",
+        "email": "mjump@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Andrew Pfeiffer",
+        "email": "apfeiffer@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Unknown User",
+        "email": "dcreed@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Unknown"
+      },
+      {
+        "name": "Jayme Boreman",
+        "email": "jboreman@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Jonathan Fowler",
+        "email": "jofowler@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Tim Grabrovaz",
+        "email": "timg@cogentanalytics.com",
+        "isInstructor": true,
+        "role": "Senior Instructor"
+      },
+      {
+        "name": "Jordan Brown",
+        "email": "jobrown@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Gabriel Brown",
+        "email": "gabrown@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Natauya Fauntroy",
+        "email": "nfauntroy@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Silas Matson",
+        "email": "smatson@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Reginald Kellam",
+        "email": "rkellam@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Jennifer Chavez-Martinez",
+        "email": "jchavezmartinez@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Eric Belkoski",
+        "email": "ebelkoski@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Kyle Mauney",
+        "email": "kmauney@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Kati Meader",
+        "email": "kmeader@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Chris Gussey",
+        "email": "cgussey@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Lindsay Laughnan",
+        "email": "llaughnan@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Jeff White",
+        "email": "jhwhite@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Camillia Carter",
+        "email": "clcarter@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Jodie McDade",
+        "email": "jmcdade@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Javier Zepeda-Albiter",
+        "email": "jzalbiter@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Phillip Mark",
+        "email": "pmark@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Susan Setzer",
+        "email": "ssetzer@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Cesar Miranda",
+        "email": "cmiranda@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Rob McLaughlin",
+        "email": "rmclaughlin@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Vincent Romeo",
+        "email": "vromeo@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Randall Sullivan",
+        "email": "rpsullivan@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Spencer Carney",
+        "email": "scarney@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Jason Thorp",
+        "email": "jthorp@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Marcus Coyle",
+        "email": "mcoyle@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Xavier Newby",
+        "email": "xnewby@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Neil Marritt",
+        "email": "nmarritt@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Don van Splunteren",
+        "email": "dsplunteren@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "JSon Briggs",
+        "email": "jbriggs@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Shaffer Woody",
+        "email": "swoody@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Darrel Risberg",
+        "email": "drisberg@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Brent Pangburn",
+        "email": "bpangburn@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Matthew Dickert",
+        "email": "mdickert@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Khaldoun Khashanah",
+        "email": "kkhashanah@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Todd Andrews",
+        "email": "tandrews@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Charles Druid",
+        "email": "cdruid@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Ryan Remington",
+        "email": "rremington@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Dre Vincent Wright",
+        "email": "dvwright@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Rowan Elboshra",
+        "email": "relboshra@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "jay",
+        "email": "jlaws@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Rodney Jackson",
+        "email": "rjackson@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Asyia Thomas",
+        "email": "athomas@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Jesse Peele",
+        "email": "jpeele@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Darren Jones",
+        "email": "djones@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Ginny pegram",
+        "email": "gpegram@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      },
+      {
+        "name": "Casey Neal",
+        "email": "cneal@cogentanalytics.com",
+        "isInstructor": false,
+        "role": "Team Member"
+      }
+    ]
+  }
+}

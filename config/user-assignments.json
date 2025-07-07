@@ -1,0 +1,334 @@
+{
+  "version": "1.0.0",
+  "description": "User Assignment Preferences and Role-Based Mappings",
+  "lastUpdated": "2025-01-16",
+  "metadata": {
+    "totalInstructors": 21,
+    "activeInstructors": 21,
+    "roles": 7,
+    "assignmentRules": 4
+  },
+  "instructorProfiles": {
+    "adamWilliams": {
+      "id": "12733340",
+      "name": "Adam Williams",
+      "email": "awilliams@cogentanalytics.com",
+      "role": "Associate Director",
+      "status": "active",
+      "specializations": ["Leadership", "Vision & Values", "Strategic Planning"],
+      "preferredSubjects": ["Vision, Mission, and Values", "Project Management"],
+      "maxLessonsPerClass": 5,
+      "availability": "full",
+      "notes": "Primary leadership and vision instructor"
+    },
+    "timGrabrovaz": {
+      "id": "88266753",
+      "name": "Tim Grabrovaz",
+      "email": "timg@cogentanalytics.com",
+      "role": "Senior Instructor",
+      "status": "active",
+      "specializations": ["People Development", "Discovery", "Leadership"],
+      "preferredSubjects": ["People", "Discovery", "Vision, Mission, and Values"],
+      "maxLessonsPerClass": 8,
+      "availability": "full",
+      "notes": "Core instructor for people and discovery topics"
+    },
+    "peteVillari": {
+      "id": "14962111",
+      "name": "Pete Villari",
+      "email": "pvillari@cogentanalytics.com",
+      "role": "LifeCycle Director",
+      "status": "active",
+      "specializations": ["LifeCycle", "Client Transition"],
+      "preferredSubjects": ["LifeCycle"],
+      "maxLessonsPerClass": 2,
+      "availability": "limited",
+      "notes": "Specialized in lifecycle and client transition"
+    },
+    "joshBresler": {
+      "id": "14888265",
+      "name": "Josh Bresler",
+      "email": "jabresler@cogentanalytics.com",
+      "role": "Measurement Specialist",
+      "status": "active",
+      "specializations": ["Financial Analysis", "Measurement", "Budgeting"],
+      "preferredSubjects": ["Measurement"],
+      "maxLessonsPerClass": 4,
+      "availability": "full",
+      "notes": "Lead measurement and financial analysis instructor"
+    },
+    "kaiHungerford": {
+      "id": "6386026",
+      "name": "Kai Hungerford",
+      "email": "khungerford@cogentanalytics.com",
+      "role": "Measurement Specialist",
+      "status": "active",
+      "specializations": ["Process Analysis", "Measurement", "Capacity Planning"],
+      "preferredSubjects": ["Measurement", "Process"],
+      "maxLessonsPerClass": 6,
+      "availability": "full",
+      "notes": "Expert in process and capacity analysis"
+    },
+    "rylandMcclainRubin": {
+      "id": "82243216",
+      "name": "Ryland McClain-Rubin",
+      "email": "rmcclainrubin@cogentanalytics.com",
+      "role": "Measurement Specialist",
+      "status": "active",
+      "specializations": ["CMS", "Financial Modeling", "Measurement"],
+      "preferredSubjects": ["Measurement"],
+      "maxLessonsPerClass": 5,
+      "availability": "full",
+      "notes": "CMS and financial modeling specialist"
+    },
+    "dakotaMadison": {
+      "id": "57093259",
+      "name": "Dakota Madison",
+      "email": "dmadison@cogentanalytics.com",
+      "role": "Project Management Specialist",
+      "status": "active",
+      "specializations": ["Project Management", "Client Alignment"],
+      "preferredSubjects": ["Project Management", "Client Alignment & Project Control"],
+      "maxLessonsPerClass": 4,
+      "availability": "full",
+      "notes": "Project management and client alignment expert"
+    },
+    "raulRuiz": {
+      "id": "63074987",
+      "name": "Raul Ruiz",
+      "email": "rruiz@cogentanalytics.com",
+      "role": "Project Management Specialist",
+      "status": "active",
+      "specializations": ["Project Planning", "Client Control", "Strategic Planning"],
+      "preferredSubjects": ["Client Alignment & Project Control", "Project Management"],
+      "maxLessonsPerClass": 4,
+      "availability": "full",
+      "notes": "Strategic planning and project control specialist"
+    },
+    "billyHardison": {
+      "id": "57275114",
+      "name": "Billy Hardison",
+      "email": "bhardison@cogentanalytics.com",
+      "role": "Process Specialist",
+      "status": "active",
+      "specializations": ["Process Optimization", "Operational Excellence"],
+      "preferredSubjects": ["Process", "Project Management"],
+      "maxLessonsPerClass": 4,
+      "availability": "full",
+      "notes": "Process optimization and operations expert"
+    },
+    "robBraiman": {
+      "id": "10503985",
+      "name": "Rob Braiman",
+      "email": "rbraiman@cogentanalytics.com",
+      "role": "Owner",
+      "status": "active",
+      "specializations": ["Leadership", "Vision", "Company Culture"],
+      "preferredSubjects": ["Vision, Mission, and Values"],
+      "maxLessonsPerClass": 1,
+      "availability": "limited",
+      "notes": "Company owner - limited availability"
+    },
+    "joshuaHarvey": {
+      "id": "82212720",
+      "name": "Joshua Harvey",
+      "email": "jharvey@cogentanalytics.com",
+      "role": "Measurement Specialist",
+      "status": "active",
+      "specializations": ["Measurement", "Data Analysis"],
+      "preferredSubjects": ["Measurement"],
+      "maxLessonsPerClass": 3,
+      "availability": "full",
+      "notes": "Measurement and data analysis specialist"
+    },
+    "randiRhinehardt": {
+      "id": "10559257",
+      "name": "Randi Rhinehardt",
+      "email": "rrhinehardt@cogentanalytics.com",
+      "role": "Operations Specialist",
+      "status": "active",
+      "specializations": ["Travel & Expenses", "Operations"],
+      "preferredSubjects": ["Project Management"],
+      "maxLessonsPerClass": 2,
+      "availability": "full",
+      "notes": "Operations and travel/expense specialist"
+    },
+    "isabelleWelch": {
+      "id": "82247933",
+      "name": "Isabelle Welch",
+      "email": "iwelch@cogentanalytics.com",
+      "role": "Process Specialist",
+      "status": "active",
+      "specializations": ["Process Design", "Office Operations"],
+      "preferredSubjects": ["Process", "Project Management"],
+      "maxLessonsPerClass": 3,
+      "availability": "full",
+      "notes": "Process design and office operations"
+    },
+    "kaitlynTedder": {
+      "id": "57161368",
+      "name": "Kaitlyn Tedder",
+      "email": "ktedder@cogentanalytics.com",
+      "role": "Project Management Specialist",
+      "status": "active",
+      "specializations": ["PAT Management", "Project Coordination"],
+      "preferredSubjects": ["Project Management"],
+      "maxLessonsPerClass": 2,
+      "availability": "full",
+      "notes": "PAT and project coordination specialist"
+    },
+    "cjJohnson": {
+      "id": "43000186",
+      "name": "CJ Johnson",
+      "email": "cjohnson@cogentanalytics.com",
+      "role": "Business Development Specialist",
+      "status": "active",
+      "specializations": ["Referrals", "Business Development"],
+      "preferredSubjects": ["Project Management", "Professional Services"],
+      "maxLessonsPerClass": 2,
+      "availability": "full",
+      "notes": "Referrals and business development expert"
+    },
+    "sarahroseMosh": {
+      "id": "82229112",
+      "name": "SarahRose Mosh",
+      "email": "srmosh@cogentanalytics.com",
+      "role": "Marketing Specialist",
+      "status": "active",
+      "specializations": ["Brand Marketing", "Marketing Strategy"],
+      "preferredSubjects": ["Brand MTKG"],
+      "maxLessonsPerClass": 2,
+      "availability": "full",
+      "notes": "Brand marketing and strategy specialist"
+    },
+    "ronnieBlanton": {
+      "id": "82294706",
+      "name": "Ronnie Blanton",
+      "email": "rblanton@cogentanalytics.com",
+      "role": "Marketing Specialist",
+      "status": "active",
+      "specializations": ["Marketing Implementation", "Professional Services"],
+      "preferredSubjects": ["Professional Services"],
+      "maxLessonsPerClass": 2,
+      "availability": "full",
+      "notes": "Marketing implementation specialist"
+    },
+    "nathanStone": {
+      "id": "57220451",
+      "name": "Nathan Stone",
+      "email": "nstone@cogentanalytics.com",
+      "role": "Accounting Specialist",
+      "status": "active",
+      "specializations": ["Accounting", "Financial Systems"],
+      "preferredSubjects": ["Discovery"],
+      "maxLessonsPerClass": 2,
+      "availability": "full",
+      "notes": "Accounting and financial systems expert"
+    },
+    "shaneWilson": {
+      "id": "82251128",
+      "name": "Shane Wilson",
+      "email": "swilson@cogentanalytics.com",
+      "role": "Talent Solutions Specialist",
+      "status": "active",
+      "specializations": ["Talent Acquisition", "HR Solutions"],
+      "preferredSubjects": ["Discovery"],
+      "maxLessonsPerClass": 2,
+      "availability": "full",
+      "notes": "Talent acquisition and HR specialist"
+    },
+    "ethanPrehoda": {
+      "id": "57036389",
+      "name": "Ethan Prehoda",
+      "email": "eprehoda@cogentanalytics.com",
+      "role": "Business Development Specialist",
+      "status": "active",
+      "specializations": ["Business Development", "Professional Services"],
+      "preferredSubjects": ["Discovery", "Professional Services"],
+      "maxLessonsPerClass": 3,
+      "availability": "full",
+      "notes": "Business development and professional services"
+    },
+    "calebConnerty": {
+      "id": "6350449",
+      "name": "Caleb Connerty",
+      "email": "cconnerty@cogentanalytics.com",
+      "role": "Vice President",
+      "status": "active",
+      "specializations": ["Leadership", "Strategic Vision"],
+      "preferredSubjects": ["Vision, Mission, and Values"],
+      "maxLessonsPerClass": 1,
+      "availability": "limited",
+      "notes": "Vice President - limited availability"
+    }
+  },
+  "roleBasedAssignments": {
+    "primaryInstructors": [
+      "adamWilliams",
+      "timGrabrovaz",
+      "kaiHungerford",
+      "rylandMcclainRubin",
+      "dakotaMadison"
+    ],
+    "subjectExperts": {
+      "Vision, Mission, and Values": ["adamWilliams", "timGrabrovaz", "calebConnerty"],
+      "People": ["timGrabrovaz"],
+      "Project Management": ["dakotaMadison", "raulRuiz", "kaitlynTedder"],
+      "Discovery": ["timGrabrovaz", "nathanStone", "shaneWilson", "ethanPrehoda"],
+      "Measurement": ["joshBresler", "kaiHungerford", "rylandMcclainRubin", "joshuaHarvey"],
+      "Client Alignment & Project Control": ["dakotaMadison", "raulRuiz"],
+      "Process": ["kaiHungerford", "billyHardison", "isabelleWelch"],
+      "Brand MTKG": ["sarahroseMosh"],
+      "Professional Services": ["ethanPrehoda", "ronnieBlanton"],
+      "LifeCycle": ["peteVillari", "timGrabrovaz"]
+    },
+    "executiveInstructors": [
+      "robBraiman",
+      "calebConnerty"
+    ]
+  },
+  "assignmentRules": {
+    "balanceWorkload": {
+      "enabled": true,
+      "description": "Distribute lessons evenly among available instructors",
+      "maxLessonsPerInstructor": 8
+    },
+    "respectSpecializations": {
+      "enabled": true,
+      "description": "Prefer instructors who specialize in the lesson subject",
+      "priority": "high"
+    },
+    "limitExecutiveTime": {
+      "enabled": true,
+      "description": "Limit executive instructors to 1-2 lessons per class",
+      "maxExecutiveLessons": 2
+    },
+    "ensureCoverage": {
+      "enabled": true,
+      "description": "Ensure all lessons have qualified instructors assigned",
+      "fallbackToGeneralists": true
+    }
+  },
+  "assignmentPreferences": {
+    "defaultLeadCount": 1,
+    "allowMultipleLeads": true,
+    "requireBackupInstructor": false,
+    "preferInternalInstructors": true,
+    "notificationSettings": {
+      "notifyOnAssignment": true,
+      "notifyOnChanges": true,
+      "leadTime": "2 weeks"
+    }
+  },
+  "availability": {
+    "blackoutDates": [],
+    "preferredTimeSlots": {
+      "week1": "Monday-Friday 9AM-5PM",
+      "week2": "Monday-Thursday 9AM-5PM"
+    },
+    "travelRequirements": {
+      "week2InPerson": true,
+      "location": "Cogent Analytics Office"
+    }
+  }
+} 

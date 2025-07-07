@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orientation Report</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Professional typography and layout */
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #374151;
+            background-color: #ffffff;
+        }
+        
+        @page {
+            margin: 0.5in; /* Reduced margins for more content space */
+        }
+        
+        @media print {
+            body {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            
+            /* Page break rules for better PDF layout */
+            h1, h2, h3 {
+                page-break-after: avoid;
+                orphans: 3;
+                widows: 3;
+            }
+            
+            /* Employee cards should each be on their own page, except the first one */
+            .employee-card {
+                page-break-before: always;
+                page-break-inside: avoid;
+                page-break-after: auto;
+            }
+            
+            /* First employee card can start on the same page as header */
+            .employee-card:first-of-type {
+                page-break-before: avoid;
+            }
+            
+            /* Avoid breaking feedback sections */
+            .feedback-section {
+                page-break-inside: avoid;
+            }
+        }
+        
+        /* Clean professional styling - minimal borders */
+        .clean-table-header {
+            background-color: #374151;
+            color: white;
+            font-weight: 600;
+        }
+        
+        .clean-table-row:nth-child(even) {
+            background-color: #f9fafb;
+        }
+        
+        .week-section {
+            background-color: #3b82f6;
+            color: white;
+            font-weight: 600;
+        }
+        
+        /* Clean typography */
+        .score-text {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #1e40af;
+        }
+        
+        .grade-text {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #059669;
+        }
+        
+        /* Compact spacing */
+        .compact-section {
+            padding: 1rem 0;
+        }
+        
+        /* Final grades styling */
+        .final-grades-section {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .status-graduated {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        }
+        
+        .status-resigned {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+        }
+        
+        .status-released {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+        }
+        
+        /* Border fixes */
+        table {
+            border: 1px solid #d1d5db;
+        }
+        
+        table td, table th {
+            border: 1px solid #e5e7eb;
+        }
+    </style>
+</head>
+<body class="p-6">
+
+    <div>
+
+        <header class="mb-8 text-center border-b-2 border-gray-300 pb-6">
+            <h1 class="text-4xl font-bold text-gray-900 mb-3">PD Orientation Report</h1>
+            <h2 class="text-2xl font-semibold text-gray-700 mb-4">{{CLASS_NAME}}</h2>
+            <div class="text-lg text-gray-600 font-medium">{{SUMMARY_INFO}}</div>
+        </header>
+
+        <!-- Orientee Summary Section -->
+        <section id="orientee-summary" class="mb-8">
+            <!-- Orientee cards will be dynamically inserted here -->
+        </section>
+
+        <!-- Class Details Section -->
+        <section id="class-details">
+            <div class="space-y-4">
+                <!-- Data will be dynamically inserted here -->
+            </div>
+        </section>
+
+        <!-- Schedule Section -->
+        <section id="schedule" class="mb-10">
+            <h3 class="text-2xl font-semibold border-b-2 border-green-500 pb-2 mb-4 text-green-700">Schedule</h3>
+            <ul class="list-disc list-inside">
+                 <!-- Schedule items will be dynamically inserted here -->
+            </ul>
+        </section>
+
+        <!-- Grades & Feedback Section -->
+        <section id="grades" class="mb-10">
+            <h3 class="text-2xl font-semibold border-b-2 border-purple-500 pb-2 mb-4 text-purple-700">Grades & Feedback</h3>
+            <div class="space-y-4">
+                <!-- Grade items will be dynamically inserted here -->
+            </div>
+        </section>
+
+    </div>
+
+</body>
+</html> 

@@ -1,0 +1,929 @@
+{
+  "version": "1.0.0",
+  "description": "PD Orientation Class Lesson Templates - Complete 67-lesson curriculum with timing",
+  "lastUpdated": "2025-01-16",
+  "metadata": {
+    "totalLessons": 67,
+    "weekStructure": {
+      "week1": {
+        "name": "Week 1 (Remote)",
+        "days": [
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thu",
+          "Fri"
+        ],
+        "dayOffsets": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "week2": {
+        "name": "Week 2 (In Person)",
+        "days": [
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thu"
+        ],
+        "dayOffsets": [
+          7,
+          8,
+          9,
+          10
+        ]
+      }
+    },
+    "subjects": [
+      "Vision, Mission, and Values",
+      "People",
+      "Project Management",
+      "Discovery",
+      "Measurement",
+      "Client Alignment & Project Control",
+      "Brand MTKG",
+      "Process",
+      "Professional Services",
+      "LifeCycle"
+    ]
+  },
+  "lessons": [
+    {
+      "id": 1,
+      "name": "Welcome & Introductions",
+      "dayOffset": 0,
+      "week": "Week 1 (Remote)",
+      "weekDay": "Mon",
+      "startTime": "08:30",
+      "endTime": "09:00",
+      "leads": [
+        "Adam Williams",
+        "Tim Grabrovaz"
+      ],
+      "isActive": true
+    },
+    {
+      "id": 2,
+      "name": "Vision, Values & Process",
+      "dayOffset": 0,
+      "subject": "Vision, Mission, and Values",
+      "week": "Week 1 (Remote)",
+      "weekDay": "Mon",
+      "startTime": "09:00",
+      "endTime": "10:00",
+      "leads": [
+        "Tim Grabrovaz"
+      ],
+      "isActive": true
+    },
+    {
+      "id": 3,
+      "name": "The Why",
+      "dayOffset": 0,
+      "subject": "People",
+      "week": "Week 1 (Remote)",
+      "weekDay": "Mon",
+      "startTime": "10:00",
+      "endTime": "11:00",
+      "leads": [
+        "Tim Grabrovaz"
+      ],
+      "isActive": true
+    },
+    {
+      "id": 4,
+      "name": "Engagement Approach & Opening Week",
+      "dayOffset": 0,
+      "subject": "Project Management",
+      "week": "Week 1 (Remote)",
+      "weekDay": "Mon",
+      "startTime": "11:00",
+      "endTime": "12:00",
+      "leads": [
+        "Adam Williams"
+      ],
+      "isActive": true
+    },
+    {
+      "id": 5,
+      "name": "Lunch & Feedback",
+      "dayOffset": 0,
+      "week": "Week 1 (Remote)",
+      "weekDay": "Mon",
+      "startTime": "12:00",
+      "endTime": "13:00",
+      "isActive": true
+    },
+    {
+      "id": 6,
+      "name": "Meet The Owner (individual meeting)",
+      "dayOffset": 0,
+      "subject": "Vision, Mission, and Values",
+      "week": "Week 1 (Remote)",
+      "weekDay": "Mon",
+      "startTime": "13:00",
+      "endTime": "14:00",
+      "leads": [
+        "Rob Braiman"
+      ],
+      "isActive": true
+    },
+    {
+      "id": 7,
+      "name": "CADS: BS, IS & Ratios",
+      "dayOffset": 0,
+      "subject": "Measurement",
+      "week": "Week 1 (Remote)",
+      "weekDay": "Mon",
+      "startTime": "14:00",
+      "endTime": "15:00",
+      "leads": [
+        "Tim Grabrovaz"
+      ],
+      "isActive": true
+    },
+    {
+      "id": 8,
+      "name": "Discovery Review & TO",
+      "dayOffset": 0,
+      "subject": "Discovery",
+      "week": "Week 1 (Remote)",
+      "weekDay": "Mon",
+      "startTime": "15:00",
+      "endTime": "17:00",
+      "leads": [
+        "Tim Grabrovaz"
+      ],
+      "isActive": true
+    },
+    {
+      "id": 9,
+      "name": "Homework Build A TO Doc",
+      "dayOffset": 0,
+      "week": "Week 1 (Remote)",
+      "weekDay": "Mon",
+      "startTime": "17:00",
+      "endTime": "21:00",
+      "isActive": true
+    },
+    {
+      "id": 10,
+      "name": "Review TO Homework",
+      "dayOffset": 1,
+      "subject": "Discovery",
+      "week": "Week 1 (Remote)",
+      "weekDay": "Tue",
+      "startTime": "09:00",
+      "endTime": "10:00",
+      "leads": [
+        "Tim Grabrovaz"
+      ],
+      "isActive": true
+    },
+    {
+      "id": 11,
+      "name": "Measurement",
+      "dayOffset": 1,
+      "subject": "Measurement",
+      "week": "Week 1 (Remote)",
+      "weekDay": "Tue",
+      "startTime": "10:00",
+      "endTime": "12:00",
+      "leads": [
+        "Joshua Harvey"
+      ],
+      "isActive": true
+    },
+    {
+      "id": 12,
+      "name": "The Strategy Call: Reel Lumber & ROI Scheduling",
+      "dayOffset": 1,
+      "subject": "Project Management",
+      "week": "Week 1 (Remote)",
+      "weekDay": "Tue",
+      "startTime": "12:00",
+      "endTime": "13:00",
+      "leads": [
+        "Kai Hungerford"
+      ],
+      "isActive": true
+    },
+    {
+      "id": 13,
+      "name": "Lunch & Feedback",
+      "dayOffset": 1,
+      "week": "Week 1 (Remote)",
+      "weekDay": "Tue",
+      "startTime": "13:00",
+      "endTime": "14:00",
+      "isActive": true
+    },
+    {
+      "id": 14,
+      "name": "Liquidity",
+      "dayOffset": 1,
+      "subject": "Measurement",
+      "week": "Week 1 (Remote)",
+      "weekDay": "Tue",
+      "startTime": "14:00",
+      "endTime": "15:00",
+      "leads": [
+        "Josh Bresler"
+      ],
+      "isActive": true
+    },
+    {
+      "id": 15,
+      "name": "Project Plan Creation (Group Build)",
+      "dayOffset": 1,
+      "subject": "Project Management",
+      "week": "Week 1 (Remote)",
+      "weekDay": "Tue",
+      "startTime": "15:00",
+      "endTime": "17:00",
+      "leads": [
+        "Tim Grabrovaz"
+      ],
+      "isActive": true
+    },
+    {
+      "id": 16,
+      "name": "Homework Build A PP",
+      "dayOffset": 1,
+      "week": "Week 1 (Remote)",
+      "weekDay": "Tue",
+      "startTime": "17:00",
+      "endTime": "21:00",
+      "isActive": true
+    },
+    {
+      "id": 17,
+      "name": "Project Plan Presentations",
+      "dayOffset": 2,
+      "subject": "Client Alignment & Project Control",
+      "week": "Week 1 (Remote)",
+      "weekDay": "Wed",
+      "startTime": "09:00",
+      "endTime": "12:00",
+      "leads": [
+        "Raul Ruiz"
+      ],
+      "isActive": true
+    },
+    {
+      "id": 18,
+      "name": "Travel & Expenses",
+      "dayOffset": 2,
+      "subject": "Project Management",
+      "week": "Week 1 (Remote)",
+      "weekDay": "Wed",
+      "startTime": "12:00",
+      "endTime": "13:00",
+      "leads": [
+        "Randi Rhinehardt"
+      ],
+      "isActive": true
+    },
+    {
+      "id": 19,
+      "name": "Lunch & Feedback",
+      "dayOffset": 2,
+      "week": "Week 1 (Remote)",
+      "weekDay": "Wed",
+      "startTime": "13:00",
+      "endTime": "14:00",
+      "isActive": true
+    },
+    {
+      "id": 20,
+      "name": "Processes",
+      "dayOffset": 2,
+      "subject": "Project Management",
+      "week": "Week 1 (Remote)",
+      "weekDay": "Wed",
+      "startTime": "14:00",
+      "endTime": "15:00",
+      "leads": [
+        "Isabelle Welch"
+      ],
+      "isActive": true
+    },
+    {
+      "id": 21,
+      "name": "CMS Show",
+      "dayOffset": 2,
+      "subject": "Measurement",
+      "week": "Week 1 (Remote)",
+      "weekDay": "Wed",
+      "startTime": "15:00",
+      "endTime": "16:00",
+      "leads": [
+        "Ryland McClain-Rubin"
+      ],
+      "isActive": true
+    },
+    {
+      "id": 22,
+      "name": "CMS Build",
+      "dayOffset": 2,
+      "subject": "Measurement",
+      "week": "Week 1 (Remote)",
+      "weekDay": "Wed",
+      "startTime": "16:00",
+      "endTime": "17:00",
+      "leads": [
+        "Ryland McClain-Rubin"
+      ],
+      "isActive": true
+    },
+    {
+      "id": 23,
+      "name": "Homework Build a CMS",
+      "dayOffset": 2,
+      "week": "Week 1 (Remote)",
+      "weekDay": "Wed",
+      "startTime": "17:00",
+      "endTime": "19:00",
+      "isActive": true
+    },
+    {
+      "id": 24,
+      "name": "Review CMS Homework",
+      "dayOffset": 3,
+      "subject": "Measurement",
+      "week": "Week 1 (Remote)",
+      "weekDay": "Thu",
+      "startTime": "09:00",
+      "endTime": "10:00",
+      "leads": [
+        "Ryland McClain-Rubin"
+      ],
+      "isActive": true
+    },
+    {
+      "id": 25,
+      "name": "Project Management",
+      "dayOffset": 3,
+      "subject": "Project Management",
+      "week": "Week 1 (Remote)",
+      "weekDay": "Thu",
+      "startTime": "10:00",
+      "endTime": "11:00",
+      "leads": [
+        "Dakota Madison"
+      ],
+      "isActive": true
+    },
+    {
+      "id": 26,
+      "name": "LBR",
+      "dayOffset": 3,
+      "subject": "Measurement",
+      "week": "Week 1 (Remote)",
+      "weekDay": "Thu",
+      "startTime": "11:00",
+      "endTime": "12:00",
+      "leads": [
+        "Kai Hungerford",
+        "Josh Bresler"
+      ],
+      "isActive": true
+    },
+    {
+      "id": 27,
+      "name": "Break Even & Overhead & Pricing Tool",
+      "dayOffset": 3,
+      "subject": "Measurement",
+      "week": "Week 1 (Remote)",
+      "weekDay": "Thu",
+      "startTime": "12:00",
+      "endTime": "13:00",
+      "leads": [
+        "Kai Hungerford",
+        "Josh Bresler"
+      ],
+      "isActive": true
+    },
+    {
+      "id": 28,
+      "name": "Lunch & Feedback",
+      "dayOffset": 3,
+      "week": "Week 1 (Remote)",
+      "weekDay": "Thu",
+      "startTime": "13:00",
+      "endTime": "14:00",
+      "isActive": true
+    },
+    {
+      "id": 29,
+      "name": "Key Stakeholder Interviews",
+      "dayOffset": 3,
+      "subject": "People",
+      "week": "Week 1 (Remote)",
+      "weekDay": "Thu",
+      "startTime": "14:00",
+      "endTime": "15:00",
+      "leads": [
+        "Tim Grabrovaz"
+      ],
+      "isActive": true
+    },
+    {
+      "id": 30,
+      "name": "WPR Creation (Group Build)",
+      "dayOffset": 3,
+      "subject": "Project Management",
+      "week": "Week 1 (Remote)",
+      "weekDay": "Thu",
+      "startTime": "15:00",
+      "endTime": "17:00",
+      "leads": [
+        "Tim Grabrovaz"
+      ],
+      "isActive": true
+    },
+    {
+      "id": 31,
+      "name": "Homework Build a WPR",
+      "dayOffset": 3,
+      "week": "Week 1 (Remote)",
+      "weekDay": "Thu",
+      "startTime": "17:00",
+      "endTime": "21:00",
+      "isActive": true
+    },
+    {
+      "id": 32,
+      "name": "WPR Presentations",
+      "dayOffset": 4,
+      "subject": "Client Alignment & Project Control",
+      "week": "Week 1 (Remote)",
+      "weekDay": "Fri",
+      "startTime": "09:00",
+      "endTime": "12:00",
+      "leads": [
+        "Billy Hardison"
+      ],
+      "isActive": true
+    },
+    {
+      "id": 33,
+      "name": "Social Styles",
+      "dayOffset": 4,
+      "subject": "People",
+      "week": "Week 1 (Remote)",
+      "weekDay": "Fri",
+      "startTime": "12:00",
+      "endTime": "13:00",
+      "leads": [
+        "Tim Grabrovaz"
+      ],
+      "isActive": true
+    },
+    {
+      "id": 34,
+      "name": "Lunch",
+      "dayOffset": 4,
+      "week": "Week 1 (Remote)",
+      "weekDay": "Fri",
+      "startTime": "13:00",
+      "endTime": "14:00",
+      "isActive": true
+    },
+    {
+      "id": 35,
+      "name": "PD Success Metrics",
+      "dayOffset": 4,
+      "subject": "Vision, Mission, and Values",
+      "week": "Week 1 (Remote)",
+      "weekDay": "Fri",
+      "startTime": "14:00",
+      "endTime": "15:00",
+      "leads": [
+        "Adam Williams"
+      ],
+      "isActive": true
+    },
+    {
+      "id": 36,
+      "name": "Graduation",
+      "dayOffset": 4,
+      "week": "Week 1 (Remote)",
+      "weekDay": "Fri",
+      "startTime": "15:00",
+      "endTime": "17:00",
+      "leads": [
+        "Adam Williams"
+      ],
+      "isActive": true
+    },
+    {
+      "id": 37,
+      "name": "Working With PAT's",
+      "dayOffset": 7,
+      "subject": "Project Management",
+      "week": "Week 2 (In Person)",
+      "weekDay": "Mon",
+      "startTime": "09:00",
+      "endTime": "10:00",
+      "leads": [
+        "Kaitlyn Tedder"
+      ],
+      "isActive": true
+    },
+    {
+      "id": 38,
+      "name": "Sales Trend Analysis",
+      "dayOffset": 7,
+      "subject": "Measurement",
+      "week": "Week 2 (In Person)",
+      "weekDay": "Mon",
+      "startTime": "10:00",
+      "endTime": "11:00",
+      "leads": [
+        "Ryland McClain-Rubin"
+      ],
+      "isActive": true
+    },
+    {
+      "id": 39,
+      "name": "Referrals",
+      "dayOffset": 7,
+      "subject": "Project Management",
+      "week": "Week 2 (In Person)",
+      "weekDay": "Mon",
+      "startTime": "11:00",
+      "endTime": "11:30",
+      "leads": [
+        "CJ Johnson"
+      ],
+      "isActive": true
+    },
+    {
+      "id": 40,
+      "name": "Fever Chart (People & Meetings)",
+      "dayOffset": 7,
+      "subject": "Client Alignment & Project Control",
+      "week": "Week 2 (In Person)",
+      "weekDay": "Mon",
+      "startTime": "11:30",
+      "endTime": "13:00",
+      "leads": [
+        "Raul Ruiz"
+      ],
+      "isActive": true
+    },
+    {
+      "id": 41,
+      "name": "Lunch",
+      "dayOffset": 7,
+      "week": "Week 2 (In Person)",
+      "weekDay": "Mon",
+      "startTime": "13:00",
+      "endTime": "14:00",
+      "isActive": true
+    },
+    {
+      "id": 42,
+      "name": "Accountability Framework",
+      "dayOffset": 7,
+      "subject": "People",
+      "week": "Week 2 (In Person)",
+      "weekDay": "Mon",
+      "startTime": "14:00",
+      "endTime": "15:00",
+      "leads": [
+        "Tim Grabrovaz"
+      ],
+      "isActive": true
+    },
+    {
+      "id": 43,
+      "name": "Connective Tissue: CMS Strategy w/ B.E., OHA, LBR, & Pricing",
+      "dayOffset": 7,
+      "subject": "Measurement",
+      "week": "Week 2 (In Person)",
+      "weekDay": "Mon",
+      "startTime": "15:00",
+      "endTime": "17:00",
+      "leads": [
+        "Dakota Madison"
+      ],
+      "isActive": true
+    },
+    {
+      "id": 44,
+      "name": "Homework ClickUp",
+      "dayOffset": 7,
+      "week": "Week 2 (In Person)",
+      "weekDay": "Mon",
+      "startTime": "17:00",
+      "endTime": "19:00",
+      "isActive": true
+    },
+    {
+      "id": 45,
+      "name": "Tour of Office with Isabelle",
+      "dayOffset": 8,
+      "week": "Week 2 (In Person)",
+      "weekDay": "Tue",
+      "startTime": "08:30",
+      "endTime": "09:00",
+      "leads": [
+        "Isabelle Welch"
+      ],
+      "isActive": true
+    },
+    {
+      "id": 46,
+      "name": "Brand Marketing",
+      "dayOffset": 8,
+      "subject": "Brand MTKG",
+      "week": "Week 2 (In Person)",
+      "weekDay": "Tue",
+      "startTime": "09:00",
+      "endTime": "10:00",
+      "leads": [
+        "SarahRose Mosh"
+      ],
+      "isActive": true
+    },
+    {
+      "id": 47,
+      "name": "Absolute Capacity & Utilization",
+      "dayOffset": 8,
+      "subject": "Process",
+      "week": "Week 2 (In Person)",
+      "weekDay": "Tue",
+      "startTime": "10:00",
+      "endTime": "11:00",
+      "leads": [
+        "Kai Hungerford"
+      ],
+      "isActive": true
+    },
+    {
+      "id": 48,
+      "name": "Lost Time Pareto",
+      "dayOffset": 8,
+      "subject": "Process",
+      "week": "Week 2 (In Person)",
+      "weekDay": "Tue",
+      "startTime": "11:00",
+      "endTime": "12:00",
+      "leads": [
+        "Kai Hungerford"
+      ],
+      "isActive": true
+    },
+    {
+      "id": 49,
+      "name": "Budget",
+      "dayOffset": 8,
+      "subject": "Measurement",
+      "week": "Week 2 (In Person)",
+      "weekDay": "Tue",
+      "startTime": "12:00",
+      "endTime": "13:00",
+      "leads": [
+        "Josh Bresler"
+      ],
+      "isActive": true
+    },
+    {
+      "id": 50,
+      "name": "Lunch",
+      "dayOffset": 8,
+      "week": "Week 2 (In Person)",
+      "weekDay": "Tue",
+      "startTime": "13:00",
+      "endTime": "14:00",
+      "isActive": true
+    },
+    {
+      "id": 51,
+      "name": "Marketing",
+      "dayOffset": 8,
+      "subject": "Professional Services",
+      "week": "Week 2 (In Person)",
+      "weekDay": "Tue",
+      "startTime": "14:00",
+      "endTime": "14:30",
+      "leads": [
+        "Ronnie Blanton"
+      ],
+      "isActive": true
+    },
+    {
+      "id": 52,
+      "name": "Accounting",
+      "dayOffset": 8,
+      "subject": "Discovery",
+      "week": "Week 2 (In Person)",
+      "weekDay": "Tue",
+      "startTime": "14:30",
+      "endTime": "15:00",
+      "leads": [
+        "Nathan Stone"
+      ],
+      "isActive": true
+    },
+    {
+      "id": 53,
+      "name": "Talent Solutions",
+      "dayOffset": 8,
+      "subject": "Discovery",
+      "week": "Week 2 (In Person)",
+      "weekDay": "Tue",
+      "startTime": "15:00",
+      "endTime": "15:30",
+      "leads": [
+        "Shane Wilson"
+      ],
+      "isActive": true
+    },
+    {
+      "id": 54,
+      "name": "Biz Dev",
+      "dayOffset": 8,
+      "subject": "Discovery",
+      "week": "Week 2 (In Person)",
+      "weekDay": "Tue",
+      "startTime": "15:30",
+      "endTime": "16:00",
+      "leads": [
+        "Ethan Prehoda"
+      ],
+      "isActive": true
+    },
+    {
+      "id": 55,
+      "name": "ProServe",
+      "dayOffset": 8,
+      "subject": "Professional Services",
+      "week": "Week 2 (In Person)",
+      "weekDay": "Tue",
+      "startTime": "16:00",
+      "endTime": "17:00",
+      "leads": [
+        "Ethan Prehoda"
+      ],
+      "isActive": true
+    },
+    {
+      "id": 56,
+      "name": "Homework Opportunity Wall",
+      "dayOffset": 8,
+      "week": "Week 2 (In Person)",
+      "weekDay": "Tue",
+      "startTime": "17:00",
+      "endTime": "18:00",
+      "isActive": true
+    },
+    {
+      "id": 57,
+      "name": "Opportunity Wall (Group Build) & Process Flow/Area Sequence",
+      "dayOffset": 9,
+      "subject": "Process",
+      "week": "Week 2 (In Person)",
+      "weekDay": "Wed",
+      "startTime": "09:00",
+      "endTime": "11:00",
+      "leads": [
+        "Billy Hardison"
+      ],
+      "isActive": true
+    },
+    {
+      "id": 58,
+      "name": "Client Alignment & Project Control",
+      "dayOffset": 9,
+      "subject": "Client Alignment & Project Control",
+      "week": "Week 2 (In Person)",
+      "weekDay": "Wed",
+      "startTime": "11:00",
+      "endTime": "13:00",
+      "leads": [
+        "Dakota Madison"
+      ],
+      "isActive": true
+    },
+    {
+      "id": 59,
+      "name": "Lunch",
+      "dayOffset": 9,
+      "week": "Week 2 (In Person)",
+      "weekDay": "Wed",
+      "startTime": "13:00",
+      "endTime": "14:00",
+      "isActive": true
+    },
+    {
+      "id": 60,
+      "name": "Meet the VP",
+      "dayOffset": 9,
+      "subject": "Vision, Mission, and Values",
+      "week": "Week 2 (In Person)",
+      "weekDay": "Wed",
+      "startTime": "14:00",
+      "endTime": "14:30",
+      "leads": [
+        "Caleb Connerty"
+      ],
+      "isActive": true
+    },
+    {
+      "id": 61,
+      "name": "BMS",
+      "dayOffset": 9,
+      "week": "Week 2 (In Person)",
+      "weekDay": "Wed",
+      "startTime": "14:30",
+      "endTime": "16:00",
+      "leads": [
+        "Ryland McClain-Rubin"
+      ],
+      "isActive": true
+    },
+    {
+      "id": 62,
+      "name": "Meet Your AD",
+      "dayOffset": 9,
+      "subject": "Vision, Mission, and Values",
+      "week": "Week 2 (In Person)",
+      "weekDay": "Wed",
+      "startTime": "16:00",
+      "endTime": "17:00",
+      "leads": [
+        "Adam Williams"
+      ],
+      "isActive": true
+    },
+    {
+      "id": 63,
+      "name": "Homework CMS",
+      "dayOffset": 9,
+      "week": "Week 2 (In Person)",
+      "weekDay": "Wed",
+      "startTime": "17:00",
+      "endTime": "18:00",
+      "isActive": true
+    },
+    {
+      "id": 64,
+      "name": "Connecting The Why, Strategy, Objectives and Deliverables",
+      "dayOffset": 10,
+      "subject": "Client Alignment & Project Control",
+      "week": "Week 2 (In Person)",
+      "weekDay": "Thu",
+      "startTime": "09:00",
+      "endTime": "12:00",
+      "leads": [
+        "Raul Ruiz"
+      ],
+      "isActive": true
+    },
+    {
+      "id": 65,
+      "name": "Quarterly Strategic Plan",
+      "dayOffset": 10,
+      "subject": "LifeCycle",
+      "week": "Week 2 (In Person)",
+      "weekDay": "Thu",
+      "startTime": "12:00",
+      "endTime": "13:00",
+      "leads": [
+        "Tim Grabrovaz"
+      ],
+      "isActive": true
+    },
+    {
+      "id": 66,
+      "name": "Lunch",
+      "dayOffset": 10,
+      "week": "Week 2 (In Person)",
+      "weekDay": "Thu",
+      "startTime": "13:00",
+      "endTime": "14:00",
+      "isActive": true
+    },
+    {
+      "id": 67,
+      "name": "Transition to LC - LC Engagement Plan - ROI Updates",
+      "dayOffset": 10,
+      "subject": "LifeCycle",
+      "week": "Week 2 (In Person)",
+      "weekDay": "Thu",
+      "startTime": "14:00",
+      "endTime": "16:00",
+      "leads": [
+        "Pete Villari"
+      ],
+      "isActive": true
+    }
+  ]
+}

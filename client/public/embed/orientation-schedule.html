@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Orientation Schedule</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Custom scrollbar for WebKit */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: #475569; border-radius: 3px; }
+    .lesson { line-height: 1.1; }
+    /* Hour grid line helper */
+    .hour-grid {
+      background-image: repeating-linear-gradient(to bottom, #3a3a3a 0, #3a3a3a 1px, transparent 1px, transparent 90px);
+    }
+  </style>
+</head>
+<body class="bg-[#121212] p-8">
+  
+      <section class="mb-16">
+        <header class="mb-4 flex justify-between items-center">
+          <h2 class="text-xl font-semibold text-white">Week 1 (Remote)</h2>
+          <div class="flex flex-wrap gap-4"><div class="flex items-center space-x-2 text-xs text-gray-200"><span class="w-3 h-3" style="background:#f59e0b"></span><span>Vision, Mission, and Values</span></div><div class="flex items-center space-x-2 text-xs text-gray-200"><span class="w-3 h-3" style="background:#ec4899"></span><span>People</span></div><div class="flex items-center space-x-2 text-xs text-gray-200"><span class="w-3 h-3" style="background:#3b82f6"></span><span>Project Management</span></div><div class="flex items-center space-x-2 text-xs text-gray-200"><span class="w-3 h-3" style="background:#10b981"></span><span>Discovery</span></div><div class="flex items-center space-x-2 text-xs text-gray-200"><span class="w-3 h-3" style="background:#8b5cf6"></span><span>Measurement</span></div><div class="flex items-center space-x-2 text-xs text-gray-200"><span class="w-3 h-3" style="background:#f43f5e"></span><span>Client Alignment & Project Control</span></div><div class="flex items-center space-x-2 text-xs text-gray-200"><span class="w-3 h-3" style="background:#14b8a6"></span><span>Brand</span></div><div class="flex items-center space-x-2 text-xs text-gray-200"><span class="w-3 h-3" style="background:#eab308"></span><span>Process</span></div><div class="flex items-center space-x-2 text-xs text-gray-200"><span class="w-3 h-3" style="background:#a855f7"></span><span>Professional Services</span></div><div class="flex items-center space-x-2 text-xs text-gray-200"><span class="w-3 h-3" style="background:#0ea5e9"></span><span>LifeCycle</span></div></div>
+        </header>
+        <div class="flex">
+          <!-- Time ruler -->
+          <div class="flex flex-col pr-4 text-right text-gray-400 text-xs" style="width:50px;">
+            <div style="height:90px;">8:00 AM</div><div style="height:90px;">9:00 AM</div><div style="height:90px;">10:00 AM</div><div style="height:90px;">11:00 AM</div><div style="height:90px;">12:00 PM</div><div style="height:90px;">1:00 PM</div><div style="height:90px;">2:00 PM</div><div style="height:90px;">3:00 PM</div><div style="height:90px;">4:00 PM</div><div style="height:90px;">5:00 PM</div><div style="height:90px;">6:00 PM</div>
+          </div>
+          <!-- Day columns -->
+          <div class="grid flex-1" style="grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px;">
+            
+    <div class="flex flex-col" style="height:928px;">
+      <div class="flex items-center justify-center text-white font-semibold" style="height:28px;background:#242424;border-bottom:1px solid #333;">Mon</div>
+      <div class="relative flex-1 hour-grid" style="background:#1a1a1a;">
+        <div class="absolute inset-0">
+          <div class="absolute lesson text-white text-[0.95rem] overflow-hidden" style="top:45px;height:45px;left:0;right:0;padding:4px 6px;background:#222222;box-shadow:inset 0 0 0 2px #6b7280;">
+        <div class="text-[0.625rem] text-gray-300">8:30 AM - 9:00 AM</div>
+        <div class="flex items-center justify-between space-x-2">
+             <span class="font-medium text-[0.85rem] truncate leading-tight">Welcome & Introductions</span>
+             <span class="text-[0.625rem] text-gray-400">AW</span>
+           </div>
+           <div class="flex items-center justify-between">
+             
+             <!-- keep space for alignment -->
+           </div>
+      </div><div class="absolute lesson text-white text-[0.95rem] overflow-hidden" style="top:90px;height:90px;left:0;right:0;padding:4px 6px;background:#222222;box-shadow:inset 0 0 0 2px #f59e0b;">
+        <div class="text-[0.625rem] text-gray-300">9:00 AM - 10:00 AM</div>
+        
+        <div class="flex items-center justify-between space-x-2">
+          <span class="font-medium text-[0.85rem] truncate leading-tight">Vision, Values & Process</span>
+          <span class="text-[0.625rem] text-gray-400">TG</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-[0.6rem] font-semibold px-1 rounded-sm truncate max-w-[140px]" style="background:#f59e0b26;color:#f59e0b">Vision, Mission, and Values</span>
+          
+        </div>
+      </div><div class="absolute lesson text-white text-[0.95rem] overflow-hidden" style="top:180px;height:90px;left:0;right:0;padding:4px 6px;background:#222222;box-shadow:inset 0 0 0 2px #ec4899;">
+        <div class="text-[0.625rem] text-gray-300">10:00 AM - 11:00 AM</div>
+        
+        <div class="flex items-center justify-between space-x-2">
+          <span class="font-medium text-[0.85rem] truncate leading-tight">The Why</span>
+          <span class="text-[0.625rem] text-gray-400">TG</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-[0.6rem] font-semibold px-1 rounded-sm truncate max-w-[140px]" style="background:#ec489926;color:#ec4899">People</span>
+          
+        </div>
+      </div><div class="absolute lesson text-white text-[0.95rem] overflow-hidden" style="top:270px;height:90px;left:0;right:0;padding:4px 6px;background:#222222;box-shadow:inset 0 0 0 2px #3b82f6;">
+        <div class="text-[0.625rem] text-gray-300">11:00 AM - 12:00 PM</div>
+        
+        <div class="flex items-center justify-between space-x-2">
+          <span class="font-medium text-[0.85rem] truncate leading-tight">Engagement Approach & Opening Week</span>
+          <span class="text-[0.625rem] text-gray-400">AW</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-[0.6rem] font-semibold px-1 rounded-sm truncate max-w-[140px]" style="background:#3b82f626;color:#3b82f6">Project Management</span>
+          
+        </div>
+      </div><div class="absolute lesson text-white text-[0.95rem] overflow-hidden" style="top:360px;height:90px;left:0;right:0;padding:4px 6px;background:#222222;box-shadow:inset 0 0 0 2px #6b7280;">
+        <div class="text-[0.625rem] text-gray-300">12:00 PM - 1:00 PM</div>
+        
+        <div class="flex items-center justify-between space-x-2">
+          <span class="font-medium text-[0.85rem] truncate leading-tight">Lunch & Feedback</span>
+          <span class="text-[0.625rem] text-gray-400"></span>
+        </div>
+        <div class="flex items-center justify-between">
+          
+          
+        </div>
+      </div><div class="absolute lesson text-white text-[0.95rem] overflow-hidden" style="top:450px;height:90px;left:0;right:0;padding:4px 6px;background:#222222;box-shadow:inset 0 0 0 2px #f59e0b;">
+        <div class="text-[0.625rem] text-gray-300">1:00 PM - 2:00 PM</div>
+        
+        <div class="flex items-center justify-between space-x-2">
+          <span class="font-medium text-[0.85rem] truncate leading-tight">Meet The Owner (individual meeting)</span>
+          <span class="text-[0.625rem] text-gray-400">RB</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-[0.6rem] font-semibold px-1 rounded-sm truncate max-w-[140px]" style="background:#f59e0b26;color:#f59e0b">Vision, Mission, and Values</span>
+          
+        </div>
+      </div><div class="absolute lesson text-white text-[0.95rem] overflow-hidden" style="top:540px;height:90px;left:0;right:0;padding:4px 6px;background:#222222;box-shadow:inset 0 0 0 2px #8b5cf6;">
+        <div class="text-[0.625rem] text-gray-300">2:00 PM - 3:00 PM</div>
+        
+        <div class="flex items-center justify-between space-x-2">
+          <span class="font-medium text-[0.85rem] truncate leading-tight">CADS: BS, IS & Ratios</span>
+          <span class="text-[0.625rem] text-gray-400">TG</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-[0.6rem] font-semibold px-1 rounded-sm truncate max-w-[140px]" style="background:#8b5cf626;color:#8b5cf6">Measurement</span>
+          
+        </div>
+      </div><div class="absolute lesson text-white text-[0.95rem] overflow-hidden" style="top:630px;height:180px;left:0;right:0;padding:4px 6px;background:#222222;box-shadow:inset 0 0 0 2px #10b981;">
+        <div class="text-[0.625rem] text-gray-300">3:00 PM - 5:00 PM</div>
+        
+        <div class="flex items-center justify-between space-x-2">
+          <span class="font-medium text-[0.85rem] truncate leading-tight">Discovery Review & TO</span>
+          <span class="text-[0.625rem] text-gray-400">TG</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-[0.6rem] font-semibold px-1 rounded-sm truncate max-w-[140px]" style="background:#10b98126;color:#10b981">Discovery</span>
+          
+        </div>
+      </div><div class="absolute lesson text-white text-[0.95rem] overflow-hidden" style="top:810px;height:90px;left:0;right:0;padding:4px 6px;background:#222222;box-shadow:inset 0 0 0 2px #6b7280;">
+        <div class="text-[0.625rem] text-gray-300">5:00 PM - 9:00 PM</div>
+        
+        <div class="flex items-center justify-between space-x-2">
+          <span class="font-medium text-[0.85rem] truncate leading-tight">Homework Build A TO Doc</span>
+          <span class="text-[0.625rem] text-gray-400"></span>
+        </div>
+        <div class="flex items-center justify-between">
+          
+          
+        </div>
+      </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="flex flex-col" style="height:928px;">
+      <div class="flex items-center justify-center text-white font-semibold" style="height:28px;background:#242424;border-bottom:1px solid #333;">Tue</div>
+      <div class="relative flex-1 hour-grid" style="background:#1a1a1a;">
+        <div class="absolute inset-0">
+          <div class="absolute lesson text-white text-[0.95rem] overflow-hidden" style="top:90px;height:90px;left:0;right:0;padding:4px 6px;background:#222222;box-shadow:inset 0 0 0 2px #10b981;">
+        <div class="text-[0.625rem] text-gray-300">9:00 AM - 10:00 AM</div>
+        
+        <div class="flex items-center justify-between space-x-2">
+          <span class="font-medium text-[0.85rem] truncate leading-tight">Review TO Homework</span>
+          <span class="text-[0.625rem] text-gray-400">TG</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-[0.6rem] font-semibold px-1 rounded-sm truncate max-w-[140px]" style="background:#10b98126;color:#10b981">Discovery</span>
+          
+        </div>
+      </div><div class="absolute lesson text-white text-[0.95rem] overflow-hidden" style="top:180px;height:180px;left:0;right:0;padding:4px 6px;background:#222222;box-shadow:inset 0 0 0 2px #8b5cf6;">
+        <div class="text-[0.625rem] text-gray-300">10:00 AM - 12:00 PM</div>
+        
+        <div class="flex items-center justify-between space-x-2">
+          <span class="font-medium text-[0.85rem] truncate leading-tight">Measurement</span>
+          <span class="text-[0.625rem] text-gray-400">JH</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-[0.6rem] font-semibold px-1 rounded-sm truncate max-w-[140px]" style="background:#8b5cf626;color:#8b5cf6">Measurement</span>
+          
+        </div>
+      </div><div class="absolute lesson text-white text-[0.95rem] overflow-hidden" style="top:360px;height:90px;left:0;right:0;padding:4px 6px;background:#222222;box-shadow:inset 0 0 0 2px #3b82f6;">
+        <div class="text-[0.625rem] text-gray-300">12:00 PM - 1:00 PM</div>
+        
+        <div class="flex items-center justify-between space-x-2">
+          <span class="font-medium text-[0.85rem] truncate leading-tight">The Strategy Call: Reel Lumber & ROI Scheduling</span>
+          <span class="text-[0.625rem] text-gray-400">KH</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-[0.6rem] font-semibold px-1 rounded-sm truncate max-w-[140px]" style="background:#3b82f626;color:#3b82f6">Project Management</span>
+          
+        </div>
+      </div><div class="absolute lesson text-white text-[0.95rem] overflow-hidden" style="top:450px;height:90px;left:0;right:0;padding:4px 6px;background:#222222;box-shadow:inset 0 0 0 2px #6b7280;">
+        <div class="text-[0.625rem] text-gray-300">1:00 PM - 2:00 PM</div>
+        
+        <div class="flex items-center justify-between space-x-2">
+          <span class="font-medium text-[0.85rem] truncate leading-tight">Lunch & Feedback</span>
+          <span class="text-[0.625rem] text-gray-400"></span>
+        </div>
+        <div class="flex items-center justify-between">
+          
+          
+        </div>
+      </div><div class="absolute lesson text-white text-[0.95rem] overflow-hidden" style="top:540px;height:90px;left:0;right:0;padding:4px 6px;background:#222222;box-shadow:inset 0 0 0 2px #8b5cf6;">
+        <div class="text-[0.625rem] text-gray-300">2:00 PM - 3:00 PM</div>
+        
+        <div class="flex items-center justify-between space-x-2">
+          <span class="font-medium text-[0.85rem] truncate leading-tight">Liquidity</span>
+          <span class="text-[0.625rem] text-gray-400">JB</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-[0.6rem] font-semibold px-1 rounded-sm truncate max-w-[140px]" style="background:#8b5cf626;color:#8b5cf6">Measurement</span>
+          
+        </div>
+      </div><div class="absolute lesson text-white text-[0.95rem] overflow-hidden" style="top:630px;height:180px;left:0;right:0;padding:4px 6px;background:#222222;box-shadow:inset 0 0 0 2px #3b82f6;">
+        <div class="text-[0.625rem] text-gray-300">3:00 PM - 5:00 PM</div>
+        
+        <div class="flex items-center justify-between space-x-2">
+          <span class="font-medium text-[0.85rem] truncate leading-tight">Project Plan Creation (Group Build)</span>
+          <span class="text-[0.625rem] text-gray-400">TG</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-[0.6rem] font-semibold px-1 rounded-sm truncate max-w-[140px]" style="background:#3b82f626;color:#3b82f6">Project Management</span>
+          
+        </div>
+      </div><div class="absolute lesson text-white text-[0.95rem] overflow-hidden" style="top:810px;height:90px;left:0;right:0;padding:4px 6px;background:#222222;box-shadow:inset 0 0 0 2px #6b7280;">
+        <div class="text-[0.625rem] text-gray-300">5:00 PM - 9:00 PM</div>
+        
+        <div class="flex items-center justify-between space-x-2">
+          <span class="font-medium text-[0.85rem] truncate leading-tight">Homework Build A PP</span>
+          <span class="text-[0.625rem] text-gray-400"></span>
+        </div>
+        <div class="flex items-center justify-between">
+          
+          
+        </div>
+      </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="flex flex-col" style="height:928px;">
+      <div class="flex items-center justify-center text-white font-semibold" style="height:28px;background:#242424;border-bottom:1px solid #333;">Wed</div>
+      <div class="relative flex-1 hour-grid" style="background:#1a1a1a;">
+        <div class="absolute inset-0">
+          <div class="absolute lesson text-white text-[0.95rem] overflow-hidden" style="top:90px;height:270px;left:0;right:0;padding:4px 6px;background:#222222;box-shadow:inset 0 0 0 2px #f43f5e;">
+        <div class="text-[0.625rem] text-gray-300">9:00 AM - 12:00 PM</div>
+        
+        <div class="flex items-center justify-between space-x-2">
+          <span class="font-medium text-[0.85rem] truncate leading-tight">Project Plan Presentations</span>
+          <span class="text-[0.625rem] text-gray-400">RR</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-[0.6rem] font-semibold px-1 rounded-sm truncate max-w-[140px]" style="background:#f43f5e26;color:#f43f5e">Client Alignment & Project Control</span>
+          
+        </div>
+      </div><div class="absolute lesson text-white text-[0.95rem] overflow-hidden" style="top:360px;height:90px;left:0;right:0;padding:4px 6px;background:#222222;box-shadow:inset 0 0 0 2px #3b82f6;">
+        <div class="text-[0.625rem] text-gray-300">12:00 PM - 1:00 PM</div>
+        
+        <div class="flex items-center justify-between space-x-2">
+          <span class="font-medium text-[0.85rem] truncate leading-tight">Travel & Expenses</span>
+          <span class="text-[0.625rem] text-gray-400">RR</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-[0.6rem] font-semibold px-1 rounded-sm truncate max-w-[140px]" style="background:#3b82f626;color:#3b82f6">Project Management</span>
+          
+        </div>
+      </div><div class="absolute lesson text-white text-[0.95rem] overflow-hidden" style="top:450px;height:90px;left:0;right:0;padding:4px 6px;background:#222222;box-shadow:inset 0 0 0 2px #6b7280;">
+        <div class="text-[0.625rem] text-gray-300">1:00 PM - 2:00 PM</div>
+        
+        <div class="flex items-center justify-between space-x-2">
+          <span class="font-medium text-[0.85rem] truncate leading-tight">Lunch & Feedback</span>
+          <span class="text-[0.625rem] text-gray-400"></span>
+        </div>
+        <div class="flex items-center justify-between">
+          
+          
+        </div>
+      </div><div class="absolute lesson text-white text-[0.95rem] overflow-hidden" style="top:540px;height:90px;left:0;right:0;padding:4px 6px;background:#222222;box-shadow:inset 0 0 0 2px #3b82f6;">
+        <div class="text-[0.625rem] text-gray-300">2:00 PM - 3:00 PM</div>
+        
+        <div class="flex items-center justify-between space-x-2">
+          <span class="font-medium text-[0.85rem] truncate leading-tight">Processes</span>
+          <span class="text-[0.625rem] text-gray-400">IW</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-[0.6rem] font-semibold px-1 rounded-sm truncate max-w-[140px]" style="background:#3b82f626;color:#3b82f6">Project Management</span>
+          
+        </div>
+      </div><div class="absolute lesson text-white text-[0.95rem] overflow-hidden" style="top:630px;height:90px;left:0;right:0;padding:4px 6px;background:#222222;box-shadow:inset 0 0 0 2px #8b5cf6;">
+        <div class="text-[0.625rem] text-gray-300">3:00 PM - 4:00 PM</div>
+        
+        <div class="flex items-center justify-between space-x-2">
+          <span class="font-medium text-[0.85rem] truncate leading-tight">CMS Show</span>
+          <span class="text-[0.625rem] text-gray-400">RM</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-[0.6rem] font-semibold px-1 rounded-sm truncate max-w-[140px]" style="background:#8b5cf626;color:#8b5cf6">Measurement</span>
+          
+        </div>
+      </div><div class="absolute lesson text-white text-[0.95rem] overflow-hidden" style="top:720px;height:90px;left:0;right:0;padding:4px 6px;background:#222222;box-shadow:inset 0 0 0 2px #8b5cf6;">
+        <div class="text-[0.625rem] text-gray-300">4:00 PM - 5:00 PM</div>
+        
+        <div class="flex items-center justify-between space-x-2">
+          <span class="font-medium text-[0.85rem] truncate leading-tight">CMS Build</span>
+          <span class="text-[0.625rem] text-gray-400">RM</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-[0.6rem] font-semibold px-1 rounded-sm truncate max-w-[140px]" style="background:#8b5cf626;color:#8b5cf6">Measurement</span>
+          
+        </div>
+      </div><div class="absolute lesson text-white text-[0.95rem] overflow-hidden" style="top:810px;height:90px;left:0;right:0;padding:4px 6px;background:#222222;box-shadow:inset 0 0 0 2px #6b7280;">
+        <div class="text-[0.625rem] text-gray-300">5:00 PM - 7:00 PM</div>
+        
+        <div class="flex items-center justify-between space-x-2">
+          <span class="font-medium text-[0.85rem] truncate leading-tight">Homework Build a CMS</span>
+          <span class="text-[0.625rem] text-gray-400"></span>
+        </div>
+        <div class="flex items-center justify-between">
+          
+          
+        </div>
+      </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="flex flex-col" style="height:928px;">
+      <div class="flex items-center justify-center text-white font-semibold" style="height:28px;background:#242424;border-bottom:1px solid #333;">Thu</div>
+      <div class="relative flex-1 hour-grid" style="background:#1a1a1a;">
+        <div class="absolute inset-0">
+          <div class="absolute lesson text-white text-[0.95rem] overflow-hidden" style="top:90px;height:90px;left:0;right:0;padding:4px 6px;background:#222222;box-shadow:inset 0 0 0 2px #8b5cf6;">
+        <div class="text-[0.625rem] text-gray-300">9:00 AM - 10:00 AM</div>
+        
+        <div class="flex items-center justify-between space-x-2">
+          <span class="font-medium text-[0.85rem] truncate leading-tight">Review CMS Homework</span>
+          <span class="text-[0.625rem] text-gray-400">RM</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-[0.6rem] font-semibold px-1 rounded-sm truncate max-w-[140px]" style="background:#8b5cf626;color:#8b5cf6">Measurement</span>
+          
+        </div>
+      </div><div class="absolute lesson text-white text-[0.95rem] overflow-hidden" style="top:180px;height:90px;left:0;right:0;padding:4px 6px;background:#222222;box-shadow:inset 0 0 0 2px #3b82f6;">
+        <div class="text-[0.625rem] text-gray-300">10:00 AM - 11:00 AM</div>
+        
+        <div class="flex items-center justify-between space-x-2">
+          <span class="font-medium text-[0.85rem] truncate leading-tight">Project Management</span>
+          <span class="text-[0.625rem] text-gray-400">DM</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-[0.6rem] font-semibold px-1 rounded-sm truncate max-w-[140px]" style="background:#3b82f626;color:#3b82f6">Project Management</span>
+          
+        </div>
+      </div><div class="absolute lesson text-white text-[0.95rem] overflow-hidden" style="top:270px;height:90px;left:0;right:0;padding:4px 6px;background:#222222;box-shadow:inset 0 0 0 2px #8b5cf6;">
+        <div class="text-[0.625rem] text-gray-300">11:00 AM - 12:00 PM</div>
+        
+        <div class="flex items-center justify-between space-x-2">
+          <span class="font-medium text-[0.85rem] truncate leading-tight">LBR</span>
+          <span class="text-[0.625rem] text-gray-400">KH</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-[0.6rem] font-semibold px-1 rounded-sm truncate max-w-[140px]" style="background:#8b5cf626;color:#8b5cf6">Measurement</span>
+          
+        </div>
+      </div><div class="absolute lesson text-white text-[0.95rem] overflow-hidden" style="top:360px;height:90px;left:0;right:0;padding:4px 6px;background:#222222;box-shadow:inset 0 0 0 2px #8b5cf6;">
+        <div class="text-[0.625rem] text-gray-300">12:00 PM - 1:00 PM</div>
+        
+        <div class="flex items-center justify-between space-x-2">
+          <span class="font-medium text-[0.85rem] truncate leading-tight">Break Even & Overhead & Pricing Tool</span>
+          <span class="text-[0.625rem] text-gray-400">KH</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-[0.6rem] font-semibold px-1 rounded-sm truncate max-w-[140px]" style="background:#8b5cf626;color:#8b5cf6">Measurement</span>
+          
+        </div>
+      </div><div class="absolute lesson text-white text-[0.95rem] overflow-hidden" style="top:450px;height:90px;left:0;right:0;padding:4px 6px;background:#222222;box-shadow:inset 0 0 0 2px #6b7280;">
+        <div class="text-[0.625rem] text-gray-300">1:00 PM - 2:00 PM</div>
+        
+        <div class="flex items-center justify-between space-x-2">
+          <span class="font-medium text-[0.85rem] truncate leading-tight">Lunch & Feedback</span>
+          <span class="text-[0.625rem] text-gray-400"></span>
+        </div>
+        <div class="flex items-center justify-between">
+          
+          
+        </div>
+      </div><div class="absolute lesson text-white text-[0.95rem] overflow-hidden" style="top:540px;height:90px;left:0;right:0;padding:4px 6px;background:#222222;box-shadow:inset 0 0 0 2px #ec4899;">
+        <div class="text-[0.625rem] text-gray-300">2:00 PM - 3:00 PM</div>
+        
+        <div class="flex items-center justify-between space-x-2">
+          <span class="font-medium text-[0.85rem] truncate leading-tight">Key Stakeholder Interviews</span>
+          <span class="text-[0.625rem] text-gray-400">TG</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-[0.6rem] font-semibold px-1 rounded-sm truncate max-w-[140px]" style="background:#ec489926;color:#ec4899">People</span>
+          
+        </div>
+      </div><div class="absolute lesson text-white text-[0.95rem] overflow-hidden" style="top:630px;height:180px;left:0;right:0;padding:4px 6px;background:#222222;box-shadow:inset 0 0 0 2px #3b82f6;">
+        <div class="text-[0.625rem] text-gray-300">3:00 PM - 5:00 PM</div>
+        
+        <div class="flex items-center justify-between space-x-2">
+          <span class="font-medium text-[0.85rem] truncate leading-tight">WPR Creation (Group Build)</span>
+          <span class="text-[0.625rem] text-gray-400">TG</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-[0.6rem] font-semibold px-1 rounded-sm truncate max-w-[140px]" style="background:#3b82f626;color:#3b82f6">Project Management</span>
+          
+        </div>
+      </div><div class="absolute lesson text-white text-[0.95rem] overflow-hidden" style="top:810px;height:90px;left:0;right:0;padding:4px 6px;background:#222222;box-shadow:inset 0 0 0 2px #6b7280;">
+        <div class="text-[0.625rem] text-gray-300">5:00 PM - 9:00 PM</div>
+        
+        <div class="flex items-center justify-between space-x-2">
+          <span class="font-medium text-[0.85rem] truncate leading-tight">Homework Build a WPR</span>
+          <span class="text-[0.625rem] text-gray-400"></span>
+        </div>
+        <div class="flex items-center justify-between">
+          
+          
+        </div>
+      </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="flex flex-col" style="height:928px;">
+      <div class="flex items-center justify-center text-white font-semibold" style="height:28px;background:#242424;border-bottom:1px solid #333;">Fri</div>
+      <div class="relative flex-1 hour-grid" style="background:#1a1a1a;">
+        <div class="absolute inset-0">
+          <div class="absolute lesson text-white text-[0.95rem] overflow-hidden" style="top:90px;height:270px;left:0;right:0;padding:4px 6px;background:#222222;box-shadow:inset 0 0 0 2px #f43f5e;">
+        <div class="text-[0.625rem] text-gray-300">9:00 AM - 12:00 PM</div>
+        
+        <div class="flex items-center justify-between space-x-2">
+          <span class="font-medium text-[0.85rem] truncate leading-tight">WPR Presentations</span>
+          <span class="text-[0.625rem] text-gray-400">BH</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-[0.6rem] font-semibold px-1 rounded-sm truncate max-w-[140px]" style="background:#f43f5e26;color:#f43f5e">Client Alignment & Project Control</span>
+          
+        </div>
+      </div><div class="absolute lesson text-white text-[0.95rem] overflow-hidden" style="top:360px;height:90px;left:0;right:0;padding:4px 6px;background:#222222;box-shadow:inset 0 0 0 2px #ec4899;">
+        <div class="text-[0.625rem] text-gray-300">12:00 PM - 1:00 PM</div>
+        
+        <div class="flex items-center justify-between space-x-2">
+          <span class="font-medium text-[0.85rem] truncate leading-tight">Social Styles</span>
+          <span class="text-[0.625rem] text-gray-400">TG</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-[0.6rem] font-semibold px-1 rounded-sm truncate max-w-[140px]" style="background:#ec489926;color:#ec4899">People</span>
+          
+        </div>
+      </div><div class="absolute lesson text-white text-[0.95rem] overflow-hidden" style="top:450px;height:90px;left:0;right:0;padding:4px 6px;background:#222222;box-shadow:inset 0 0 0 2px #6b7280;">
+        <div class="text-[0.625rem] text-gray-300">1:00 PM - 2:00 PM</div>
+        
+        <div class="flex items-center justify-between space-x-2">
+          <span class="font-medium text-[0.85rem] truncate leading-tight">Lunch</span>
+          <span class="text-[0.625rem] text-gray-400"></span>
+        </div>
+        <div class="flex items-center justify-between">
+          
+          
+        </div>
+      </div><div class="absolute lesson text-white text-[0.95rem] overflow-hidden" style="top:540px;height:90px;left:0;right:0;padding:4px 6px;background:#222222;box-shadow:inset 0 0 0 2px #f59e0b;">
+        <div class="text-[0.625rem] text-gray-300">2:00 PM - 3:00 PM</div>
+        
+        <div class="flex items-center justify-between space-x-2">
+          <span class="font-medium text-[0.85rem] truncate leading-tight">PD Success Metrics</span>
+          <span class="text-[0.625rem] text-gray-400">AW</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-[0.6rem] font-semibold px-1 rounded-sm truncate max-w-[140px]" style="background:#f59e0b26;color:#f59e0b">Vision, Mission, and Values</span>
+          
+        </div>
+      </div><div class="absolute lesson text-white text-[0.95rem] overflow-hidden" style="top:630px;height:180px;left:0;right:0;padding:4px 6px;background:#222222;box-shadow:inset 0 0 0 2px #6b7280;">
+        <div class="text-[0.625rem] text-gray-300">3:00 PM - 5:00 PM</div>
+        
+        <div class="flex items-center justify-between space-x-2">
+          <span class="font-medium text-[0.85rem] truncate leading-tight">Graduation</span>
+          <span class="text-[0.625rem] text-gray-400">AW</span>
+        </div>
+        <div class="flex items-center justify-between">
+          
+          
+        </div>
+      </div>
+        </div>
+      </div>
+    </div>
+  
+          </div>
+        </div>
+      </section>
+    
+      <section class="mb-16">
+        <header class="mb-4 flex justify-between items-center">
+          <h2 class="text-xl font-semibold text-white">Week 2 (In Person)</h2>
+          <div class="flex flex-wrap gap-4"><div class="flex items-center space-x-2 text-xs text-gray-200"><span class="w-3 h-3" style="background:#f59e0b"></span><span>Vision, Mission, and Values</span></div><div class="flex items-center space-x-2 text-xs text-gray-200"><span class="w-3 h-3" style="background:#ec4899"></span><span>People</span></div><div class="flex items-center space-x-2 text-xs text-gray-200"><span class="w-3 h-3" style="background:#3b82f6"></span><span>Project Management</span></div><div class="flex items-center space-x-2 text-xs text-gray-200"><span class="w-3 h-3" style="background:#10b981"></span><span>Discovery</span></div><div class="flex items-center space-x-2 text-xs text-gray-200"><span class="w-3 h-3" style="background:#8b5cf6"></span><span>Measurement</span></div><div class="flex items-center space-x-2 text-xs text-gray-200"><span class="w-3 h-3" style="background:#f43f5e"></span><span>Client Alignment & Project Control</span></div><div class="flex items-center space-x-2 text-xs text-gray-200"><span class="w-3 h-3" style="background:#14b8a6"></span><span>Brand</span></div><div class="flex items-center space-x-2 text-xs text-gray-200"><span class="w-3 h-3" style="background:#eab308"></span><span>Process</span></div><div class="flex items-center space-x-2 text-xs text-gray-200"><span class="w-3 h-3" style="background:#a855f7"></span><span>Professional Services</span></div><div class="flex items-center space-x-2 text-xs text-gray-200"><span class="w-3 h-3" style="background:#0ea5e9"></span><span>LifeCycle</span></div></div>
+        </header>
+        <div class="flex">
+          <!-- Time ruler -->
+          <div class="flex flex-col pr-4 text-right text-gray-400 text-xs" style="width:50px;">
+            <div style="height:90px;">8:00 AM</div><div style="height:90px;">9:00 AM</div><div style="height:90px;">10:00 AM</div><div style="height:90px;">11:00 AM</div><div style="height:90px;">12:00 PM</div><div style="height:90px;">1:00 PM</div><div style="height:90px;">2:00 PM</div><div style="height:90px;">3:00 PM</div><div style="height:90px;">4:00 PM</div><div style="height:90px;">5:00 PM</div><div style="height:90px;">6:00 PM</div>
+          </div>
+          <!-- Day columns -->
+          <div class="grid flex-1" style="grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px;">
+            
+    <div class="flex flex-col" style="height:928px;">
+      <div class="flex items-center justify-center text-white font-semibold" style="height:28px;background:#242424;border-bottom:1px solid #333;">Mon</div>
+      <div class="relative flex-1 hour-grid" style="background:#1a1a1a;">
+        <div class="absolute inset-0">
+          <div class="absolute lesson text-white text-[0.95rem] overflow-hidden" style="top:90px;height:90px;left:0;right:0;padding:4px 6px;background:#222222;box-shadow:inset 0 0 0 2px #3b82f6;">
+        <div class="text-[0.625rem] text-gray-300">9:00 AM - 10:00 AM</div>
+        
+        <div class="flex items-center justify-between space-x-2">
+          <span class="font-medium text-[0.85rem] truncate leading-tight">Working With PAT's</span>
+          <span class="text-[0.625rem] text-gray-400">KT</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-[0.6rem] font-semibold px-1 rounded-sm truncate max-w-[140px]" style="background:#3b82f626;color:#3b82f6">Project Management</span>
+          
+        </div>
+      </div><div class="absolute lesson text-white text-[0.95rem] overflow-hidden" style="top:180px;height:90px;left:0;right:0;padding:4px 6px;background:#222222;box-shadow:inset 0 0 0 2px #8b5cf6;">
+        <div class="text-[0.625rem] text-gray-300">10:00 AM - 11:00 AM</div>
+        
+        <div class="flex items-center justify-between space-x-2">
+          <span class="font-medium text-[0.85rem] truncate leading-tight">Sales Trend Analysis</span>
+          <span class="text-[0.625rem] text-gray-400">RM</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-[0.6rem] font-semibold px-1 rounded-sm truncate max-w-[140px]" style="background:#8b5cf626;color:#8b5cf6">Measurement</span>
+          
+        </div>
+      </div><div class="absolute lesson text-white text-[0.95rem] overflow-hidden" style="top:270px;height:45px;left:0;right:0;padding:4px 6px;background:#222222;box-shadow:inset 0 0 0 2px #3b82f6;">
+        <div class="text-[0.625rem] text-gray-300">11:00 AM - 11:30 AM</div>
+        <div class="flex items-center justify-between space-x-2">
+             <span class="font-medium text-[0.85rem] truncate leading-tight">Referrals</span>
+             <span class="text-[0.625rem] text-gray-400">CJ</span>
+           </div>
+           <div class="flex items-center justify-between">
+             <span class="text-[0.6rem] font-semibold px-1 rounded-sm truncate max-w-[140px]" style="background:#3b82f626;color:#3b82f6">Project Management</span>
+             <!-- keep space for alignment -->
+           </div>
+      </div><div class="absolute lesson text-white text-[0.95rem] overflow-hidden" style="top:315px;height:135px;left:0;right:0;padding:4px 6px;background:#222222;box-shadow:inset 0 0 0 2px #f43f5e;">
+        <div class="text-[0.625rem] text-gray-300">11:30 AM - 1:00 PM</div>
+        
+        <div class="flex items-center justify-between space-x-2">
+          <span class="font-medium text-[0.85rem] truncate leading-tight">Fever Chart (People & Meetings)</span>
+          <span class="text-[0.625rem] text-gray-400">RR</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-[0.6rem] font-semibold px-1 rounded-sm truncate max-w-[140px]" style="background:#f43f5e26;color:#f43f5e">Client Alignment & Project Control</span>
+          
+        </div>
+      </div><div class="absolute lesson text-white text-[0.95rem] overflow-hidden" style="top:450px;height:90px;left:0;right:0;padding:4px 6px;background:#222222;box-shadow:inset 0 0 0 2px #6b7280;">
+        <div class="text-[0.625rem] text-gray-300">1:00 PM - 2:00 PM</div>
+        
+        <div class="flex items-center justify-between space-x-2">
+          <span class="font-medium text-[0.85rem] truncate leading-tight">Lunch</span>
+          <span class="text-[0.625rem] text-gray-400"></span>
+        </div>
+        <div class="flex items-center justify-between">
+          
+          
+        </div>
+      </div><div class="absolute lesson text-white text-[0.95rem] overflow-hidden" style="top:540px;height:90px;left:0;right:0;padding:4px 6px;background:#222222;box-shadow:inset 0 0 0 2px #ec4899;">
+        <div class="text-[0.625rem] text-gray-300">2:00 PM - 3:00 PM</div>
+        
+        <div class="flex items-center justify-between space-x-2">
+          <span class="font-medium text-[0.85rem] truncate leading-tight">Accountability Framework</span>
+          <span class="text-[0.625rem] text-gray-400">TG</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-[0.6rem] font-semibold px-1 rounded-sm truncate max-w-[140px]" style="background:#ec489926;color:#ec4899">People</span>
+          
+        </div>
+      </div><div class="absolute lesson text-white text-[0.95rem] overflow-hidden" style="top:630px;height:180px;left:0;right:0;padding:4px 6px;background:#222222;box-shadow:inset 0 0 0 2px #8b5cf6;">
+        <div class="text-[0.625rem] text-gray-300">3:00 PM - 5:00 PM</div>
+        
+        <div class="flex items-center justify-between space-x-2">
+          <span class="font-medium text-[0.85rem] truncate leading-tight">Connective Tissue: CMS Strategy w/ B.E., OHA, LBR, & Pricing</span>
+          <span class="text-[0.625rem] text-gray-400">DM</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-[0.6rem] font-semibold px-1 rounded-sm truncate max-w-[140px]" style="background:#8b5cf626;color:#8b5cf6">Measurement</span>
+          
+        </div>
+      </div><div class="absolute lesson text-white text-[0.95rem] overflow-hidden" style="top:810px;height:90px;left:0;right:0;padding:4px 6px;background:#222222;box-shadow:inset 0 0 0 2px #6b7280;">
+        <div class="text-[0.625rem] text-gray-300">5:00 PM - 7:00 PM</div>
+        
+        <div class="flex items-center justify-between space-x-2">
+          <span class="font-medium text-[0.85rem] truncate leading-tight">Homework ClickUp</span>
+          <span class="text-[0.625rem] text-gray-400"></span>
+        </div>
+        <div class="flex items-center justify-between">
+          
+          
+        </div>
+      </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="flex flex-col" style="height:928px;">
+      <div class="flex items-center justify-center text-white font-semibold" style="height:28px;background:#242424;border-bottom:1px solid #333;">Tue</div>
+      <div class="relative flex-1 hour-grid" style="background:#1a1a1a;">
+        <div class="absolute inset-0">
+          <div class="absolute lesson text-white text-[0.95rem] overflow-hidden" style="top:45px;height:45px;left:0;right:0;padding:4px 6px;background:#222222;box-shadow:inset 0 0 0 2px #6b7280;">
+        <div class="text-[0.625rem] text-gray-300">8:30 AM - 9:00 AM</div>
+        <div class="flex items-center justify-between space-x-2">
+             <span class="font-medium text-[0.85rem] truncate leading-tight">Tour of Office with Isabelle</span>
+             <span class="text-[0.625rem] text-gray-400">IW</span>
+           </div>
+           <div class="flex items-center justify-between">
+             
+             <!-- keep space for alignment -->
+           </div>
+      </div><div class="absolute lesson text-white text-[0.95rem] overflow-hidden" style="top:90px;height:90px;left:0;right:0;padding:4px 6px;background:#222222;box-shadow:inset 0 0 0 2px #6b7280;">
+        <div class="text-[0.625rem] text-gray-300">9:00 AM - 10:00 AM</div>
+        
+        <div class="flex items-center justify-between space-x-2">
+          <span class="font-medium text-[0.85rem] truncate leading-tight">Brand Marketing</span>
+          <span class="text-[0.625rem] text-gray-400">SM</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-[0.6rem] font-semibold px-1 rounded-sm truncate max-w-[140px]" style="background:#6b728026;color:#6b7280">Brand MTKG</span>
+          
+        </div>
+      </div><div class="absolute lesson text-white text-[0.95rem] overflow-hidden" style="top:180px;height:90px;left:0;right:0;padding:4px 6px;background:#222222;box-shadow:inset 0 0 0 2px #eab308;">
+        <div class="text-[0.625rem] text-gray-300">10:00 AM - 11:00 AM</div>
+        
+        <div class="flex items-center justify-between space-x-2">
+          <span class="font-medium text-[0.85rem] truncate leading-tight">Absolute Capacity & Utilization</span>
+          <span class="text-[0.625rem] text-gray-400">KH</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-[0.6rem] font-semibold px-1 rounded-sm truncate max-w-[140px]" style="background:#eab30826;color:#eab308">Process</span>
+          
+        </div>
+      </div><div class="absolute lesson text-white text-[0.95rem] overflow-hidden" style="top:270px;height:90px;left:0;right:0;padding:4px 6px;background:#222222;box-shadow:inset 0 0 0 2px #eab308;">
+        <div class="text-[0.625rem] text-gray-300">11:00 AM - 12:00 PM</div>
+        
+        <div class="flex items-center justify-between space-x-2">
+          <span class="font-medium text-[0.85rem] truncate leading-tight">Lost Time Pareto</span>
+          <span class="text-[0.625rem] text-gray-400">KH</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-[0.6rem] font-semibold px-1 rounded-sm truncate max-w-[140px]" style="background:#eab30826;color:#eab308">Process</span>
+          
+        </div>
+      </div><div class="absolute lesson text-white text-[0.95rem] overflow-hidden" style="top:360px;height:90px;left:0;right:0;padding:4px 6px;background:#222222;box-shadow:inset 0 0 0 2px #8b5cf6;">
+        <div class="text-[0.625rem] text-gray-300">12:00 PM - 1:00 PM</div>
+        
+        <div class="flex items-center justify-between space-x-2">
+          <span class="font-medium text-[0.85rem] truncate leading-tight">Budget</span>
+          <span class="text-[0.625rem] text-gray-400">JB</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-[0.6rem] font-semibold px-1 rounded-sm truncate max-w-[140px]" style="background:#8b5cf626;color:#8b5cf6">Measurement</span>
+          
+        </div>
+      </div><div class="absolute lesson text-white text-[0.95rem] overflow-hidden" style="top:450px;height:90px;left:0;right:0;padding:4px 6px;background:#222222;box-shadow:inset 0 0 0 2px #6b7280;">
+        <div class="text-[0.625rem] text-gray-300">1:00 PM - 2:00 PM</div>
+        
+        <div class="flex items-center justify-between space-x-2">
+          <span class="font-medium text-[0.85rem] truncate leading-tight">Lunch</span>
+          <span class="text-[0.625rem] text-gray-400"></span>
+        </div>
+        <div class="flex items-center justify-between">
+          
+          
+        </div>
+      </div><div class="absolute lesson text-white text-[0.95rem] overflow-hidden" style="top:540px;height:45px;left:0;right:0;padding:4px 6px;background:#222222;box-shadow:inset 0 0 0 2px #a855f7;">
+        <div class="text-[0.625rem] text-gray-300">2:00 PM - 2:30 PM</div>
+        <div class="flex items-center justify-between space-x-2">
+             <span class="font-medium text-[0.85rem] truncate leading-tight">Marketing</span>
+             <span class="text-[0.625rem] text-gray-400">RB</span>
+           </div>
+           <div class="flex items-center justify-between">
+             <span class="text-[0.6rem] font-semibold px-1 rounded-sm truncate max-w-[140px]" style="background:#a855f726;color:#a855f7">Professional Services</span>
+             <!-- keep space for alignment -->
+           </div>
+      </div><div class="absolute lesson text-white text-[0.95rem] overflow-hidden" style="top:585px;height:45px;left:0;right:0;padding:4px 6px;background:#222222;box-shadow:inset 0 0 0 2px #10b981;">
+        <div class="text-[0.625rem] text-gray-300">2:30 PM - 3:00 PM</div>
+        <div class="flex items-center justify-between space-x-2">
+             <span class="font-medium text-[0.85rem] truncate leading-tight">Accounting</span>
+             <span class="text-[0.625rem] text-gray-400">NS</span>
+           </div>
+           <div class="flex items-center justify-between">
+             <span class="text-[0.6rem] font-semibold px-1 rounded-sm truncate max-w-[140px]" style="background:#10b98126;color:#10b981">Discovery</span>
+             <!-- keep space for alignment -->
+           </div>
+      </div><div class="absolute lesson text-white text-[0.95rem] overflow-hidden" style="top:630px;height:45px;left:0;right:0;padding:4px 6px;background:#222222;box-shadow:inset 0 0 0 2px #10b981;">
+        <div class="text-[0.625rem] text-gray-300">3:00 PM - 3:30 PM</div>
+        <div class="flex items-center justify-between space-x-2">
+             <span class="font-medium text-[0.85rem] truncate leading-tight">Talent Solutions</span>
+             <span class="text-[0.625rem] text-gray-400">SW</span>
+           </div>
+           <div class="flex items-center justify-between">
+             <span class="text-[0.6rem] font-semibold px-1 rounded-sm truncate max-w-[140px]" style="background:#10b98126;color:#10b981">Discovery</span>
+             <!-- keep space for alignment -->
+           </div>
+      </div><div class="absolute lesson text-white text-[0.95rem] overflow-hidden" style="top:675px;height:45px;left:0;right:0;padding:4px 6px;background:#222222;box-shadow:inset 0 0 0 2px #10b981;">
+        <div class="text-[0.625rem] text-gray-300">3:30 PM - 4:00 PM</div>
+        <div class="flex items-center justify-between space-x-2">
+             <span class="font-medium text-[0.85rem] truncate leading-tight">Biz Dev</span>
+             <span class="text-[0.625rem] text-gray-400">EP</span>
+           </div>
+           <div class="flex items-center justify-between">
+             <span class="text-[0.6rem] font-semibold px-1 rounded-sm truncate max-w-[140px]" style="background:#10b98126;color:#10b981">Discovery</span>
+             <!-- keep space for alignment -->
+           </div>
+      </div><div class="absolute lesson text-white text-[0.95rem] overflow-hidden" style="top:720px;height:90px;left:0;right:0;padding:4px 6px;background:#222222;box-shadow:inset 0 0 0 2px #a855f7;">
+        <div class="text-[0.625rem] text-gray-300">4:00 PM - 5:00 PM</div>
+        
+        <div class="flex items-center justify-between space-x-2">
+          <span class="font-medium text-[0.85rem] truncate leading-tight">ProServe</span>
+          <span class="text-[0.625rem] text-gray-400">EP</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-[0.6rem] font-semibold px-1 rounded-sm truncate max-w-[140px]" style="background:#a855f726;color:#a855f7">Professional Services</span>
+          
+        </div>
+      </div><div class="absolute lesson text-white text-[0.95rem] overflow-hidden" style="top:810px;height:90px;left:0;right:0;padding:4px 6px;background:#222222;box-shadow:inset 0 0 0 2px #6b7280;">
+        <div class="text-[0.625rem] text-gray-300">5:00 PM - 6:00 PM</div>
+        
+        <div class="flex items-center justify-between space-x-2">
+          <span class="font-medium text-[0.85rem] truncate leading-tight">Homework Opportunity Wall</span>
+          <span class="text-[0.625rem] text-gray-400"></span>
+        </div>
+        <div class="flex items-center justify-between">
+          
+          
+        </div>
+      </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="flex flex-col" style="height:928px;">
+      <div class="flex items-center justify-center text-white font-semibold" style="height:28px;background:#242424;border-bottom:1px solid #333;">Wed</div>
+      <div class="relative flex-1 hour-grid" style="background:#1a1a1a;">
+        <div class="absolute inset-0">
+          <div class="absolute lesson text-white text-[0.95rem] overflow-hidden" style="top:90px;height:180px;left:0;right:0;padding:4px 6px;background:#222222;box-shadow:inset 0 0 0 2px #eab308;">
+        <div class="text-[0.625rem] text-gray-300">9:00 AM - 11:00 AM</div>
+        
+        <div class="flex items-center justify-between space-x-2">
+          <span class="font-medium text-[0.85rem] truncate leading-tight">Opportunity Wall (Group Build) & Process Flow/Area Sequence</span>
+          <span class="text-[0.625rem] text-gray-400">BH</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-[0.6rem] font-semibold px-1 rounded-sm truncate max-w-[140px]" style="background:#eab30826;color:#eab308">Process</span>
+          
+        </div>
+      </div><div class="absolute lesson text-white text-[0.95rem] overflow-hidden" style="top:270px;height:180px;left:0;right:0;padding:4px 6px;background:#222222;box-shadow:inset 0 0 0 2px #f43f5e;">
+        <div class="text-[0.625rem] text-gray-300">11:00 AM - 1:00 PM</div>
+        
+        <div class="flex items-center justify-between space-x-2">
+          <span class="font-medium text-[0.85rem] truncate leading-tight">Client Alignment & Project Control</span>
+          <span class="text-[0.625rem] text-gray-400">DM</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-[0.6rem] font-semibold px-1 rounded-sm truncate max-w-[140px]" style="background:#f43f5e26;color:#f43f5e">Client Alignment & Project Control</span>
+          
+        </div>
+      </div><div class="absolute lesson text-white text-[0.95rem] overflow-hidden" style="top:450px;height:90px;left:0;right:0;padding:4px 6px;background:#222222;box-shadow:inset 0 0 0 2px #6b7280;">
+        <div class="text-[0.625rem] text-gray-300">1:00 PM - 2:00 PM</div>
+        
+        <div class="flex items-center justify-between space-x-2">
+          <span class="font-medium text-[0.85rem] truncate leading-tight">Lunch</span>
+          <span class="text-[0.625rem] text-gray-400"></span>
+        </div>
+        <div class="flex items-center justify-between">
+          
+          
+        </div>
+      </div><div class="absolute lesson text-white text-[0.95rem] overflow-hidden" style="top:540px;height:45px;left:0;right:0;padding:4px 6px;background:#222222;box-shadow:inset 0 0 0 2px #f59e0b;">
+        <div class="text-[0.625rem] text-gray-300">2:00 PM - 2:30 PM</div>
+        <div class="flex items-center justify-between space-x-2">
+             <span class="font-medium text-[0.85rem] truncate leading-tight">Meet the VP</span>
+             <span class="text-[0.625rem] text-gray-400">CC</span>
+           </div>
+           <div class="flex items-center justify-between">
+             <span class="text-[0.6rem] font-semibold px-1 rounded-sm truncate max-w-[140px]" style="background:#f59e0b26;color:#f59e0b">Vision, Mission, and Values</span>
+             <!-- keep space for alignment -->
+           </div>
+      </div><div class="absolute lesson text-white text-[0.95rem] overflow-hidden" style="top:585px;height:135px;left:0;right:0;padding:4px 6px;background:#222222;box-shadow:inset 0 0 0 2px #6b7280;">
+        <div class="text-[0.625rem] text-gray-300">2:30 PM - 4:00 PM</div>
+        
+        <div class="flex items-center justify-between space-x-2">
+          <span class="font-medium text-[0.85rem] truncate leading-tight">BMS</span>
+          <span class="text-[0.625rem] text-gray-400">RM</span>
+        </div>
+        <div class="flex items-center justify-between">
+          
+          
+        </div>
+      </div><div class="absolute lesson text-white text-[0.95rem] overflow-hidden" style="top:720px;height:90px;left:0;right:0;padding:4px 6px;background:#222222;box-shadow:inset 0 0 0 2px #f59e0b;">
+        <div class="text-[0.625rem] text-gray-300">4:00 PM - 5:00 PM</div>
+        
+        <div class="flex items-center justify-between space-x-2">
+          <span class="font-medium text-[0.85rem] truncate leading-tight">Meet Your AD</span>
+          <span class="text-[0.625rem] text-gray-400">AW</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-[0.6rem] font-semibold px-1 rounded-sm truncate max-w-[140px]" style="background:#f59e0b26;color:#f59e0b">Vision, Mission, and Values</span>
+          
+        </div>
+      </div><div class="absolute lesson text-white text-[0.95rem] overflow-hidden" style="top:810px;height:90px;left:0;right:0;padding:4px 6px;background:#222222;box-shadow:inset 0 0 0 2px #6b7280;">
+        <div class="text-[0.625rem] text-gray-300">5:00 PM - 6:00 PM</div>
+        
+        <div class="flex items-center justify-between space-x-2">
+          <span class="font-medium text-[0.85rem] truncate leading-tight">Homework CMS</span>
+          <span class="text-[0.625rem] text-gray-400"></span>
+        </div>
+        <div class="flex items-center justify-between">
+          
+          
+        </div>
+      </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="flex flex-col" style="height:928px;">
+      <div class="flex items-center justify-center text-white font-semibold" style="height:28px;background:#242424;border-bottom:1px solid #333;">Thu</div>
+      <div class="relative flex-1 hour-grid" style="background:#1a1a1a;">
+        <div class="absolute inset-0">
+          <div class="absolute lesson text-white text-[0.95rem] overflow-hidden" style="top:90px;height:270px;left:0;right:0;padding:4px 6px;background:#222222;box-shadow:inset 0 0 0 2px #f43f5e;">
+        <div class="text-[0.625rem] text-gray-300">9:00 AM - 12:00 PM</div>
+        
+        <div class="flex items-center justify-between space-x-2">
+          <span class="font-medium text-[0.85rem] truncate leading-tight">Connecting The Why, Strategy, Objectives and Deliverables</span>
+          <span class="text-[0.625rem] text-gray-400">RR</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-[0.6rem] font-semibold px-1 rounded-sm truncate max-w-[140px]" style="background:#f43f5e26;color:#f43f5e">Client Alignment & Project Control</span>
+          
+        </div>
+      </div><div class="absolute lesson text-white text-[0.95rem] overflow-hidden" style="top:360px;height:90px;left:0;right:0;padding:4px 6px;background:#222222;box-shadow:inset 0 0 0 2px #0ea5e9;">
+        <div class="text-[0.625rem] text-gray-300">12:00 PM - 1:00 PM</div>
+        
+        <div class="flex items-center justify-between space-x-2">
+          <span class="font-medium text-[0.85rem] truncate leading-tight">Quarterly Strategic Plan</span>
+          <span class="text-[0.625rem] text-gray-400">TG</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-[0.6rem] font-semibold px-1 rounded-sm truncate max-w-[140px]" style="background:#0ea5e926;color:#0ea5e9">LifeCycle</span>
+          
+        </div>
+      </div><div class="absolute lesson text-white text-[0.95rem] overflow-hidden" style="top:450px;height:90px;left:0;right:0;padding:4px 6px;background:#222222;box-shadow:inset 0 0 0 2px #6b7280;">
+        <div class="text-[0.625rem] text-gray-300">1:00 PM - 2:00 PM</div>
+        
+        <div class="flex items-center justify-between space-x-2">
+          <span class="font-medium text-[0.85rem] truncate leading-tight">Lunch</span>
+          <span class="text-[0.625rem] text-gray-400"></span>
+        </div>
+        <div class="flex items-center justify-between">
+          
+          
+        </div>
+      </div><div class="absolute lesson text-white text-[0.95rem] overflow-hidden" style="top:540px;height:180px;left:0;right:0;padding:4px 6px;background:#222222;box-shadow:inset 0 0 0 2px #0ea5e9;">
+        <div class="text-[0.625rem] text-gray-300">2:00 PM - 4:00 PM</div>
+        
+        <div class="flex items-center justify-between space-x-2">
+          <span class="font-medium text-[0.85rem] truncate leading-tight">Transition to LC - LC Engagement Plan - ROI Updates</span>
+          <span class="text-[0.625rem] text-gray-400">PV</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-[0.6rem] font-semibold px-1 rounded-sm truncate max-w-[140px]" style="background:#0ea5e926;color:#0ea5e9">LifeCycle</span>
+          
+        </div>
+      </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="flex flex-col" style="height:928px;">
+      <div class="flex items-center justify-center text-white font-semibold" style="height:28px;background:#242424;border-bottom:1px solid #333;">Fri</div>
+      <div class="relative flex-1 hour-grid" style="background:#1a1a1a;">
+        <div class="absolute inset-0">
+          
+        </div>
+      </div>
+    </div>
+  
+          </div>
+        </div>
+      </section>
+    
+</body>
+</html>
