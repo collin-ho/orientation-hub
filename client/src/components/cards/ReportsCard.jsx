@@ -4,6 +4,7 @@ function ReportsCard({ classes, selectedClass }) {
   const [generatingReport, setGeneratingReport] = useState(null); // Track which report type is generating
   const [progress, setProgress] = useState(0);
   const [reportClass, setReportClass] = useState(selectedClass || '');
+  const [dailyDate, setDailyDate] = useState(() => new Date().toISOString().slice(0, 10));
 
   // Simulate progress during report generation
   useEffect(() => {
@@ -36,11 +37,20 @@ function ReportsCard({ classes, selectedClass }) {
       return;
     }
 
+    let extraQuery = '';
+    if (reportType === 'daily') {
+      if (!dailyDate) {
+        alert('Please pick a date');
+        return;
+      }
+      extraQuery = `&day=${dailyDate}`;
+    }
+
     setGeneratingReport(reportType);
     setProgress(0);
     
     try {
-      const response = await fetch(`/api/generate-report?className=${encodeURIComponent(reportClass)}&type=${reportType}`);
+      const response = await fetch(`/api/generate-report?className=${encodeURIComponent(reportClass)}&type=${reportType}${extraQuery}`);
       if (!response.ok) {
         const errorText = await response.text();
         throw new Error(`Report generation failed: ${errorText}`);
@@ -73,8 +83,7 @@ function ReportsCard({ classes, selectedClass }) {
 
   const reportOptions = [
     { type: 'full', title: 'Full Report', description: 'Complete summary with all details', color: 'bg-sky-600 hover:bg-sky-700' },
-    { type: 'roster', title: 'Roster Only', description: 'Simple list of orientees', color: 'bg-slate-600 hover:bg-slate-700' },
-    { type: 'grades', title: 'Grades & Feedback', description: 'Detailed grades and feedback', color: 'bg-purple-600 hover:bg-purple-700' },
+    { type: 'daily', title: 'Daily Report', description: 'Select a date below then generate', color: 'bg-slate-600 hover:bg-slate-700' },
   ];
 
   // Update local reportClass when selectedClass changes
@@ -83,6 +92,18 @@ function ReportsCard({ classes, selectedClass }) {
       setReportClass(selectedClass);
     }
   }, [selectedClass, reportClass]);
+
+  const dateInput = (
+    <div className="mt-4">
+      <label className="block text-slate-300 text-sm font-medium mb-2">Report Date (Daily Report)</label>
+      <input
+        type="date"
+        value={dailyDate}
+        onChange={e=>setDailyDate(e.target.value)}
+        className="bg-slate-700/80 border border-slate-500 text-slate-100 px-3 py-2 rounded-lg focus:ring-2 focus:ring-sky-400 focus:border-sky-400 transition-all duration-200"
+      />
+    </div>
+  );
 
   return (
     <div className="bg-slate-800 shadow-lg rounded-xl">
@@ -121,6 +142,8 @@ function ReportsCard({ classes, selectedClass }) {
               </div>
             </div>
           </div>
+
+          {dateInput}
 
           {/* Report Buttons */}
           <div className="space-y-2">

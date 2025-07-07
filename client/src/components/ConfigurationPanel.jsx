@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import UserManagement from './UserManagement';
 import LessonEditor from './LessonEditor';
-import FieldMapping from './FieldMapping';
 
-function ConfigurationPanel({ onClose }) {
-  const [activeTab, setActiveTab] = useState('overview');
+function ConfigurationPanel({ onClose, initialView, selectedClass }) {
+  const [activeTab, setActiveTab] = useState(initialView || 'overview');
   const [systemStats, setSystemStats] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [toast, setToast] = useState(null);
 
   // Configuration tabs/sections
   const tabs = [
@@ -28,12 +28,6 @@ function ConfigurationPanel({ onClose }) {
       icon: '📚',
       description: 'Manage lessons, schedule, and template'
     },
-    {
-      id: 'fields',
-      name: 'Field Mapping',
-      icon: '🔧',
-      description: 'View and validate ClickUp fields'
-    }
   ];
 
   // Load system statistics
@@ -189,7 +183,17 @@ function ConfigurationPanel({ onClose }) {
         <h3 className="text-lg font-semibold text-slate-100 mb-4">Quick Actions</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           <button
-            onClick={() => setActiveTab('users')}
+            onClick={async () => {
+              try {
+                const res = await fetch('/api/sync/instructors', { method:'POST' });
+                const data = await res.json();
+                if(!res.ok) throw new Error(data.error||'Sync failed');
+                setToast({ msg:`Synced ${data.count} instructors`, type:'success' });
+              }catch(err){
+                setToast({ msg:`Sync failed: ${err.message}`, type:'error' });
+              }
+              setTimeout(()=>setToast(null),3000);
+            }}
             className="bg-slate-700 hover:bg-slate-600 p-4 rounded-lg transition-colors text-left"
           >
             <div className="flex items-center space-x-3 mb-2">
@@ -208,19 +212,6 @@ function ConfigurationPanel({ onClose }) {
               <span className="font-medium text-slate-100">Manage Lessons</span>
             </div>
             <p className="text-sm text-slate-400">Edit curriculum, schedule, and template</p>
-          </button>
-
-
-
-          <button
-            onClick={() => setActiveTab('fields')}
-            className="bg-slate-700 hover:bg-slate-600 p-4 rounded-lg transition-colors text-left"
-          >
-            <div className="flex items-center space-x-3 mb-2">
-              <span className="text-lg">🔧</span>
-              <span className="font-medium text-slate-100">Validate Fields</span>
-            </div>
-            <p className="text-sm text-slate-400">Check field mappings and integrity</p>
           </button>
 
           <button className="bg-slate-700 hover:bg-slate-600 p-4 rounded-lg transition-colors text-left">
@@ -282,14 +273,6 @@ function ConfigurationPanel({ onClose }) {
               <li>• Edit existing lesson details</li>
               <li>• Reorder lesson sequence</li>
               <li>• Assign instructors to lessons</li>
-            </>
-          )}
-          {tabName === 'Field Mapping' && (
-            <>
-              <li>• View all ClickUp custom fields</li>
-              <li>• Validate field configurations</li>
-              <li>• Update field mappings</li>
-              <li>• Test field integrity</li>
             </>
           )}
           {tabName === 'Class Structure' && (
@@ -374,14 +357,15 @@ function ConfigurationPanel({ onClose }) {
               ) : activeTab === 'users' ? (
                 <UserManagement />
               ) : activeTab === 'lessons' ? (
-                <LessonEditor />
-              ) : activeTab === 'fields' ? (
-                <FieldMapping />
+                <LessonEditor selectedClass={selectedClass} />
               ) : null}
             </div>
           </div>
         </div>
       </div>
+      {toast && (
+        <div className={`fixed bottom-4 right-4 px-4 py-3 rounded shadow-lg text-sm z-50 ${toast.type==='success'?'bg-emerald-600':'bg-red-600'} text-white`}>{toast.msg}</div>
+      )}
     </div>
   );
 }

@@ -589,5 +589,6 @@ module.exports = {
   getSpaceMembers,
   getUser,
   setListStatuses,
-  createView
+  createView,
+  rateLimitedFetch
 };

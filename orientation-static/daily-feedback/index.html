@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Feedback Form</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background-color: #111827; color: #d1d5db; }
+        .form-input, .form-select { background-color: #1f2937; border-color: #4b5563; }
+        .btn-primary { background-color: #2563eb; }
+        .btn-primary:hover { background-color: #1d4ed8; }
+        .table th, .table td { border-color: #4b5563; }
+    </style>
+</head>
+<body class="p-8">
+    <div class="max-w-4xl mx-auto">
+        <h1 class="text-3xl font-bold mb-2 text-white">Daily Feedback Form</h1>
+        <p class="mb-6 text-gray-400">Submit feedback for orientees to ClickUp.</p>
+
+        <div id="loading" class="text-center p-8">
+            <p>Loading configuration...</p>
+        </div>
+
+        <form id="feedbackForm" class="hidden space-y-6">
+            <!-- Grader and Class Selection -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label for="graderName" class="block text-sm font-medium text-gray-300">Your Name (Grader)</label>
+                    <input type="text" id="graderName" name="graderName" class="form-input mt-1 block w-full rounded-md shadow-sm" required>
+                </div>
+                <div>
+                    <label for="classSelector" class="block text-sm font-medium text-gray-300">Orientation Class</label>
+                    <select id="classSelector" name="classSelector" class="form-select mt-1 block w-full rounded-md shadow-sm" required></select>
+                </div>
+            </div>
+
+            <!-- Week and Day Selection -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label for="weekLabel" class="block text-sm font-medium text-gray-300">Week</label>
+                    <select id="weekLabel" name="weekLabel" class="form-select mt-1 block w-full rounded-md shadow-sm">
+                        <option>Week 1 (Remote)</option>
+                        <option>Week 2 (In Person)</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="weekDay" class="block text-sm font-medium text-gray-300">Day</label>
+                    <select id="weekDay" name="weekDay" class="form-select mt-1 block w-full rounded-md shadow-sm">
+                        <option>Mon</option> <option>Tue</option> <option>Wed</option> <option>Thu</option> <option>Fri</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Orientee Feedback Table -->
+            <div>
+                <h2 class="text-xl font-semibold mb-3 text-white">Orientee Grades</h2>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-600 table">
+                        <thead class="bg-gray-700">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Orientee</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Effort (1-5)</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Comprehension (1-5)</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Client App. (1-5)</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Comments</th>
+                                <th class="px-2 py-3"></th>
+                            </tr>
+                        </thead>
+                        <tbody id="orienteeRows" class="bg-gray-800 divide-y divide-gray-700">
+                            <!-- Rows will be added dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+                <button type="button" id="addRow" class="mt-4 px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700">
+                    Add Orientee
+                </button>
+            </div>
+
+            <!-- Submission -->
+            <div class="text-right">
+                <button type="submit" id="submitBtn" class="btn-primary inline-flex justify-center py-2 px-6 border border-transparent shadow-sm text-base font-medium rounded-md text-white">
+                    Submit to ClickUp
+                </button>
+            </div>
+        </form>
+        <div id="response" class="mt-6"></div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const loadingDiv = document.getElementById('loading');
+            const form = document.getElementById('feedbackForm');
+            const classSelector = document.getElementById('classSelector');
+            const orienteeRows = document.getElementById('orienteeRows');
+            const addRowBtn = document.getElementById('addRow');
+            const submitBtn = document.getElementById('submitBtn');
+            const responseDiv = document.getElementById('response');
+            
+            let orienteeOptions = '';
+
+            // Fetch active classes and orientees
+            try {
+                const [classRes, orienteeRes] = await Promise.all([
+                    fetch('/api/classes/list-with-active'),
+                    fetch('/orientees')
+                ]);
+
+                if (!classRes.ok) throw new Error('Failed to load classes.');
+                if (!orienteeRes.ok) throw new Error('Failed to load orientees.');
+
+                const classData = await classRes.json();
+                const orientees = await orienteeRes.json();
+                
+                // Populate class dropdown
+                classData.classes.forEach(cls => {
+                    const option = document.createElement('option');
+                    option.value = cls.name;
+                    option.textContent = cls.name;
+                    if (cls.name === classData.activeClassName) {
+                        option.selected = true;
+                    }
+                    classSelector.appendChild(option);
+                });
+
+                // Prepare orientee dropdown options
+                orienteeOptions = orientees.map(o => `<option value="${o.name}">${o.name}</option>`).join('');
+                
+                // Add initial row
+                addNewRow();
+
+                loadingDiv.style.display = 'none';
+                form.style.display = 'block';
+
+            } catch (error) {
+                loadingDiv.innerHTML = `<p class="text-red-400">Error: ${error.message}</p>`;
+            }
+
+            function addNewRow() {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td class="px-6 py-4"><select class="orientee-name form-select w-full">${orienteeOptions}</select></td>
+                    <td class="px-6 py-4"><input type="number" class="effort form-input w-20" min="1" max="5" value="5"></td>
+                    <td class="px-6 py-4"><input type="number" class="comprehension form-input w-20" min="1" max="5" value="5"></td>
+                    <td class="px-6 py-4"><input type="number" class="client-app form-input w-20" min="1" max="5" value="5"></td>
+                    <td class="px-6 py-4"><input type="text" class="feedback form-input w-full"></td>
+                    <td class="px-2 py-4"><button type="button" class="remove-row text-red-400 hover:text-red-600">&times;</button></td>
+                `;
+                orienteeRows.appendChild(row);
+                row.querySelector('.remove-row').addEventListener('click', () => row.remove());
+            }
+
+            addRowBtn.addEventListener('click', addNewRow);
+
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Submitting...';
+                responseDiv.innerHTML = '';
+
+                const items = Array.from(orienteeRows.children).map(row => ({
+                    name: row.querySelector('.orientee-name').value,
+                    effort: parseInt(row.querySelector('.effort').value, 10),
+                    comprehension: parseInt(row.querySelector('.comprehension').value, 10),
+                    clientApp: parseInt(row.querySelector('.client-app').value, 10),
+                    feedback: row.querySelector('.feedback').value,
+                }));
+
+                const payload = {
+                    grader: document.getElementById('graderName').value,
+                    className: classSelector.value,
+                    weekLabel: document.getElementById('weekLabel').value,
+                    weekDay: document.getElementById('weekDay').value,
+                    items: items,
+                };
+
+                try {
+                    const res = await fetch('/orientation-feedback', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload),
+                    });
+
+                    const result = await res.json();
+
+                    if (!res.ok) {
+                       throw new Error(result.error || 'Submission failed with status ' + res.status);
+                    }
+                    
+                    let html = '<h3 class="text-lg font-semibold text-green-400">Submission Successful</h3>';
+                    html += '<ul class="list-disc list-inside mt-2">';
+                    result.results.forEach(r => {
+                        if (r.success) {
+                            html += `<li class="text-gray-300">${r.orienteeName}: Success (Task ID: ${r.taskId})</li>`;
+                        } else {
+                            html += `<li class="text-red-400">${r.orienteeName}: Failed - ${r.error}</li>`;
+                        }
+                    });
+                    html += '</ul>';
+                    responseDiv.innerHTML = html;
+
+                } catch (error) {
+                    responseDiv.innerHTML = `<p class="text-red-400"><strong>Error:</strong> ${error.message}</p>`;
+                } finally {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Submit to ClickUp';
+                }
+            });
+        });
+    </script>
+</body>
+</html> 

@@ -1,13 +1,28 @@
 const express = require('express');
 require('dotenv').config();
 const { weekDayMap, weekLabelMap, pillarMap, personalityTagMap } = require('./utils/clickup-maps');
-const { mapOrienteeNameToID, createClickUpTask, fetchOrienteeOptions, getSpaceFolders, getSpaceCustomFields, createTask, addCustomFieldToList, getCustomFields, getFolderLists } = require('./utils/clickup-client');
+const { 
+  mapOrienteeNameToID, 
+  createClickUpTask, // This is the legacy function
+  createTask,        // This is the one we want to use
+  fetchOrienteeOptions, 
+  getSpaceFolders, 
+  getSpaceCustomFields, 
+  addCustomFieldToList, 
+  getCustomFields, 
+  getFolderLists,
+  findFolderByName // We need this
+} = require('./utils/clickup-client');
 const { generateReport } = require('./services/report-generator');
 const { userDiscovery } = require('./services/user-discovery');
 const { fieldDiscovery } = require('./services/field-discovery');
 const { dropdownOptions } = require('./services/dropdown-options');
 const { configLoader } = require('./services/config-loader');
 const { clickupLessonReader } = require('./services/clickup-lesson-reader');
+const db = require('./services/db');
+const { getAllLessons, replaceAllLessons } = require('./services/lesson-store');
+const { getAllInstructors, replaceAllInstructors } = require('./services/instructor-store');
+const { syncLessons } = require('./services/lesson-sync');
 
 const app = express();
 app.use(express.json());
@@ -33,10 +48,32 @@ app.post('/orientation-feedback', async (req, res) => {
   if (!payload || typeof payload !== 'object') {
     return res.status(400).json({ error: 'Invalid payload' });
   }
-  const { grader, weekLabel, weekDay, items } = payload;
+  const { grader, weekLabel, weekDay, items, className } = payload; // Add className
+  
+  if (!className) {
+    return res.status(400).json({ error: 'Missing required field: className' });
+  }
+  
   if (typeof grader !== 'string' || typeof weekLabel !== 'string' || typeof weekDay !== 'string' || !Array.isArray(items)) {
     return res.status(400).json({ error: 'Missing required fields' });
   }
+
+  let feedbackListId;
+  try {
+    const classFolder = await findFolderByName(className);
+    if (!classFolder) {
+      throw new Error(`Class folder "${className}" not found.`);
+    }
+    const lists = await getFolderLists(classFolder.id);
+    const feedbackList = lists.find(l => l.name === 'Daily Feedback');
+    if (!feedbackList) {
+      throw new Error(`'Daily Feedback' list not found in class "${className}".`);
+    }
+    feedbackListId = feedbackList.id;
+  } catch(err) {
+    return res.status(404).json({ error: err.message });
+  }
+
   // Map week fields
   const weekDayID = weekDayMap[weekDay];
   const weekLabelID = weekLabelMap[weekLabel];
@@ -81,7 +118,7 @@ app.post('/orientation-feedback', async (req, res) => {
       // if (GRADE_FIELD_ID) custom_fields.push({ id: GRADE_FIELD_ID, value: someGradeValue });
       // if (LEADS_FIELD_ID) custom_fields.push({ id: LEADS_FIELD_ID, value: [userId1, userId2] });
 
-      const task = await createClickUpTask({ name: taskName, content, custom_fields });
+      const task = await createTask(feedbackListId, { name: taskName, description: content, custom_fields });
       results.push({ orienteeName, success: true, taskId: task.id });
     } catch (err) {
       results.push({ orienteeName: item.name, success: false, error: err.message });
@@ -118,17 +155,96 @@ app.get('/api/classes', async (req, res) => {
   }
 });
 
+app.get('/api/classes/list-with-active', async (req, res) => {
+  try {
+    const WORKSHOP_SPACE_ID = '14869535';
+    const folders = await getSpaceFolders(WORKSHOP_SPACE_ID);
+
+    const classFolders = folders
+      .filter(f => f.name.trim().startsWith('PD OTN'))
+      .map(f => ({ id: f.id, name: f.name.trim() }));
+
+    const parseClassStartDate = (className) => {
+      const shortMatch = className.match(/PD OTN (\d{2})\.(\d{2})\.(\d{2})/);
+      if (shortMatch) {
+        const [, month, day, year] = shortMatch;
+        return new Date(2000 + parseInt(year), parseInt(month) - 1, parseInt(day));
+      }
+      const longMatch = className.match(/PD OTN (\d{4}-\d{2}-\d{2})/);
+      if (longMatch) {
+        return new Date(longMatch[1] + 'T00:00:00');
+      }
+      return null;
+    };
+
+    const getClassStatus = (startDate) => {
+      if (!startDate) return 'unknown';
+      const endDate = new Date(startDate);
+      endDate.setDate(endDate.getDate() + 11);
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      if (today < startDate) return 'future';
+      if (today > endDate) return 'past';
+      return 'active';
+    };
+    
+    let activeClass = null;
+    const now = new Date();
+
+    const classesWithStatus = classFolders.map(cls => {
+      const startDate = parseClassStartDate(cls.name);
+      const status = getClassStatus(startDate);
+      if (status === 'active' && !activeClass) {
+          activeClass = cls.name;
+      }
+      return { ...cls, status };
+    });
+
+    // If no active class, find the closest future class
+    if (!activeClass) {
+        const futureClasses = classesWithStatus
+            .filter(c => c.status === 'future')
+            .sort((a, b) => parseClassStartDate(a.name) - parseClassStartDate(b.name));
+        if (futureClasses.length > 0) {
+            activeClass = futureClasses[0].name;
+        }
+    }
+
+    res.json({
+        classes: classesWithStatus,
+        activeClassName: activeClass,
+    });
+
+  } catch (error) {
+    console.error('Error fetching class list with active status:', error);
+    res.status(500).json({ error: 'Failed to fetch class list' });
+  }
+});
+
+
 app.get('/api/generate-report', async (req, res) => {
-  const { className, reportType } = req.query;
+  const { className } = req.query;
+  // Accept both ?reportType= and legacy ?type=
+  const typeParam = req.query.reportType || req.query.type;
+
   if (!className) {
     return res.status(400).send('Error: Please provide a className query parameter.');
   }
 
-  // A default reportType if none is provided.
-  const type = reportType || 'full';
+  // Default to full report when none specified
+  const type = typeParam || 'full';
 
   try {
-    const pdfBuffer = await generateReport(className, type);
+    let options = {};
+    if (type === 'daily') {
+      const { day } = req.query;
+      if (!day) {
+        return res.status(400).send('Daily report requires "day" query param (YYYY-MM-DD)');
+      }
+      options.day = day;
+    }
+
+    const pdfBuffer = await generateReport(className, type, options);
     if (pdfBuffer) {
       res.setHeader('Content-Type', 'application/pdf');
       res.setHeader('Content-Disposition', `attachment; filename="report-${className}-${type}.pdf"`);
@@ -625,6 +741,74 @@ app.get('/api/config/users/cache-stats', async (req, res) => {
 });
 
 // ==============================
+// INSTRUCTOR CACHE ENDPOINTS
+// ==============================
+
+app.get('/api/instructors', (req, res) => {
+  try {
+    const list = getAllInstructors();
+    res.json({ success:true, instructors:list, count:list.length });
+  } catch(err){
+    console.error('instructors fetch err', err.message);
+    res.status(500).json({ success:false, error:err.message });
+  }
+});
+
+app.post('/api/sync/instructors', async (req, res) => {
+  try {
+    const result = await userDiscovery.discoverUsers();
+    // Filter only instructors field (based on property isInstructor)
+    const instructors = result.users.filter(u=>u.isInstructor);
+    replaceAllInstructors(instructors);
+    res.json({ success:true, count:instructors.length, message:'Instructors synced' });
+  }catch(err){
+    console.error('sync instructors err', err.message);
+    res.status(500).json({ success:false, error:err.message });
+  }
+});
+
+// ==============================
+// LESSON SYNC ENDPOINT
+// ==============================
+
+app.post('/api/sync/lessons', async (req,res)=>{
+  try {
+    const { className } = req.body; // optional
+    const summary = await syncLessons(className||null);
+    res.json({ success:true, ...summary });
+  } catch(err){
+    console.error('sync lessons err', err.message);
+    res.status(500).json({ success:false, error:err.message });
+  }
+});
+
+// after lessons sync endpoint
+app.post('/api/link/lessons', async (req,res)=>{
+  try {
+    const { className } = req.body;
+    const { linkExistingTasks } = require('./services/lesson-sync');
+    const summary = await linkExistingTasks(className);
+    res.json({ success:true, ...summary });
+  }catch(err){
+    console.error('link lessons err', err.message);
+    res.status(500).json({ success:false, error:err.message });
+  }
+});
+
+// Register class mapping manually
+app.post('/api/classes/register', (req,res)=>{
+  try {
+    const { className, scheduleListId, folderId } = req.body;
+    if(!className||!scheduleListId) return res.status(400).json({success:false,error:'className and scheduleListId required'});
+    const { addClassMapping } = require('./services/class-store');
+    addClassMapping({className, folderId:folderId||null, scheduleListId});
+    res.json({ success:true, message:'Class registered'});
+  }catch(err){
+    res.status(500).json({ success:false, error:err.message });
+  }
+});
+
+// ==============================
 // FIELD DISCOVERY API
 // ==============================
 
@@ -879,27 +1063,18 @@ app.get('/api/config/field-mappings', async (req, res) => {
 // Get all lessons from configuration
 app.get('/api/config/lessons', async (req, res) => {
   try {
-    // Ensure config is loaded
-    if (!configLoader.loaded) {
-      await configLoader.loadConfigurations();
-    }
-    
-    const lessons = configLoader.getLessons();
+    const lessons = getAllLessons();
     res.json({
       success: true,
       lessons,
       metadata: {
         totalLessons: lessons.length,
-        source: 'lesson-templates.json'
+        source: 'sqlite'
       }
     });
   } catch (error) {
-    console.error('Error getting lessons:', error);
-    res.status(500).json({ 
-      success: false,
-      error: 'Failed to get lessons',
-      details: error.message
-    });
+    console.error('Error getting lessons (SQLite):', error);
+    res.status(500).json({ success:false, error:'Failed to get lessons', details:error.message });
   }
 });
 
@@ -928,7 +1103,7 @@ app.get('/api/config/subjects', async (req, res) => {
   }
 });
 
-// Update lessons configuration (placeholder for now)
+// Replace all lessons in DB
 app.put('/api/config/lessons', async (req, res) => {
   try {
     const { lessons } = req.body;
@@ -940,33 +1115,10 @@ app.put('/api/config/lessons', async (req, res) => {
       });
     }
     
-    // For now, just validate the data structure
-    const validationErrors = [];
-    lessons.forEach((lesson, index) => {
-      if (!lesson.name) {
-        validationErrors.push(`Lesson ${index + 1}: Name is required`);
-      }
-      if (typeof lesson.dayOffset !== 'number' || lesson.dayOffset < 0 || lesson.dayOffset > 10) {
-        validationErrors.push(`Lesson ${index + 1}: Invalid dayOffset (${lesson.dayOffset})`);
-      }
-    });
-    
-    if (validationErrors.length > 0) {
-      return res.status(400).json({
-        success: false,
-        error: 'Validation failed',
-        validationErrors
-      });
-    }
-    
-    // TODO: Implement actual file writing in Phase 4
-    // For now, simulate success
-    res.json({
-      success: true,
-      message: `Successfully validated ${lessons.length} lessons`,
-      note: 'File writing will be implemented in Phase 4'
-    });
-    
+    // Replace rows in SQLite
+    replaceAllLessons(lessons);
+
+    res.json({ success:true, message:`Updated ${lessons.length} lessons`, source:'sqlite' });
   } catch (error) {
     console.error('Error updating lessons:', error);
     res.status(500).json({
@@ -1279,27 +1431,36 @@ app.post('/api/class/:listId/orientees', async (req, res) => {
 // CLASS UTILITY ENDPOINTS
 // ==============================
 
+// Helper to search across known spaces
+const KNOWN_SPACE_IDS = ['14869535', '16835428'];
+
 app.get('/api/class/:className/ids', async (req, res) => {
   try {
     const { className } = req.params;
     const { findFolderByName, getFolderLists } = require('./utils/clickup-client');
 
-    // Find folder by name in Workshop space
-    const folder = await findFolderByName(className, '14869535');
-    if (!folder) {
-      return res.status(404).json({ success:false, error:'Folder not found' });
+    let folder = null;
+    for (const spaceId of KNOWN_SPACE_IDS) {
+      folder = await findFolderByName(className, spaceId);
+      if (folder) break;
     }
+
+    if (!folder) {
+      return res.status(404).json({ success: false, error: 'Folder not found in any known spaces' });
+    }
+
     const lists = await getFolderLists(folder.id);
     const ids = {};
-    lists.forEach(lst=>{
+    lists.forEach((lst) => {
       if (lst.name.includes('Schedule')) ids.scheduleListId = lst.id;
       else if (lst.name.includes('Class Details')) ids.classDetailsListId = lst.id;
       else if (lst.name.includes('Feedback')) ids.feedbackListId = lst.id;
     });
-    res.json({ success:true, folderId: folder.id, ...ids });
-  } catch(err) {
+
+    res.json({ success: true, folderId: folder.id, ...ids });
+  } catch (err) {
     console.error('class ids error', err.message);
-    res.status(500).json({ success:false, error: err.message });
+    res.status(500).json({ success: false, error: err.message });
   }
 });
 
@@ -1338,6 +1499,65 @@ app.get('/api/class/:className/summary', async (req, res) => {
   } catch(err){
     console.error('summary error', err.message);
     res.status(500).json({ success:false, error: err.message});
+  }
+});
+
+// Return basic orientee list for a class (name, status, pillar)
+app.get('/api/class/:className/orientees', async (req, res) => {
+  try {
+    const { className } = req.params;
+    const reportGenerator = require('./services/report-generator');
+    const data = await reportGenerator.generateReportData(className);
+    const orientees = data.classDetails.map(p => ({
+      name: p.name,
+      status: p.status || 'Unknown',
+      pillar: p.pillar || 'N/A'
+    }));
+    res.json({ success: true, orientees });
+  } catch (err) {
+    console.error('orientees endpoint error', err.message);
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+// Get lessons for a specific class
+app.get('/api/class-lessons/:className', (req,res)=>{
+  try{
+    const { className } = req.params;
+    const { getLessons } = require('./services/class-lesson-store');
+    const lessons = getLessons(className);
+    res.json({ success:true, lessons });
+  }catch(err){
+    res.status(500).json({ success:false, error:err.message });
+  }
+});
+
+// Replace lessons for a class
+app.put('/api/class-lessons/:className', (req,res)=>{
+  try{
+    const { className } = req.params;
+    const { lessons } = req.body;
+    if(!Array.isArray(lessons)) return res.status(400).json({success:false,error:'lessons array required'});
+    const { replaceLessons } = require('./services/class-lesson-store');
+    replaceLessons(className, lessons);
+
+    // Regenerate static schedule HTML
+    try {
+      const { buildHTML, saveHtmlToFile } = require('./services/schedule-generator');
+      const { getLessons } = require('./services/class-lesson-store');
+      const lessonData = getLessons(className);
+      const html = buildHTML(lessonData);
+      const slug = className.replace(/[^a-z0-9]/gi,'-').toLowerCase();
+      const outPath = require('path').join(__dirname,'client','public','embed',`schedule-${slug}.html`);
+      saveHtmlToFile(html, outPath);
+      console.log(`📄 Schedule HTML updated for ${className} → ${outPath}`);
+    }catch(genErr){
+      console.error('schedule html gen err', genErr.message);
+    }
+
+    res.json({ success:true, count:lessons.length });
+  }catch(err){
+    res.status(500).json({ success:false, error:err.message });
   }
 });
 

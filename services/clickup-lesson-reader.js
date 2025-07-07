@@ -1,4 +1,6 @@
 const { getTasks, getListDetails, getFolderLists, findFolderByName } = require('../utils/clickup-client');
+const { getLessons } = require('./class-lesson-store');
+const { configLoader } = require('./config-loader');
 
 /**
  * ClickUp Lesson Reader Service
@@ -48,7 +50,10 @@ class ClickUpLessonReader {
       const tasks = await getTasks(scheduleList.id);
       
       // Convert ClickUp tasks to lesson format
-      const lessons = this.convertTasksToLessons(tasks);
+      let lessons = this.convertTasksToLessons(tasks);
+      
+      // Merge timing data (start/end times, week label) from template DB copy
+      lessons = this.mergeTemplateTiming(className, lessons);
       
       // Cache the result
       this.cache.set(cacheKey, {
@@ -136,8 +141,17 @@ class ClickUpLessonReader {
       };
 
       // Extract timing information using actual ClickUp field names from debug output
-      const weekDay = getFieldValue(['Week Day', 'Day']) || 'Unknown';
-      const weekNum = getFieldValue(['Week #', 'Week Label', 'Week']) || 'Unknown';
+      let weekDay = getFieldValue(['Week Day', 'Day']) || 'Unknown';
+      let weekNum = getFieldValue(['Week #', 'Week Label', 'Week']) || 'Unknown';
+
+      // Map numeric dropdown values (1-5) to weekday strings
+      const numericDayMap = { '1': 'Mon', '2': 'Tue', '3': 'Wed', '4': 'Thu', '5': 'Fri' };
+      if (numericDayMap[weekDay]) weekDay = numericDayMap[weekDay];
+
+      // Map numeric week numbers to labels expected by template mapping
+      if (weekNum === '1') weekNum = 'Week 1';
+      if (weekNum === '2') weekNum = 'Week 2';
+
       const dayOffset = this.calculateDayOffset(weekDay, weekNum);
 
       // Extract leads (instructors) using actual field name
@@ -355,6 +369,59 @@ class ClickUpLessonReader {
       cacheSize: this.cache.size,
       ttl: this.CACHE_TTL
     };
+  }
+
+  /**
+   * Merge start/end times (and fallback week label) from template lessons stored in DB.
+   * We DO NOT overwrite week or dayOffset when ClickUp already supplies them – users might have
+   * adjusted those values in ClickUp.  We only fill missing pieces.
+   */
+  mergeTemplateTiming(className, liveLessons) {
+    try {
+      // Ensure template is loaded
+      if (!configLoader.loaded) {
+        configLoader.loadConfigurations();
+      }
+      const templateLessons = configLoader.getLessons();
+
+      const tplMap = Object.fromEntries(
+        templateLessons.map((t) => [t.name.toLowerCase(), t])
+      );
+
+      const mergedLessons = liveLessons.map((live) => {
+        const tpl = tplMap[live.name.toLowerCase()];
+        if (!tpl) return live;
+
+        const merged = { ...live };
+
+        // Always use canonical timing values from template (ClickUp API loses these)
+        if (tpl.startTime) merged.startTime = tpl.startTime;
+        if (tpl.endTime) merged.endTime = tpl.endTime;
+
+        if (tpl.week) merged.week = tpl.week;
+        if (tpl.weekDay) merged.weekDay = tpl.weekDay;
+        if (typeof tpl.dayOffset === 'number') merged.dayOffset = tpl.dayOffset;
+
+        // Subject (pillar) - use template as canonical value
+        if (tpl.subject) merged.subject = tpl.subject;
+
+        // Update ID to reflect new day
+        merged.id = `${merged.weekDay}-${merged.dayOffset}`;
+
+        return merged;
+      });
+
+      // Resort by dayOffset then name
+      mergedLessons.sort((a,b)=>{
+        if(a.dayOffset!==b.dayOffset) return a.dayOffset-b.dayOffset;
+        return a.name.localeCompare(b.name);
+      });
+
+      return mergedLessons;
+    } catch (err) {
+      console.warn('⚠️  Failed to merge template timing:', err.message);
+      return liveLessons;
+    }
   }
 }
 

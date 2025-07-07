@@ -7,6 +7,7 @@ function UserManagement() {
   const [error, setError] = useState(null);
   const [filter, setFilter] = useState('all'); // all, instructors, unknown
   const [searchTerm, setSearchTerm] = useState('');
+  const [toast, setToast] = useState(null);
 
   // Load users on component mount
   useEffect(() => {
@@ -17,12 +18,12 @@ function UserManagement() {
     try {
       setLoading(true);
       setError(null);
-      const response = await fetch('/api/config/users');
+      const response = await fetch('/api/instructors');
       if (!response.ok) {
         throw new Error(`Failed to load users: ${response.statusText}`);
       }
       const data = await response.json();
-      setUsers(data.users || []);
+      setUsers(data.instructors || data.users || []);
     } catch (err) {
       setError(err.message);
       setUsers([]);
@@ -35,12 +36,14 @@ function UserManagement() {
     try {
       setSyncing(true);
       setError(null);
-      const response = await fetch('/api/config/users?refresh=true');
+      const response = await fetch('/api/sync/instructors', { method: 'POST' });
       if (!response.ok) {
         throw new Error(`Failed to sync users: ${response.statusText}`);
       }
       const data = await response.json();
-      setUsers(data.users || []);
+      setUsers(await (await fetch('/api/instructors')).json().then(r => r.instructors || []));
+      setToast({ msg: `Synced ${data.count || 0} instructors`, type: 'success' });
+      setTimeout(() => setToast(null), 3000);
     } catch (err) {
       setError(err.message);
     } finally {
@@ -298,6 +301,8 @@ function UserManagement() {
           </button>
         </div>
       </div>
+
+      {toast && (<div className={`fixed bottom-4 right-4 px-4 py-3 rounded shadow-lg text-sm z-50 ${toast.type==='success'?'bg-emerald-600':'bg-red-600'} text-white`}>{toast.msg}</div>)}
     </div>
   );
 }

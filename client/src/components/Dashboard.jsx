@@ -17,6 +17,7 @@ function Dashboard() {
   const [selectedClass, setSelectedClass] = useState(null);
   const [detailViewClass, setDetailViewClass] = useState(null);
   const [showConfigPanel, setShowConfigPanel] = useState(false);
+  const [lessonEditorClass, setLessonEditorClass] = useState(null);
   const [showQuickActions, setShowQuickActions] = useState(false);
   const [refreshTrigger, setRefreshTrigger] = useState(0);
 
@@ -41,6 +42,11 @@ function Dashboard() {
 
     fetchClasses();
   }, []);
+
+  const openLessonEditorForClass = (className) => {
+    setLessonEditorClass(className);
+    setShowConfigPanel(true);
+  };
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100">
@@ -74,6 +80,7 @@ function Dashboard() {
             selectedClass={selectedClass}
             setSelectedClass={setSelectedClass}
             onViewDetails={setDetailViewClass}
+            onManageSchedule={openLessonEditorForClass}
           />
 
           {/* Quick Reports Card */}
@@ -270,8 +277,13 @@ function Dashboard() {
 
         {/* Configuration Panel Modal */}
         {showConfigPanel && (
-          <ConfigurationPanel 
-            onClose={() => setShowConfigPanel(false)}
+          <ConfigurationPanel
+            onClose={() => {
+              setShowConfigPanel(false);
+              setLessonEditorClass(null);
+            }}
+            initialView={lessonEditorClass ? 'lessons' : null}
+            selectedClass={lessonEditorClass}
           />
         )}
       </div>

@@ -4,6 +4,7 @@ const fs = require('fs').promises;
 const path = require('path');
 const { userDiscovery } = require('./user-discovery');
 const { configLoader } = require('./config-loader');
+const { copyFromTemplate } = require('./class-lesson-store');
 
 const WORKSHOP_SPACE_ID = '14869535'; // The confirmed ID for the "1100: Workshop" space.
 
@@ -123,6 +124,12 @@ async function createOrientationClass(startDate) {
     // Step 6: Set up views (this would require additional ClickUp API calls)
     console.log('Step 6: Views will need to be configured manually in ClickUp UI for now...');
     
+    // Save mapping for sync service
+    const { addClassMapping } = require('./class-store');
+    addClassMapping({ className, folderId: folder.id, scheduleListId: scheduleList.id });
+
+    copyFromTemplate(className);
+
     return {
       success: true,
       className,

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import html2canvas from 'html2canvas';
 import { jsPDF } from 'jspdf';
 
-function LessonEditor() {
+function LessonEditor({ selectedClass: propSelectedClass }) {
   const [lessons, setLessons] = useState([]);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -13,13 +13,10 @@ function LessonEditor() {
   const [showAddModal, setShowAddModal] = useState(false);
   const [editingLesson, setEditingLesson] = useState(null);
   const [hasChanges, setHasChanges] = useState(false);
+  const [toast, setToast] = useState(null); // {msg, type}
 
   // Template vs Live mode
-  const [mode, setMode] = useState('template'); // 'template' or 'live'
-  const [availableClasses, setAvailableClasses] = useState([]);
-  const [selectedClass, setSelectedClass] = useState('');
-  const [dataSource, setDataSource] = useState('Template');
-  const [lastSync, setLastSync] = useState(null);
+  const mode = "template"; // live mode removed
 
   // UI controls
   const [showAllLessons, setShowAllLessons] = useState(false);
@@ -28,92 +25,46 @@ function LessonEditor() {
   // Available options for dropdowns
   const [subjects, setSubjects] = useState([]);
   const [instructors, setInstructors] = useState([]);
+  const [classes, setClasses] = useState([]);
+  const [selectedClassName, setSelectedClassName] = useState('');
+
+  const [context, setContext] = useState('template'); // 'template' | 'class'
 
   useEffect(() => {
     loadReferenceData();
-    loadAvailableClasses();
-    loadLessons();
   }, []);
 
   useEffect(() => {
-    if (mode === 'live' && selectedClass) {
-      loadLiveLessons();
-    } else if (mode === 'template') {
-      loadTemplateLessons();
+    if (propSelectedClass) {
+      setSelectedClassName(propSelectedClass);
+      setContext('class');
+    } else {
+      setContext('template');
+      setSelectedClassName('');
     }
-  }, [mode, selectedClass]);
+  }, [propSelectedClass]);
+
+  useEffect(()=>{
+    if(context === 'template' || (context==='class' && selectedClassName)) {
+      loadLessons();
+    }
+  }, [context, selectedClassName]);
 
   const loadLessons = async () => {
-    if (mode === 'template') {
-      await loadTemplateLessons();
-    } else if (mode === 'live' && selectedClass) {
-      await loadLiveLessons();
-    }
-  };
-
-  const loadTemplateLessons = async () => {
     try {
       setLoading(true);
-      setError(null);
-      
-      // Load template lessons from config API
-      const response = await fetch('/api/config/lessons');
-      if (!response.ok) {
-        throw new Error(`Failed to load template lessons: ${response.statusText}`);
-      }
-      
-      const data = await response.json();
+      const endpoint = context==='template' ? '/api/config/lessons' : `/api/config/lessons/live/${encodeURIComponent(selectedClassName)}`;
+      const res = await fetch(endpoint);
+      if (!res.ok) throw new Error('Failed to load lessons');
+      const data = await res.json();
       setLessons(data.lessons || []);
-      setDataSource('Template');
-      setLastSync(new Date());
-      
+      setHasChanges(false);
+      setLoading(false);
     } catch (err) {
+      console.error(err);
       setError(err.message);
       setLessons([]);
-    } finally {
       setLoading(false);
-    }
-  };
-
-  const loadLiveLessons = async () => {
-    try {
-      setLoading(true);
-      setError(null);
-      
-      // Load live lessons from ClickUp class
-      const response = await fetch(`/api/config/lessons/live/${encodeURIComponent(selectedClass)}`);
-      if (!response.ok) {
-        throw new Error(`Failed to load live lessons: ${response.statusText}`);
-      }
-      
-      const data = await response.json();
-      setLessons(data.lessons || []);
-      setDataSource(`ClickUp: ${selectedClass}`);
-      setLastSync(new Date());
-      
-    } catch (err) {
-      setError(err.message);
-      setLessons([]);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const loadAvailableClasses = async () => {
-    try {
-      const response = await fetch('/api/config/lessons/live-classes');
-      if (response.ok) {
-        const data = await response.json();
-        setAvailableClasses(data.classes || []);
-        
-        // Auto-select first non-template class if available
-        const nonTemplateClasses = data.classes.filter(c => !c.isTemplate);
-        if (nonTemplateClasses.length > 0 && !selectedClass) {
-          setSelectedClass(nonTemplateClasses[0].name);
-        }
-      }
-    } catch (err) {
-      console.warn('Could not load available classes:', err.message);
     }
   };
 
@@ -122,7 +73,7 @@ function LessonEditor() {
       // Load subjects and instructors for dropdowns
       const [subjectsRes, instructorsRes] = await Promise.all([
         fetch('/api/config/subjects'),
-        fetch('/api/config/users/instructors')
+        fetch('/api/instructors')
       ]);
       
       if (subjectsRes.ok) {
@@ -132,7 +83,7 @@ function LessonEditor() {
       
       if (instructorsRes.ok) {
         const instructorData = await instructorsRes.json();
-        setInstructors(instructorData || []);
+        setInstructors(instructorData.instructors || []);
       }
     } catch (err) {
       console.warn('Could not load reference data:', err.message);
@@ -164,11 +115,6 @@ function LessonEditor() {
   });
 
   const handleAddLesson = () => {
-    if (mode === 'live') {
-      setError('Cannot add lessons in Live Mode. Switch to Template Mode to edit curriculum.');
-      return;
-    }
-
     const newLesson = {
       id: Math.max(...lessons.map(l => l.id), 0) + 1,
       name: '',
@@ -184,16 +130,11 @@ function LessonEditor() {
   };
 
   const handleEditLesson = (lesson) => {
-    if (mode === 'live') {
-      setError('Cannot edit lessons in Live Mode. This is read-only data from ClickUp.');
-      return;
-    }
-
     setEditingLesson({ ...lesson });
     setShowAddModal(true);
   };
 
-  const handleSaveLesson = () => {
+  const handleSaveLesson = async () => {
     if (!editingLesson.name.trim()) {
       alert('Lesson name is required');
       return;
@@ -204,46 +145,16 @@ function LessonEditor() {
       : [...lessons, editingLesson];
 
     setLessons(updatedLessons);
-    setHasChanges(true);
     setShowAddModal(false);
     setEditingLesson(null);
+    await saveLessonsToServer(updatedLessons);
   };
 
-  const handleDeleteLesson = (lessonId) => {
+  const handleDeleteLesson = async (lessonId) => {
     if (confirm('Are you sure you want to delete this lesson?')) {
-      setLessons(lessons.filter(l => l.id !== lessonId));
-      setHasChanges(true);
-    }
-  };
-
-  const handleSaveChanges = async () => {
-    if (mode === 'live') {
-      setError('Cannot save changes in Live Mode. Switch to Template Mode to edit lessons.');
-      return;
-    }
-
-    try {
-      setSaving(true);
-      
-      const response = await fetch('/api/config/lessons', {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ lessons })
-      });
-
-      const result = await response.json();
-
-      if (!response.ok) {
-        throw new Error(result.error || 'Failed to save lesson changes');
-      }
-
-      setHasChanges(false);
-      alert(result.message || 'Lessons saved successfully!');
-      
-    } catch (err) {
-      alert(`Error saving lessons: ${err.message}`);
-    } finally {
-      setSaving(false);
+      const updated = lessons.filter(l => l.id !== lessonId);
+      setLessons(updated);
+      await saveLessonsToServer(updated);
     }
   };
 
@@ -267,62 +178,225 @@ function LessonEditor() {
 
   const refreshData = async () => {
     setError(null);
-    if (mode === 'template') {
-      await loadTemplateLessons();
-    } else if (mode === 'live' && selectedClass) {
-      // Clear cache first, then reload
-      try {
-        await fetch('/api/config/lessons/clear-cache', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ className: selectedClass })
-        });
-      } catch (err) {
-        console.warn('Failed to clear cache:', err.message);
-      }
-      await loadLiveLessons();
-    }
+    await loadLessons();
   };
 
-  const compareLessons = async () => {
-    if (!selectedClass) {
-      setError('Please select a class to compare with');
-      return;
-    }
+  const weekOptions = ['Week 1 (Remote)', 'Week 2 (In Person)'];
+  const dayOptions = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'];
 
-    try {
-      setLoading(true);
-      const response = await fetch('/api/config/lessons/compare', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ className: selectedClass })
+  // Group lessons by week and day for schedule view
+  const groupLessonsBySchedule = (lessons) => {
+    const schedule = {};
+    
+    lessons.forEach(lesson => {
+      const week = lesson.week || 'Unknown Week';
+      const day = lesson.weekDay || 'Unknown Day';
+      
+      if (!schedule[week]) {
+        schedule[week] = {};
+      }
+      if (!schedule[week][day]) {
+        schedule[week][day] = [];
+      }
+      
+      schedule[week][day].push(lesson);
+    });
+    
+    // Sort lessons within each day by dayOffset
+    Object.keys(schedule).forEach(week => {
+      Object.keys(schedule[week]).forEach(day => {
+        schedule[week][day].sort((a, b) => a.dayOffset - b.dayOffset);
       });
+    });
+    
+    return schedule;
+  };
 
-      if (!response.ok) {
-        throw new Error(`Failed to compare lessons: ${response.statusText}`);
-      }
+  const renderScheduleView = () => {
+    const schedule = groupLessonsBySchedule(filteredLessons);
+    const weekOrder = ['Week 1 (Remote)', 'Week 2 (In Person)'];
+    const dayOrder = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'];
 
-      const data = await response.json();
-      
-      // Show comparison results in a modal or alert
-      const { comparison } = data;
-      const diffCount = comparison.differences.length;
-      
-      if (diffCount === 0) {
-        alert('✅ No differences found! Template and live lessons are in sync.');
-      } else {
-        const summary = comparison.differences
-          .map(d => `• ${d.description}`)
-          .join('\n');
-        
-        alert(`🔍 Found ${diffCount} difference(s):\n\n${summary}`);
-      }
-      
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setLoading(false);
-    }
+    // Build legend items for a given week
+    const getWeekSubjects = (weekLessons) => {
+      const set = new Set();
+      Object.values(weekLessons).forEach((dayLessons) => {
+        dayLessons.forEach((l) => l.subject && set.add(l.subject));
+      });
+      return Array.from(set);
+    };
+
+    const SCHEDULE_START = 8 * 60; // 8:00 AM in minutes
+    const SCHEDULE_END = 18 * 60;  // 6:00 PM in minutes
+    const PX_PER_MIN = 1.5;        // 90px per hour like the static HTML
+
+    // Generate the time ruler labels (8 AM – 6 PM)
+    const timeLabels = Array.from({ length: (SCHEDULE_END - SCHEDULE_START) / 60 + 1 }, (_, i) => {
+      const h24 = 8 + i;
+      const h12 = h24 % 12 === 0 ? 12 : h24 % 12;
+      return `${h12}:00 ${h24 >= 12 ? 'PM' : 'AM'}`;
+    });
+
+    return (
+      <div className="space-y-16 overflow-x-auto">
+        {weekOrder.map((week) => {
+          if (!schedule[week]) return null;
+          const weekSubjects = getWeekSubjects(schedule[week]);
+
+          return (
+            <section key={week} className="print-week mb-16">
+              {/* Week header with legend */}
+              <header className="mb-4 flex justify-between items-center">
+                <h2 className="text-xl font-semibold text-white">{week}</h2>
+                <div className="flex flex-wrap gap-4">
+                  {weekSubjects.map((sub) => (
+                    <div key={sub} className="flex items-center space-x-2 text-xs text-gray-200">
+                      <span className="w-3 h-3" style={{ background: getPillarColor(sub) }}></span>
+                      <span>{sub}</span>
+                    </div>
+                  ))}
+                </div>
+              </header>
+
+              {/* Week schedule grid */}
+              <div className="flex">
+                {/* Time ruler */}
+                <div
+                  className="flex flex-col pr-4 text-right text-gray-400 text-xs"
+                  style={{ width: '50px' }}
+                >
+                  {timeLabels.map((label) => (
+                    <div key={label} style={{ height: '90px' }}>{label}</div>
+                  ))}
+                </div>
+
+                {/* Day columns */}
+                <div
+                  className="grid flex-1"
+                  style={{ gridTemplateColumns: 'repeat(5, minmax(0, 1fr))', gap: '8px' }}
+                >
+                  {dayOrder.map((day) => {
+                    const dayLessons = schedule[week]?.[day] || [];
+
+                    return (
+                      <div key={day} className="flex flex-col" style={{ height: '928px' }}>
+                        {/* Day header */}
+                        <div
+                          className="flex items-center justify-center text-white font-semibold"
+                          style={{ height: '28px', background: '#242424', borderBottom: '1px solid #333' }}
+                        >
+                          {day}
+                        </div>
+
+                        {/* Day body with hour grid */}
+                        <div
+                          className="relative flex-1 hour-grid"
+                          style={{
+                            background: '#1a1a1a',
+                            backgroundImage:
+                              'repeating-linear-gradient(to bottom, #3a3a3a 0, #3a3a3a 1px, transparent 1px, transparent 90px)',
+                          }}
+                        >
+                          <div className="absolute inset-0">
+                            {dayLessons.map((lesson) => {
+                              const startMins = timeToMinutes(lesson.startTime || '08:00');
+                              const endMinsOriginal = timeToMinutes(lesson.endTime || lesson.startTime || '09:00');
+                              // Clamp to schedule bounds (8 AM – 6 PM)
+                              const clampedStart = Math.max(startMins, SCHEDULE_START);
+                              const clampedEnd = Math.min(endMinsOriginal, SCHEDULE_END);
+                              if (clampedStart >= SCHEDULE_END) return null; // skip if entirely after 6 PM
+                              const top = (clampedStart - SCHEDULE_START) * PX_PER_MIN;
+                              const height = Math.max(45, (clampedEnd - clampedStart) * PX_PER_MIN);
+                              const color = getPillarColor(lesson.subject);
+                              const leadInitials =
+                                lesson.leads && lesson.leads.length > 0 ? getLeadInitials(lesson.leads) : '';
+
+                              return (
+                                <div
+                                  key={lesson.id}
+                                  className="absolute lesson group text-white text-[0.95rem] overflow-hidden cursor-pointer transition-transform hover:scale-105 hover:z-20"
+                                  style={{
+                                    top: `${top}px`,
+                                    height: `${height}px`,
+                                    left: 0,
+                                    right: 0,
+                                    padding: '4px 6px',
+                                    background: '#222222',
+                                    boxShadow: `inset 0 0 0 2px ${color}`,
+                                  }}
+                                  onClick={() => mode === 'template' && handleEditLesson(lesson)}
+                                  title={lesson.name}
+                                >
+                                  {/* Time range */}
+                                  <div className="text-[0.625rem] text-gray-300">
+                                    {lesson.startTime && lesson.endTime
+                                      ? `${formatTime(lesson.startTime)} - ${formatTime(lesson.endTime)}`
+                                      : lesson.startTime
+                                      ? formatTime(lesson.startTime)
+                                      : `Day ${lesson.dayOffset + 1}`}
+                                  </div>
+
+                                  {/* Name & lead */}
+                                  <div className="flex items-center justify-between space-x-2">
+                                    <span className="font-medium text-[0.85rem] truncate leading-tight group-hover:whitespace-normal group-hover:overflow-visible">
+                                      {lesson.name}
+                                    </span>
+                                    {leadInitials && (
+                                      <span className="text-[0.625rem] text-gray-400">{leadInitials}</span>
+                                    )}
+                                  </div>
+
+                                  {/* Subject pill */}
+                                  {lesson.subject && (
+                                    <div className="flex items-center justify-between mt-0.5">
+                                      <span
+                                        className="text-[0.6rem] font-semibold px-1 rounded-sm truncate max-w-[140px] group-hover:max-w-none"
+                                        style={{ background: `${color}26`, color }}
+                                      >
+                                        {lesson.subject}
+                                      </span>
+                                    </div>
+                                  )}
+
+                                  {/* Delete button (template mode) */}
+                                  {mode === 'template' && (
+                                    <button
+                                      onClick={(e) => {
+                                        e.stopPropagation();
+                                        handleDeleteLesson(lesson.id);
+                                      }}
+                                      className="absolute top-[2px] right-[2px] text-red-400 hover:text-red-300"
+                                      title="Delete lesson"
+                                    >
+                                      &times;
+                                    </button>
+                                  )}
+                                </div>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </section>
+          );
+        })}
+      </div>
+    );
+  };
+
+  const getLeadInitials = (leadsArr) => {
+    if (!leadsArr || leadsArr.length === 0) return '';
+    return leadsArr
+      .slice(0, 2)
+      .map((n) => {
+        const parts = n.trim().split(' ');
+        return parts[0][0] + (parts[parts.length - 1][0] || '');
+      })
+      .join(',');
   };
 
   // Convert 24-hour time to 12-hour AM/PM format
@@ -385,46 +459,46 @@ function LessonEditor() {
     const weeks = Array.from(document.querySelectorAll('.print-week'));
     const imgs = [];
     for (const wk of weeks) {
-      wk.scrollIntoView({ behavior: 'instant', block: 'center' });
-      await new Promise(res => setTimeout(res, 150));
-      const canvas = await html2canvas(wk, { backgroundColor: '#ffffff', scale: 2 });
-      imgs.push({ src: canvas.toDataURL('image/png'), w: canvas.width, h: canvas.height });
+      const canvas = await html2canvas(wk, { scale: 2, backgroundColor: '#1a1a1a' });
+      imgs.push(canvas.toDataURL('image/png'));
     }
     return imgs;
   };
 
-  const exportAsImages = async () => {
-    const images = await captureWeeks();
-    images.forEach((img, idx) => {
-      const link = document.createElement('a');
-      link.download = `orientation-week-${idx + 1}.png`;
-      link.href = img.src;
-      link.click();
-    });
-  };
-
   const exportAsPDF = async () => {
-    const images = await captureWeeks();
-    const pdf = new jsPDF({ orientation: 'landscape', unit: 'px', format: [792, 612] });
-    images.forEach((imgObj, idx) => {
-      if (idx !== 0) pdf.addPage();
-      const pageW = pdf.internal.pageSize.getWidth();
-      const pageH = pdf.internal.pageSize.getHeight();
-      const imgRatio = imgObj.w / imgObj.h;
-      const pageRatio = pageW / pageH;
-      let targetW, targetH;
-      if (imgRatio > pageRatio) {
-        targetW = pageW;
-        targetH = targetW / imgRatio;
-      } else {
-        targetH = pageH;
-        targetW = targetH * imgRatio;
-      }
-      const offsetX = (pageW - targetW) / 2;
-      const offsetY = (pageH - targetH) / 2;
-      pdf.addImage(imgObj.src, 'PNG', offsetX, offsetY, targetW, targetH);
+    const weeks = Array.from(document.querySelectorAll('.print-week'));
+    if (weeks.length === 0) {
+      alert('No schedule content to export.');
+      return;
+    }
+
+    const pdf = new jsPDF({
+      orientation: 'landscape',
+      unit: 'px',
+      // Auto-detect width/height from the first week's canvas
     });
-    pdf.save('orientation-schedule.pdf');
+
+    for (let i = 0; i < weeks.length; i++) {
+      const canvas = await html2canvas(weeks[i], { scale: 2.5, backgroundColor: '#1a1a1a' });
+      const imgData = canvas.toDataURL('image/png');
+      const imgProps = pdf.getImageProperties(imgData);
+
+      // Scale image to fit page width
+      const pdfWidth = pdf.internal.pageSize.getWidth();
+      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+
+      if (i > 0) {
+        pdf.addPage();
+      }
+      
+      // Set page dimensions based on scaled image
+      pdf.internal.pageSize.setWidth(pdfWidth);
+      pdf.internal.pageSize.setHeight(pdfHeight);
+
+      pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+    }
+    
+    pdf.save(`${selectedClassName || 'lesson-template'}-schedule.pdf`);
   };
 
   const backupTemplate = async () => {
@@ -467,10 +541,10 @@ function LessonEditor() {
     try {
       setLoading(true);
       
-      const response = await fetch('/api/config/lessons/sync-to-clickup', {
+      const response = await fetch('/api/sync/lessons', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ lessons })
+        body: JSON.stringify({ className: selectedClassName })
       });
 
       const result = await response.json();
@@ -488,190 +562,28 @@ function LessonEditor() {
     }
   };
 
-  const weekOptions = ['Week 1 (Remote)', 'Week 2 (In Person)'];
-  const dayOptions = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'];
-
-  // Group lessons by week and day for schedule view
-  const groupLessonsBySchedule = (lessons) => {
-    const schedule = {};
-    
-    lessons.forEach(lesson => {
-      const week = lesson.week || 'Unknown Week';
-      const day = lesson.weekDay || 'Unknown Day';
-      
-      if (!schedule[week]) {
-        schedule[week] = {};
-      }
-      if (!schedule[week][day]) {
-        schedule[week][day] = [];
-      }
-      
-      schedule[week][day].push(lesson);
-    });
-    
-    // Sort lessons within each day by dayOffset
-    Object.keys(schedule).forEach(week => {
-      Object.keys(schedule[week]).forEach(day => {
-        schedule[week][day].sort((a, b) => a.dayOffset - b.dayOffset);
+  // Helper: persist lessons to server
+  const saveLessonsToServer = async (newLessons) => {
+    try {
+      setSaving(true);
+      const endpoint = context==='template' ? '/api/config/lessons' : `/api/config/lessons/live/${encodeURIComponent(selectedClassName)}`;
+      const res = await fetch(endpoint, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ lessons: newLessons })
       });
-    });
-    
-    return schedule;
-  };
-
-  const renderScheduleView = () => {
-    const schedule = groupLessonsBySchedule(filteredLessons);
-    const weekOrder = ['Week 1 (Remote)', 'Week 2 (In Person)'];
-    const dayOrder = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'];
-    
-    return (
-      <div className="space-y-8 overflow-x-auto">
-        {weekOrder.map(week => {
-          if (!schedule[week]) return null;
-          
-          return (
-            <div key={week} className="print-week bg-slate-700 rounded-xl p-6" style={{ width: '1800px' }}>
-              <h3 className="text-xl font-bold text-slate-100 mb-6 flex items-center">
-                <span className="mr-3">{week === 'Week 1 (Remote)' ? '💻' : '🏢'}</span>
-                {week}
-                <span className="ml-3 text-sm font-normal text-slate-400">
-                  ({Object.values(schedule[week]).reduce((total, dayLessons) => total + dayLessons.length, 0)} lessons)
-                </span>
-              </h3>
-              
-              <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
-                {dayOrder.map(day => {
-                  const dayLessons = schedule[week]?.[day] || [];
-                  const isWeek2Thursday = week === 'Week 2 (In Person)' && day === 'Fri';
-                  
-                  // Skip Friday for Week 2 (only goes Mon-Thu)
-                  if (isWeek2Thursday) return null;
-                  
-                  return (
-                    <div key={day} className="bg-slate-800 rounded-lg overflow-hidden shadow-lg border border-slate-600">
-                      <h4 className="font-semibold text-slate-100 text-center bg-gradient-to-r from-slate-700 to-slate-600 p-3 border-b border-slate-600">
-                        {day}
-                        <span className="block text-xs text-slate-400 mt-1">
-                          {dayLessons.length} lesson{dayLessons.length !== 1 ? 's' : ''}
-                        </span>
-                      </h4>
-                      
-                      <div
-                        className="grid p-3 bg-slate-900"
-                        style={{
-                          gridTemplateRows: 'repeat(28, 32px)',
-                          minHeight: '896px',
-                          overflowY: 'auto',
-                          gap: '2px',
-                          backgroundImage:
-                            'repeating-linear-gradient(0deg, transparent, transparent 17px, rgba(71,85,105,0.3) 18px)'
-                        }}
-                      >
-                        {dayLessons.length === 0 ? (
-                          <div className="text-center py-8">
-                            <div className="text-slate-500 text-xs">No lessons</div>
-                          </div>
-                        ) : (
-                          dayLessons.map((lesson) => {
-                            const pillarColor = getPillarColor(lesson.subject);
-                            const startMinutes = timeToMinutes(lesson.startTime || '08:00');
-                            const endMinutes = timeToMinutes(lesson.endTime || '09:00');
-                            const rowStart = Math.max(1, Math.floor((startMinutes - 480) / 30) + 1);
-                            const span = Math.max(1, Math.ceil((endMinutes - startMinutes) / 30));
-                            return (
-                              <div
-                                key={lesson.id}
-                                className="rounded-lg border-l-4 transition-all duration-200 hover:scale-105 hover:z-10 hover:shadow-xl"
-                                style={{
-                                  gridRow: `${rowStart} / span ${span}`,
-                                  backgroundColor: `${pillarColor}15`,
-                                  borderColor: pillarColor,
-                                  borderWidth: '0 0 0 4px',
-                                  borderStyle: 'solid',
-                                  boxShadow: `0 1px 3px ${pillarColor}30`,
-                                  background: `linear-gradient(135deg, ${pillarColor}15 0%, ${pillarColor}08 100%)`,
-                                  padding: '4px'
-                                }}
-                              >
-                                <div className="flex items-center text-[9px] font-bold mb-[1px]" style={{ color: pillarColor }}>
-                                  <span>
-                                    {lesson.startTime && lesson.endTime 
-                                      ? `${formatTime(lesson.startTime)} - ${formatTime(lesson.endTime)}`
-                                      : `Day ${lesson.dayOffset + 1}`}
-                                  </span>
-                                  {lesson.subject && (
-                                    <span 
-                                      className="ml-1 px-[3px] rounded inline-block font-medium text-[7px]" 
-                                      style={{ backgroundColor: `${pillarColor}25`, color: pillarColor }}>
-                                      {lesson.subject}
-                                    </span>)
-                                  }
-                                  {lesson.leads && lesson.leads.length > 0 && (
-                                    <span className="ml-1 text-slate-300" title={lesson.leads.join(', ')}>
-                                      {getLeadInitials(lesson.leads)}
-                                    </span> )}
-                                </div>
-                                <div className="font-semibold text-slate-100 mb-[1px] leading-tight text-[9px]">
-                                  {lesson.name}
-                                </div>
-
-                                {/* Action buttons for template mode */}
-                                {mode === 'template' && (
-                                  <div className="flex justify-end space-x-1 mt-1 pt-1" style={{ borderTop: `1px solid ${pillarColor}30` }}>
-                                    <button
-                                      onClick={() => handleEditLesson(lesson)}
-                                      className="p-1 hover:scale-110 transition-transform"
-                                      style={{ color: `${pillarColor}CC` }}
-                                      title="Edit lesson"
-                                    >
-                                      <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                                      </svg>
-                                    </button>
-                                    <button
-                                      onClick={() => handleDeleteLesson(lesson.id)}
-                                      className="p-1 text-red-400 hover:text-red-300 hover:scale-110 transition-all"
-                                      title="Delete lesson"
-                                    >
-                                      <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                      </svg>
-                                    </button>
-                                  </div>
-                                )}
-                              </div>
-                            )
-                          })
-                        )}
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          );
-        })}
-        
-        {Object.keys(schedule).length === 0 && (
-          <div className="text-center py-12">
-            <div className="text-4xl mb-4">📅</div>
-            <h3 className="text-xl font-semibold text-slate-100 mb-2">No lessons to display</h3>
-            <p className="text-slate-400">Adjust your filters or add some lessons to see the schedule.</p>
-          </div>
-        )}
-      </div>
-    );
-  };
-
-  const getLeadInitials = (leadsArr) => {
-    if (!leadsArr || leadsArr.length === 0) return '';
-    return leadsArr
-      .slice(0, 2)
-      .map((n) => {
-        const parts = n.trim().split(' ');
-        return parts[0][0] + (parts[parts.length - 1][0] || '');
-      })
-      .join(',');
+      const data = await res.json();
+      if (!res.ok || !data.success) throw new Error(data.error || 'Save failed');
+      setHasChanges(false);
+      setToast({ msg: 'Schedule updated', type: 'success' });
+      setTimeout(() => setToast(null), 3000);
+    } catch (err) {
+      console.error('Auto-save error', err.message);
+      setToast({ msg: `Save failed: ${err.message}`, type: 'error' });
+      setTimeout(() => setToast(null), 4000);
+    } finally {
+      setSaving(false);
+    }
   };
 
   if (loading) {
@@ -726,7 +638,7 @@ function LessonEditor() {
               </div>
             )}
             <button
-              onClick={handleSaveChanges}
+              onClick={handleSaveLesson}
               disabled={!hasChanges || saving || mode === 'live'}
               className="bg-green-600 hover:bg-green-700 disabled:bg-slate-600 text-white px-4 py-2 rounded-lg transition-colors flex items-center space-x-2"
               title={mode === 'live' ? 'Cannot save in Live Mode' : 'Save template changes'}
@@ -792,140 +704,63 @@ function LessonEditor() {
       </div>
 
       {/* Mode Controls */}
-      <div className="bg-slate-800 rounded-xl p-6">
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center space-x-6">
-            {/* Mode Toggle */}
-            <div className="flex items-center space-x-3">
-              <span className="text-slate-300 font-medium">Data Source:</span>
-              <div className="bg-slate-700 rounded-lg p-1 flex">
-                <button
-                  onClick={() => handleModeChange('template')}
-                  className={`px-4 py-2 rounded-md text-sm font-medium transition-all ${
-                    mode === 'template'
-                      ? 'bg-sky-600 text-white shadow-lg'
-                      : 'text-slate-400 hover:text-slate-200'
-                  }`}
-                >
-                  📋 Template
-                </button>
-                <button
-                  onClick={() => handleModeChange('live')}
-                  className={`px-4 py-2 rounded-md text-sm font-medium transition-all ${
-                    mode === 'live'
-                      ? 'bg-green-600 text-white shadow-lg'
-                      : 'text-slate-400 hover:text-slate-200'
-                  }`}
-                >
-                  🔗 Live ClickUp
-                </button>
-              </div>
-            </div>
-
-            {/* Live Mode Class Selection */}
-            {mode === 'live' && (
-              <div className="flex items-center space-x-3">
-                <span className="text-slate-300">Class:</span>
-                <select
-                  value={selectedClass}
-                  onChange={(e) => handleClassChange(e.target.value)}
-                  className="bg-slate-700 border border-slate-600 text-slate-100 px-3 py-2 rounded-lg focus:ring-2 focus:ring-green-400 focus:border-green-400"
-                >
-                  <option value="">Select a class...</option>
-                  {availableClasses.map(cls => (
-                    <option key={cls.id} value={cls.name}>
-                      {cls.name} {cls.isTemplate ? '(Template)' : ''}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            )}
-          </div>
-
-          {/* Action Buttons */}
-          <div className="flex items-center space-x-3">
-            <button
-              onClick={refreshData}
-              className="bg-slate-600 hover:bg-slate-700 text-white px-3 py-2 rounded-lg transition-colors flex items-center space-x-2"
-              title="Refresh data"
-            >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-              </svg>
-              <span>Refresh</span>
-            </button>
-
-            {mode === 'live' && selectedClass && (
-              <button
-                onClick={compareLessons}
-                className="bg-purple-600 hover:bg-purple-700 text-white px-3 py-2 rounded-lg transition-colors flex items-center space-x-2"
-                title="Compare with template"
+      <div className="bg-slate-800 rounded-xl p-6 flex flex-wrap items-center gap-3">
+        <div className="bg-slate-700 rounded-lg flex mr-3">
+          <button className={`px-3 py-1 text-sm rounded-l-lg ${context==='template'?'bg-sky-600 text-white':'text-slate-300'}`} onClick={()=>setContext('template')}>Template</button>
+          <button className={`px-3 py-1 text-sm rounded-r-lg ${context==='class'?'bg-sky-600 text-white':'text-slate-300'}`} onClick={()=>setContext('class')}>Class</button>
+        </div>
+        {context==='class' && classes.length>0 && (
+          <div className="flex items-center mr-3">
+            {classes.length>1 && (
+              <select
+                value={selectedClassName}
+                onChange={(e) => setSelectedClassName(e.target.value)}
+                className="bg-slate-700 border border-slate-600 text-slate-100 px-3 py-2 rounded-lg focus:ring-2 focus:ring-sky-400 focus:border-sky-400 mr-2"
               >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                </svg>
-                <span>Compare</span>
-              </button>
+                {classes.map((c) => (
+                  <option key={c.id} value={c.name}>{c.name}</option>
+                ))}
+              </select>
             )}
-
-            <button
-              onClick={exportAsPDF}
-              className="bg-emerald-600 hover:bg-emerald-700 text-white px-3 py-2 rounded-lg transition-colors flex items-center space-x-2"
-              title="Export as PDF (captures weeks as images)"
-            >
-              <span>📄 Export PDF</span>
-            </button>
-            <button
-              onClick={exportAsImages}
-              className="bg-cyan-600 hover:bg-cyan-700 text-white px-3 py-2 rounded-lg transition-colors flex items-center space-x-2"
-              title="Export as clean PNG images (and combined PDF)"
-            >
-              <span>🖼️ Export Image</span>
-            </button>
-
-            {/* Template Management Buttons - Only show in template mode */}
-            {mode === 'template' && (
-              <>
-                <button
-                  onClick={() => backupTemplate()}
-                  className="bg-amber-600 hover:bg-amber-700 text-white px-3 py-2 rounded-lg transition-colors flex items-center space-x-2"
-                  title="Backup template"
-                >
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3-3m0 0l-3 3m3-3v12" />
-                  </svg>
-                  <span>Backup</span>
-                </button>
-
-                <button
-                  onClick={() => syncToClickUp()}
-                  className="bg-indigo-600 hover:bg-indigo-700 text-white px-3 py-2 rounded-lg transition-colors flex items-center space-x-2"
-                  title="Sync template to ClickUp"
-                >
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-                  </svg>
-                  <span>Sync to ClickUp</span>
-                </button>
-              </>
-            )}
+            <span className="text-slate-300 text-sm">Editing&nbsp;
+              <span className="font-semibold text-slate-100">{selectedClassName}</span>
+            </span>
           </div>
-        </div>
+        )}
+        <button
+          onClick={refreshData}
+          className="bg-slate-600 hover:bg-slate-700 text-white px-3 py-2 rounded-lg transition-colors flex items-center space-x-2"
+          title="Refresh data"
+        >
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+          </svg>
+          <span>Refresh</span>
+        </button>
 
-        {/* Data Source Info */}
-        <div className="bg-slate-700 rounded-lg p-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
-              <div className={`w-2 h-2 rounded-full ${mode === 'template' ? 'bg-sky-400' : 'bg-green-400'}`}></div>
-              <span className="text-slate-300 font-medium">Source: {dataSource}</span>
-            </div>
-            {lastSync && (
-              <span className="text-slate-500 text-sm">
-                Last sync: {lastSync.toLocaleTimeString()}
-              </span>
-            )}
-          </div>
-        </div>
+        <button
+          onClick={exportAsPDF}
+          className="bg-emerald-600 hover:bg-emerald-700 text-white px-3 py-2 rounded-lg transition-colors flex items-center space-x-2"
+          title="Export schedule as PDF"
+        >
+          📄 Export PDF
+        </button>
+
+        <button
+          onClick={() => backupTemplate()}
+          className="bg-amber-600 hover:bg-amber-700 text-white px-3 py-2 rounded-lg transition-colors flex items-center space-x-2"
+          title="Backup template JSON"
+        >
+          🔒 Backup Template
+        </button>
+
+        <button
+          onClick={syncToClickUp}
+          className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg transition-colors flex items-center space-x-2"
+          title="Sync to ClickUp"
+        >
+          🔄 Sync to ClickUp
+        </button>
       </div>
 
       {/* Filters */}
@@ -1016,6 +851,9 @@ function LessonEditor() {
                     <div className="flex items-center space-x-4 text-xs text-slate-500">
                       <span>{lesson.week} • {lesson.weekDay}</span>
                       <span>Day {lesson.dayOffset + 1}</span>
+                      {lesson.startTime && (
+                        <span>{formatTime(lesson.startTime)}{lesson.endTime?` – ${formatTime(lesson.endTime)}`:''}</span>
+                      )}
                       {lesson.leads && lesson.leads.length > 0 && (
                         <span>Leads: {lesson.leads.join(', ')}</span>
                       )}
@@ -1177,10 +1015,36 @@ function LessonEditor() {
                     </label>
                     <input
                       type="number"
-                      min="0"
-                      max="10"
                       value={editingLesson.dayOffset}
-                      onChange={(e) => setEditingLesson({...editingLesson, dayOffset: parseInt(e.target.value)})}
+                      readOnly
+                      disabled
+                      className="w-full bg-slate-700/50 border border-slate-600 text-slate-400 px-3 py-2 rounded-lg cursor-not-allowed"
+                      title="Day Offset is automatically calculated based on Week & Day"
+                    />
+                  </div>
+                </div>
+
+                {/* Start & End Times */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-slate-300 text-sm font-medium mb-2">
+                      Start Time
+                    </label>
+                    <input
+                      type="time"
+                      value={editingLesson.startTime || ''}
+                      onChange={(e)=>setEditingLesson({...editingLesson,startTime:e.target.value})}
+                      className="w-full bg-slate-700 border border-slate-600 text-slate-100 px-3 py-2 rounded-lg focus:ring-2 focus:ring-sky-400 focus:border-sky-400"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-slate-300 text-sm font-medium mb-2">
+                      End Time
+                    </label>
+                    <input
+                      type="time"
+                      value={editingLesson.endTime || ''}
+                      onChange={(e)=>setEditingLesson({...editingLesson,endTime:e.target.value})}
                       className="w-full bg-slate-700 border border-slate-600 text-slate-100 px-3 py-2 rounded-lg focus:ring-2 focus:ring-sky-400 focus:border-sky-400"
                     />
                   </div>
@@ -1201,6 +1065,60 @@ function LessonEditor() {
                       <option key={subject} value={subject}>{subject}</option>
                     ))}
                   </select>
+                </div>
+
+                {/* Leads */}
+                <div>
+                  <label className="block text-slate-300 text-sm font-medium mb-2">Leads</label>
+                  {/* Selected chips */}
+                  {editingLesson.leads && editingLesson.leads.length > 0 && (
+                    <div className="flex flex-wrap gap-2 mb-2">
+                      {editingLesson.leads.map(lead => (
+                        <span key={lead} className="flex items-center bg-sky-700 text-sky-100 px-2 py-1 rounded-full text-xs">
+                          {lead}
+                          <button
+                            onClick={() => {
+                              setEditingLesson({
+                                ...editingLesson,
+                                leads: editingLesson.leads.filter(l => l !== lead)
+                              });
+                            }}
+                            className="ml-1 text-slate-300 hover:text-white"
+                          >
+                            ×
+                          </button>
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                  {/* Scrollable checkbox list */}
+                  <div className="border border-slate-600 rounded-lg h-40 overflow-y-auto bg-slate-700 divide-y divide-slate-600">
+                    {instructors.map(inst => {
+                      const checked = (editingLesson.leads || []).includes(inst.name);
+                      return (
+                        <label
+                          key={inst.name}
+                          className={`flex items-center justify-between px-3 py-2 cursor-pointer hover:bg-slate-600 ${checked ? 'bg-slate-600' : ''}`}
+                        >
+                          <span className="text-sm text-slate-100">{inst.name}</span>
+                          <input
+                            type="checkbox"
+                            checked={checked}
+                            onChange={() => {
+                              let leads = editingLesson.leads || [];
+                              if (checked) {
+                                leads = leads.filter(l => l !== inst.name);
+                              } else {
+                                leads = [...leads, inst.name];
+                              }
+                              setEditingLesson({ ...editingLesson, leads });
+                            }}
+                            className="form-checkbox h-4 w-4 text-sky-500 bg-slate-800 border-slate-500 rounded"
+                          />
+                        </label>
+                      );
+                    })}
+                  </div>
                 </div>
               </div>
 
@@ -1225,6 +1143,11 @@ function LessonEditor() {
             </div>
           </div>
         </div>
+      )}
+
+      {/* Toast */}
+      {toast && (
+        <div className={`fixed bottom-4 right-4 px-4 py-3 rounded shadow-lg text-sm ${toast.type==='success'?'bg-emerald-600 text-white':'bg-red-600 text-white'}`}>{toast.msg}</div>
       )}
     </div>
   );

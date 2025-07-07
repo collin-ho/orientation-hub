@@ -1,6 +1,6 @@
 import React from 'react';
 
-function ClassesCard({ classes, loading, error, selectedClass, setSelectedClass, onViewDetails }) {
+function ClassesCard({ classes, loading, error, selectedClass, setSelectedClass, onViewDetails, onManageSchedule }) {
 
   // Extract start date from class name (e.g., "PD OTN 06.09.25" -> Date object)
   const parseClassStartDate = (className) => {
@@ -117,9 +117,46 @@ function ClassesCard({ classes, loading, error, selectedClass, setSelectedClass,
     });
   };
 
-  // Calculate status counts
-  const getStatusCounts = (classes) => {
-    return classes.reduce((counts, cls) => {
+  // === Live class summary fetching ===
+  // Cache summaries to avoid refetching on every re-render
+  const [classSummaries, setClassSummaries] = React.useState({}); // { className: summary }
+  const [classOrientees, setClassOrientees] = React.useState({}); // { className: [ {name,status,pillar} ] }
+
+  const fetchClassSummary = async (className) => {
+    try {
+      const resp = await fetch(`/api/class/${encodeURIComponent(className)}/summary`);
+      const data = await resp.json();
+      if (data.success) {
+        setClassSummaries((prev) => ({ ...prev, [className]: data }));
+      }
+    } catch (err) {
+      console.warn('Failed to fetch summary for', className, err.message);
+    }
+  };
+
+  // When a class is selected (expanded), make sure we have its summary
+  React.useEffect(() => {
+    if (selectedClass && !classSummaries[selectedClass]) {
+      fetchClassSummary(selectedClass);
+    }
+    if (selectedClass && !classOrientees[selectedClass]) {
+      (async () => {
+        try {
+          const resp = await fetch(`/api/class/${encodeURIComponent(selectedClass)}/orientees`);
+          const data = await resp.json();
+          if (data.success) {
+            setClassOrientees(prev => ({ ...prev, [selectedClass]: data.orientees }));
+          }
+        } catch (err) {
+          console.warn('Failed to fetch orientees for', selectedClass, err.message);
+        }
+      })();
+    }
+  }, [selectedClass]);
+
+  // Calculate status counts (active/future/past) for header badges
+  const getStatusCounts = (classesArr) => {
+    return classesArr.reduce((counts, cls) => {
       const status = getClassStatus(cls.name);
       counts[status] = (counts[status] || 0) + 1;
       return counts;
@@ -128,6 +165,19 @@ function ClassesCard({ classes, loading, error, selectedClass, setSelectedClass,
 
   const sortedClasses = sortClassesByStatus(classes);
   const statusCounts = getStatusCounts(classes);
+
+  const getStatusDotColor = status => {
+    switch ((status || '').toLowerCase()) {
+      case 'graduated':
+        return 'bg-green-400';
+      case 'resigned':
+        return 'bg-yellow-400';
+      case 'released':
+        return 'bg-red-400';
+      default:
+        return 'bg-slate-400';
+    }
+  };
 
   return (
     <div className="lg:col-span-2 bg-slate-800 shadow-lg rounded-xl">
@@ -192,75 +242,70 @@ function ClassesCard({ classes, loading, error, selectedClass, setSelectedClass,
                     {selectedClass === cls.name && (
                       <div className="px-4 pb-4">
                         <div className="bg-slate-700/30 p-4 rounded-lg mt-4">
-                          {/* Class Overview - Consistent with detailed view */}
+                          {/* Show real summary if available, else fallback to loading/placeholder */}
                           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
-                            <div className="text-center">
-                              <p className="text-2xl font-bold text-slate-300">6</p>
-                              <p className="text-xs text-slate-400">Total</p>
-                            </div>
-                            <div className="text-center">
-                              <p className="text-2xl font-bold text-green-400">4</p>
-                              <p className="text-xs text-slate-400">Graduated</p>
-                            </div>
-                            <div className="text-center">
-                              <p className="text-2xl font-bold text-yellow-400">1</p>
-                              <p className="text-xs text-slate-400">Resigned</p>
-                            </div>
-                            <div className="text-center">
-                              <p className="text-2xl font-bold text-red-400">1</p>
-                              <p className="text-xs text-slate-400">Released</p>
-                            </div>
+                            {(() => {
+                              const summary = classSummaries[cls.name];
+                              if (!summary) {
+                                // Loading placeholder
+                                return (
+                                  <div className="col-span-4 text-center text-slate-400 text-sm">Loading summary…</div>
+                                );
+                              }
+                              return (
+                                <>
+                                  <div className="text-center">
+                                    <p className="text-2xl font-bold text-slate-300">{summary.total}</p>
+                                    <p className="text-xs text-slate-400">Total</p>
+                                  </div>
+                                  <div className="text-center">
+                                    <p className="text-2xl font-bold text-green-400">{summary.graduated}</p>
+                                    <p className="text-xs text-slate-400">Graduated</p>
+                                  </div>
+                                  <div className="text-center">
+                                    <p className="text-2xl font-bold text-yellow-400">{summary.resigned}</p>
+                                    <p className="text-xs text-slate-400">Resigned</p>
+                                  </div>
+                                  <div className="text-center">
+                                    <p className="text-2xl font-bold text-red-400">{summary.released}</p>
+                                    <p className="text-xs text-slate-400">Released</p>
+                                  </div>
+                                </>
+                              );
+                            })()}
                           </div>
 
-                          {/* Orientees List - Matches detailed view data */}
-                          <div className="space-y-2">
-                            <h4 className="text-sm font-semibold text-slate-300 mb-2">Orientees:</h4>
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-1 text-xs">
-                              <div className="flex items-center space-x-2 py-1">
-                                <div className="w-2 h-2 bg-green-400 rounded-full flex-shrink-0"></div>
-                                <span className="text-slate-300 font-medium">Jason Thorp</span>
-                                <span className="text-slate-500">- Operations</span>
+                          {/* Live Orientees List */}
+                          {(() => {
+                            const orients = classOrientees[cls.name];
+                            if (!orients) return (
+                              <div className="text-slate-400 text-sm">Loading orientees…</div>
+                            );
+                            if (orients.length === 0) return (
+                              <div className="text-slate-400 text-sm">No orientees found.</div>
+                            );
+                            return (
+                              <div className="space-y-2">
+                                <h4 className="text-sm font-semibold text-slate-300 mb-2">Orientees:</h4>
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-1 text-xs">
+                                  {orients.map((o,idx)=>(
+                                    <div key={idx} className="flex items-center space-x-2 py-1">
+                                      <div className={`w-2 h-2 ${getStatusDotColor(o.status)} rounded-full flex-shrink-0`}></div>
+                                      <span className="text-slate-300 font-medium truncate max-w-[120px]" title={o.name}>{o.name}</span>
+                                      <span className="text-slate-500">- {o.pillar}</span>
+                                    </div>
+                                  ))}
+                                </div>
                               </div>
-                              <div className="flex items-center space-x-2 py-1">
-                                <div className="w-2 h-2 bg-green-400 rounded-full flex-shrink-0"></div>
-                                <span className="text-slate-300 font-medium">Vincent Romeo</span>
-                                <span className="text-slate-500">- Operations</span>
-                              </div>
-                              <div className="flex items-center space-x-2 py-1">
-                                <div className="w-2 h-2 bg-green-400 rounded-full flex-shrink-0"></div>
-                                <span className="text-slate-300 font-medium">Randall Sullivan</span>
-                                <span className="text-slate-500">- People</span>
-                              </div>
-                              <div className="flex items-center space-x-2 py-1">
-                                <div className="w-2 h-2 bg-green-400 rounded-full flex-shrink-0"></div>
-                                <span className="text-slate-300 font-medium">Rob McLaughlin</span>
-                                <span className="text-slate-500">- Operations</span>
-                              </div>
-                              <div className="flex items-center space-x-2 py-1">
-                                <div className="w-2 h-2 bg-yellow-400 rounded-full flex-shrink-0"></div>
-                                <span className="text-slate-300 font-medium">Christopher Maxwell</span>
-                                <span className="text-slate-500">- Biz Dev</span>
-                              </div>
-                              <div className="flex items-center space-x-2 py-1">
-                                <div className="w-2 h-2 bg-red-400 rounded-full flex-shrink-0"></div>
-                                <span className="text-slate-300 font-medium">Timothy Ladison</span>
-                                <span className="text-slate-500">- Operations</span>
-                              </div>
-                            </div>
-                          </div>
+                            );
+                          })()}
 
-                          <div className="mt-4 pt-3 border-t border-slate-600 flex items-center justify-between">
-                            <p className="text-xs text-slate-400">
-                              💡 Use the <strong>Reports</strong> card to generate PDFs
-                            </p>
+                          <div className="mt-4 flex justify-end space-x-2">
                             <button
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                onViewDetails(cls.name);
-                              }}
-                              className="bg-sky-600 hover:bg-sky-700 text-white px-3 py-1 rounded text-xs font-medium transition-colors"
+                                onClick={() => onManageSchedule(cls.name)}
+                                className="bg-sky-600 hover:bg-sky-700 text-white px-3 py-1 rounded-md text-sm font-medium"
                             >
-                              View Details →
+                                Manage Schedule
                             </button>
                           </div>
                         </div>

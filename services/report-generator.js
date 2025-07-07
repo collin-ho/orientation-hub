@@ -4,7 +4,13 @@ const puppeteer = require('puppeteer');
 const fs = require('fs').promises;
 const path = require('path');
 
-const WORKSHOP_SPACE_ID = '14869535'; // The confirmed ID for the "1100: Workshop" space.
+// ClickUp spaces that may contain orientation class folders.
+// 1. 1100: Workshop (current default)
+// 2. 1000: Sandbox   (legacy classes created before space migration)
+const SPACE_IDS = ['14869535', '16835428'];
+
+// Convenience constant – first space is considered the *primary* (creation target).
+const PRIMARY_SPACE_ID = SPACE_IDS[0];
 
 // This service will be responsible for generating the PDF report.
 // It will fetch data from ClickUp, populate an HTML template, and use Puppeteer to render it.
@@ -15,33 +21,47 @@ const WORKSHOP_SPACE_ID = '14869535'; // The confirmed ID for the "1100: Worksho
  * @returns {Promise<object|null>} An object mapping list names to IDs, or null if not found.
  */
 async function findListIdsForClass(folderName) {
-  const folders = await getSpaceFolders(WORKSHOP_SPACE_ID);
+  // Try each known space in order until the folder is found
+  for (const spaceId of SPACE_IDS) {
+    try {
+      const folders = await getSpaceFolders(spaceId);
+      const folder = folders.find(
+        (f) => f.name.trim().toLowerCase() === folderName.trim().toLowerCase()
+      );
 
-  const folder = folders.find(f => f.name.trim().toLowerCase() === folderName.trim().toLowerCase());
+      if (!folder) {
+        // Not in this space – try the next one
+        continue;
+      }
 
-  if (!folder) {
-    console.error(`Could not find a folder named "${folderName}" in the Workshop space.`);
-    return null;
+      const lists = await getFolderLists(folder.id);
+      if (!lists || lists.length === 0) {
+        console.warn(`No lists found in folder "${folderName}" (space ${spaceId})`);
+        continue;
+      }
+
+      // Map the found lists by their names
+      const listIdMap = {
+        classDetails: lists.find((l) => l.name === 'Class Details')?.id,
+        schedule: lists.find((l) => l.name === 'Schedule')?.id,
+        feedbackGrades: lists.find((l) => l.name === 'Feedback & Grades')?.id,
+      };
+
+      if (Object.values(listIdMap).some((id) => !id)) {
+        console.warn(
+          `Could not find one or more required lists in folder "${folderName}" (space ${spaceId}). Found:`,
+          listIdMap
+        );
+      }
+
+      return listIdMap; // Return as soon as we have a match (even if some lists missing)
+    } catch (err) {
+      console.error(`Error searching for folder in space ${spaceId}:`, err.message);
+    }
   }
 
-  const lists = await getFolderLists(folder.id);
-  if (!lists || lists.length === 0) {
-    console.error(`No lists found in folder "${folderName}"`);
-    return null;
-  }
-
-  // Map the found lists by their names
-  const listIdMap = {
-    classDetails: lists.find(l => l.name === 'Class Details')?.id,
-    schedule: lists.find(l => l.name === 'Schedule')?.id,
-    feedbackGrades: lists.find(l => l.name === 'Feedback & Grades')?.id,
-  };
-
-  if (Object.values(listIdMap).some(id => !id)) {
-    console.warn(`Could not find one or more required lists in folder "${folderName}". Found:`, listIdMap);
-  }
-
-  return listIdMap;
+  console.error(`Could not find a folder named "${folderName}" in any known spaces (${SPACE_IDS.join(', ')}).`);
+  return null;
 }
 
 /**
@@ -266,7 +286,7 @@ function processPersonGrades(feedbackGrades, pdOrienteeId) {
     };
 }
 
-async function populateTemplate(data, reportType = 'full') {
+async function populateTemplate(data, reportType = 'full', options = {}) {
     const templatePath = path.resolve(__dirname, '..', 'templates', 'report-template.html');
     let html = await fs.readFile(templatePath, 'utf-8');
 
@@ -480,13 +500,93 @@ async function populateTemplate(data, reportType = 'full') {
             }
         }
         classDetailsHtml = tempHtml;
+    } else if (reportType === 'daily') {
+        const dateStr = options.day || 'Selected Day';
+        html = html.replace('{{SUMMARY_INFO}}', `Daily Report • ${dateStr}`);
+        // === Daily Report Content ===
+
+        const statusOrder=['Graduated','Resigned','Released'];
+
+        // 1) Summary cards (page 1)
+        const grouped=data.classDetails.reduce((acc,p)=>{const s=p.status||'Unknown';(acc[s]=acc[s]||[]).push(p);return acc;},{});
+        orienteeSummaryHtml='<div class="grid grid-cols-3 gap-6">';
+        for(const status of statusOrder){
+          (grouped[status]||[]).forEach(item=>{
+            const color=status==='Graduated'?'bg-green-100 text-green-800':status==='Resigned'?'bg-yellow-100 text-yellow-800':'bg-red-100 text-red-800';
+            orienteeSummaryHtml+=`
+              <div class="border border-gray-200 p-4 rounded-lg">
+                <div class="flex items-center gap-3 mb-3">
+                  ${item.imageUrl?`<img src="${item.imageUrl}" class="h-12 w-12 rounded-full object-cover">`:`<div class="h-12 w-12 rounded-full bg-gray-300 flex items-center justify-center text-sm font-bold">${item.name.charAt(0)}</div>`}
+                  <div class="flex-1">
+                    <h4 class="font-semibold text-sm truncate">${item.name}</h4>
+                    <span class="text-xs px-2 py-1 rounded-full ${color}">${status}</span>
+                  </div>
+                </div>
+                <div class="text-xs space-y-1">
+                  <div><strong>Pillar:</strong> ${item.pillar||'N/A'}</div>
+                </div>
+              </div>`;
+          });
+        }
+        orienteeSummaryHtml+='</div>';
+        html = html.replace(/<section id="orientee-summary" class="mb-8">[\s\S]*?<\/section>/, `<section id="orientee-summary" class="mb-8">${orienteeSummaryHtml}</section>`);
+
+        // 2) Per-orientee cards after summary
+        let detailHtml='';
+        const isHomework=row=>row.assignment && row.assignment!=='N/A';
+
+        for(const status of statusOrder){
+          (grouped[status]||[]).forEach(item=>{
+            const rowsForOrientee=data.feedbackGrades.filter(r=>r.pdOrientee===item.pdOrientee);
+            const dailyRows=rowsForOrientee.filter(r=>!isHomework(r));
+            const hwRows=rowsForOrientee.filter(isHomework);
+
+            const statusBanner=status==='Graduated'? 'status-graduated': status==='Resigned'? 'status-resigned':'status-released';
+
+            detailHtml+=`
+              <div class="employee-card" style="page-break-before: always; page-break-inside: avoid;">
+                <div class="${statusBanner} text-white text-center py-2"><h2 class="text-lg font-semibold">${status.toUpperCase()}</h2></div>
+                <div class="compact-section flex items-start gap-4">
+                  ${item.imageUrl?`<img src="${item.imageUrl}" class="h-20 w-20 rounded-full object-cover flex-shrink-0">`:'<div class="h-20 w-20 rounded-full bg-gray-300 flex-shrink-0"></div>'}
+                  <div class="flex-grow">
+                    <h3 class="text-xl font-bold mb-2">${item.name}</h3>
+                    <div class="text-sm space-y-1">
+                      <div><strong>Pillar:</strong> ${item.pillar||'N/A'}</div>
+                    </div>
+                  </div>
+                </div>`;
+
+            if(dailyRows.length){
+              detailHtml+=`<div class="compact-section"><h4 class="font-semibold text-base mb-3">Daily Feedback</h4><table class="w-full text-sm border-collapse"><thead class="clean-table-header"><tr><th>Day</th><th>Grader</th><th>E</th><th>C</th><th>A</th><th>Comments</th></tr></thead><tbody>`;
+              dailyRows.forEach(r=>{
+                detailHtml+=`<tr class="clean-table-row"><td class="px-2 py-2">${r.weekDay||''}</td><td class="px-2 py-2">${r.name}</td><td class="px-2 py-2 text-center score-text">${r.effort}</td><td class="px-2 py-2 text-center score-text">${r.comp}</td><td class="px-2 py-2 text-center score-text">${r.application}</td><td class="px-2 py-2 text-xs">${r.comments||''}</td></tr>`;
+              });
+              detailHtml+='</tbody></table></div>';
+            }
+
+            if(hwRows.length){
+              detailHtml+=`<div class="compact-section mt-4"><h4 class="font-semibold text-base mb-3">Homework</h4><table class="w-full text-sm border-collapse"><thead class="clean-table-header"><tr><th>Date</th><th>Assignment</th><th>Grade</th><th>Comments</th></tr></thead><tbody>`;
+              hwRows.forEach(r=>{
+                detailHtml+=`<tr class="clean-table-row"><td class="px-2 py-2">${r.name}</td><td class="px-2 py-2">${r.assignment}</td><td class="px-2 py-2 text-center grade-text">${r.grade}%</td><td class="px-2 py-2 text-xs">${r.comments||''}</td></tr>`;
+              });
+              detailHtml+='</tbody></table></div>';
+            }
+
+            detailHtml+='</div>';
+          });
+        }
+
+        classDetailsHtml = detailHtml;
+        gradesHtml='<!-- Daily tables handled in detailHtml -->';
+        scheduleHtml='<!-- hidden -->';
     } else {
         // For other report types, provide a simple summary
         html = html.replace('{{SUMMARY_INFO}}', `${reportType.charAt(0).toUpperCase() + reportType.slice(1)} Report`);
     } 
 
     // --- Replace the inner content of the sections in the template ---
-    html = html.replace(/<section id="orientee-summary" class="mb-8">[\s\S]*?<\/section>/, `<section id="orientee-summary" class="mb-8">${reportType === 'full' ? orienteeSummaryHtml : ''}</section>`);
+    const summaryContent = (reportType==='full' || reportType==='daily') ? orienteeSummaryHtml : '';
+    html = html.replace(/<section id="orientee-summary" class="mb-8">[\s\S]*?<\/section>/, `<section id="orientee-summary" class="mb-8">${summaryContent}</section>`);
     html = html.replace(/<section id="class-details">[\s\S]*?<\/section>/, `<section id="class-details">${classDetailsHtml}</section>`);
     html = html.replace(/<section id="schedule" class="mb-10">[\s\S]*?<\/section>/, `<section id="schedule" class="mb-10">${scheduleHtml}</section>`);
     html = html.replace(/<section id="grades" class="mb-10">[\s\S]*?<\/section>/, `<section id="grades" class="mb-10">${gradesHtml}</section>`);
@@ -494,7 +594,9 @@ async function populateTemplate(data, reportType = 'full') {
     return html;
 }
 
-async function generateReport(className, reportType = 'full') {
+async function generateReport(className, reportType = 'full', options = {}) {
+  const { day } = options;
+
   const listIds = await findListIdsForClass(className);
   if (!listIds) {
     return null;
@@ -502,7 +604,7 @@ async function generateReport(className, reportType = 'full') {
   
   const promises = [];
 
-  if (reportType === 'full' || reportType === 'roster') {
+  if (reportType === 'full' || reportType === 'roster' || reportType === 'daily') {
     promises.push(getTasks(listIds.classDetails).catch(e => { console.error(e.message); return []; }));
   } else {
     promises.push(Promise.resolve([]));
@@ -514,7 +616,7 @@ async function generateReport(className, reportType = 'full') {
     promises.push(Promise.resolve([]));
   }
   
-  if (reportType === 'full' || reportType === 'grades') {
+  if (reportType === 'full' || reportType === 'grades' || reportType === 'daily') {
     promises.push(getTasks(listIds.feedbackGrades).catch(e => { console.error(e.message); return []; }));
   } else {
     promises.push(Promise.resolve([]));
@@ -542,13 +644,49 @@ async function generateReport(className, reportType = 'full') {
   }
   // --- End New Step ---
 
-  const reportData = processTaskData({
+  // For daily reports, optionally filter feedback grades by date
+  let processed = processTaskData({
     classDetailsTasks: detailedClassDetailsTasks,
     scheduleTasks,
     feedbackGradesTasks,
   }, className);
-  
-  const finalHtml = await populateTemplate(reportData, reportType);
+
+  if (reportType === 'daily' && day) {
+    // ------- Compute timeline offset helper -------
+    const dowMap={
+      'mon':0,'monday':0,
+      'tue':1,'tuesday':1,
+      'wed':2,'wednesday':2,
+      'thu':3,'thursday':3,
+      'fri':4,'friday':4
+    };
+
+    const parseStartDate=(cls)=>{
+      const m=cls.match(/PD OTN (\d{2})\.(\d{2})\.(\d{2})/);
+      if(!m) return null;
+      const [ ,mm,dd,yy]=m;
+      return new Date(2000+parseInt(yy), parseInt(mm)-1, parseInt(dd));
+    };
+
+    const classStart=parseStartDate(className);
+    const targetDate=new Date(day);
+    if(classStart){
+      const targetOffset=Math.floor((targetDate-classStart)/(24*60*60*1000)); // calendar days
+      const offsetFromWeekFields=(wk,wd)=>{
+         const weekPart = String(wk||'').toLowerCase().includes('2')?5:0;
+         const dayPart = dowMap[(wd||'').toLowerCase().substring(0,3)] ?? 0;
+         return weekPart+dayPart;
+      };
+
+      processed.feedbackGrades = processed.feedbackGrades.filter(fg=>{
+         const isHomework = fg.assignment && fg.assignment !== 'N/A';
+         const offset=offsetFromWeekFields(fg.weekNum, fg.weekDay);
+         return isHomework || offset<=targetOffset;
+      });
+    }
+  }
+
+  const finalHtml = await populateTemplate(processed, reportType, { day });
 
   const browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'] });
   const page = await browser.newPage();
@@ -602,7 +740,13 @@ async function generateReportData(className) {
   return reportData;
 }
 
+// quick wrapper for daily
+async function generateDailyReport(className, dateISO){
+  return generateReport(className,'daily',{day:dateISO});
+}
+
 module.exports = {
   generateReport,
   generateReportData,
+  generateDailyReport,
 }; 
