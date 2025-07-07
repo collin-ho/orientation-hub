@@ -1322,5 +1322,24 @@ app.get('/assignments', async (req, res) => {
   }
 });
 
+app.get('/api/class/:className/summary', async (req, res) => {
+  try {
+    const { className } = req.params;
+    const reportGenerator = require('./services/report-generator');
+    const data = await reportGenerator.generateReportData(className);
+    const statusOrder=['Graduated','Resigned','Released'];
+    const counts={graduated:0,resigned:0,released:0,total:0};
+    data.classDetails.forEach(p=>{
+      const s=p.status||'';
+      if(s.toLowerCase().includes('graduated')) counts.graduated++; else if(s.toLowerCase().includes('resigned')) counts.resigned++; else if(s.toLowerCase().includes('released')) counts.released++;
+      counts.total++;
+    });
+    res.json({ success:true, ...counts });
+  } catch(err){
+    console.error('summary error', err.message);
+    res.status(500).json({ success:false, error: err.message});
+  }
+});
+
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));

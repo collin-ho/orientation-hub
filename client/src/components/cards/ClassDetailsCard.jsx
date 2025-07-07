@@ -1,6 +1,14 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 function ClassDetailsCard({ selectedClass }) {
+  const [summary,setSummary]=useState(null);
+
+  useEffect(()=>{
+    if(!selectedClass) return;
+    setSummary(null);
+    fetch(`/api/class/${encodeURIComponent(selectedClass)}/summary`).then(r=>r.json()).then(d=>{if(d.success) setSummary(d);});
+  },[selectedClass]);
+
   return (
     <div className="bg-slate-800 shadow-lg rounded-xl">
       <div className="p-6">
@@ -23,17 +31,23 @@ function ClassDetailsCard({ selectedClass }) {
               <p className="text-sky-400 font-semibold">{selectedClass}</p>
             </div>
 
-            {/* Placeholder stats */}
-            <div className="grid grid-cols-2 gap-3">
+            {!summary ? (
+              <p className="text-slate-400 text-sm">Loading summary…</p>
+            ):(
+            <div className="grid grid-cols-3 gap-3">
               <div className="bg-slate-700/30 p-3 rounded-lg text-center">
-                <p className="text-2xl font-bold text-green-400">6</p>
+                <p className="text-2xl font-bold text-green-400">{summary.total}</p>
                 <p className="text-slate-400 text-xs">Total Orientees</p>
               </div>
               <div className="bg-slate-700/30 p-3 rounded-lg text-center">
-                <p className="text-2xl font-bold text-sky-400">4</p>
+                <p className="text-2xl font-bold text-sky-400">{summary.graduated}</p>
                 <p className="text-slate-400 text-xs">Graduated</p>
               </div>
-            </div>
+              <div className="bg-slate-700/30 p-3 rounded-lg text-center">
+                <p className="text-2xl font-bold text-yellow-400">{summary.resigned}</p>
+                <p className="text-slate-400 text-xs">Resigned / Released</p>
+              </div>
+            </div>) }
 
             <div className="space-y-2">
               <button className="w-full bg-sky-600 hover:bg-sky-700 text-white py-2 px-4 rounded-lg transition-colors text-sm font-medium">
