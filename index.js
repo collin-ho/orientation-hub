@@ -1303,5 +1303,24 @@ app.get('/api/class/:className/ids', async (req, res) => {
   }
 });
 
+// ==============================
+// ASSIGNMENT OPTIONS API
+// ==============================
+
+app.get('/assignments', async (req, res) => {
+  try {
+    const { LIST_IDS, CUSTOM_FIELD_IDS } = require('./utils/clickup-maps');
+    const { getListFields } = require('./utils/clickup-client');
+
+    const fields = await getListFields(LIST_IDS.FEEDBACK_GRADES);
+    const assignmentField = fields.find(f => f.id === CUSTOM_FIELD_IDS.FEEDBACK_GRADES.ASSIGNMENT);
+    const options = assignmentField?.type_config?.options?.map(o => o.name) || [];
+    res.json(options);
+  } catch (err) {
+    console.error('Assignment endpoint error:', err.message);
+    res.status(500).json({ error: err.message });
+  }
+});
+
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));
