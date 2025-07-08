@@ -1,5 +1,6 @@
 const express = require('express');
 require('dotenv').config();
+const USE_CLICKUP = process.env.USE_CLICKUP === 'true';
 const { weekDayMap, weekLabelMap, pillarMap, personalityTagMap } = require('./utils/clickup-maps');
 const { 
   mapOrienteeNameToID, 
@@ -13,13 +14,21 @@ const {
   getFolderLists,
   findFolderByName // We need this
 } = require('./utils/clickup-client');
-const { generateReport } = require('./services/report-generator');
+
+let generateReport = async () => { throw new Error('Report generation disabled (ClickUp off)'); };
+let fieldDiscovery = null;
+let clickupLessonReader = null;
+let createOrientationClass = async () => { throw new Error('Class creator disabled (ClickUp off)'); };
+if (USE_CLICKUP) {
+  ({ generateReport } = require('./services/report-generator'));
+  ({ fieldDiscovery } = require('./services/field-discovery'));
+  ({ clickupLessonReader } = require('./services/clickup-lesson-reader'));
+  ({ createOrientationClass } = require('./services/class-creator'));
+}
+
 const { userDiscovery } = require('./services/user-discovery');
-const { fieldDiscovery } = require('./services/field-discovery');
 const { dropdownOptions } = require('./services/dropdown-options');
 const { configLoader } = require('./services/config-loader');
-const { clickupLessonReader } = require('./services/clickup-lesson-reader');
-const db = require('./services/db');
 const { getAllLessons, replaceAllLessons } = require('./services/lesson-store');
 const { getAllInstructors, replaceAllInstructors } = require('./services/instructor-store');
 const { syncLessons } = require('./services/lesson-sync');
@@ -300,7 +309,6 @@ app.post('/api/create-class', async (req, res) => {
     }
     
     // Create class using our new service
-    const { createOrientationClass } = require('./services/class-creator');
     const result = await createOrientationClass(startDate);
     
     res.json(result);
