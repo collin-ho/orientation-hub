@@ -71,4 +71,19 @@ db.prepare(`CREATE TABLE IF NOT EXISTS class_lessons (
   PRIMARY KEY (class_name, lesson_id)
 )`).run();
 
+// Feedback table (stores daily feedback & homework grades locally)
+db.prepare(`CREATE TABLE IF NOT EXISTS feedback (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  class_name TEXT,
+  orientee_name TEXT,
+  grader TEXT,
+  week_label TEXT,
+  week_day TEXT,
+  effort REAL,
+  comprehension REAL,
+  client_app REAL,
+  comments TEXT,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+)`).run();
+
 module.exports = db; 

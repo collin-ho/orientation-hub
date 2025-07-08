@@ -14,6 +14,7 @@ const {
   getFolderLists,
   findFolderByName // We need this
 } = require('./utils/clickup-client');
+const db = require('./services/db');
 
 let generateReport = async () => { throw new Error('Report generation disabled (ClickUp off)'); };
 let fieldDiscovery = null;
@@ -52,21 +53,38 @@ const COMMENTS_FIELD_ID = process.env.COMMENTS_FIELD_ID;
 const GRADE_FIELD_ID = process.env.GRADE_FIELD_ID;
 const LEADS_FIELD_ID = process.env.LEADS_FIELD_ID;
 
+// Orientation feedback route adjustment
 app.post('/orientation-feedback', async (req, res) => {
   const payload = req.body;
   if (!payload || typeof payload !== 'object') {
     return res.status(400).json({ error: 'Invalid payload' });
   }
-  const { grader, weekLabel, weekDay, items, className } = payload; // Add className
-  
+  const { grader, weekLabel, weekDay, items, className } = payload;
   if (!className) {
     return res.status(400).json({ error: 'Missing required field: className' });
   }
-  
   if (typeof grader !== 'string' || typeof weekLabel !== 'string' || typeof weekDay !== 'string' || !Array.isArray(items)) {
     return res.status(400).json({ error: 'Missing required fields' });
   }
 
+  // If ClickUp disabled, store locally
+  if (!USE_CLICKUP) {
+    const insert = db.prepare(`INSERT INTO feedback (class_name, orientee_name, grader, week_label, week_day, effort, comprehension, client_app, comments) VALUES (?,?,?,?,?,?,?,?,?)`);
+    const results = [];
+    for (const item of items) {
+      try {
+        const { name: orienteeName, effort, comprehension, clientApp, feedback } = item;
+        insert.run(className, orienteeName, grader, weekLabel, weekDay, effort, comprehension, clientApp, feedback || '');
+        results.push({ orienteeName, success: true });
+      } catch (err) {
+        results.push({ orienteeName: item.name, success: false, error: err.message });
+      }
+    }
+    const hasError = results.some(r => !r.success);
+    return res.status(hasError ? 207 : 200).json({ results });
+  }
+
+  // Fallback to old ClickUp logic if enabled
   let feedbackListId;
   try {
     const classFolder = await findFolderByName(className);
