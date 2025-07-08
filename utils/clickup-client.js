@@ -1,6 +1,23 @@
 const fetch = require('node-fetch');
 require('dotenv').config();
 
+// ------------------------------------------------------------------
+// 🔕 ClickUp OFF switch – early-exit with harmless stubs when disabled
+// ------------------------------------------------------------------
+const USE_CLICKUP = process.env.USE_CLICKUP === 'true';
+if (!USE_CLICKUP) {
+  console.log('🔕  ClickUp integration disabled – stubbed client loaded');
+  module.exports = new Proxy(
+    {},
+    {
+      get: () => async () => {
+        throw new Error('ClickUp integration is disabled (USE_CLICKUP=false)');
+      },
+    },
+  );
+  return; // stop loading the real client
+}
+
 const TEAM_ID = process.env.CLICKUP_TEAM_ID;
 const TOKEN = process.env.CLICKUP_TOKEN;
 const ORIENTEE_FIELD_ID = process.env.CLICKUP_ORIENTEE_FIELD_ID;
