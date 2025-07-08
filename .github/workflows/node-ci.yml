@@ -1,0 +1,36 @@
+name: Node CI
+
+on:
+  push:
+    branches: [main, app-only-migration]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Use Node.js 18
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: 'npm'
+
+      # ----- Root (server / scripts) -----
+      - name: Install root dependencies
+        run: npm ci
+
+      - name: Lint root (if script exists)
+        run: npm run lint --if-present
+
+      # ----- Client build -----
+      - name: Install client dependencies
+        run: npm ci
+        working-directory: client
+
+      - name: Build client
+        run: npm run build
+        working-directory: client
