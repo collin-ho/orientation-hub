@@ -1,3 +1,16 @@
+const USE_CLICKUP = process.env.USE_CLICKUP === 'true';
+if (!USE_CLICKUP) {
+  console.log('🔄 lesson-sync: ClickUp disabled – stubbed module loaded');
+  async function syncLessons() {
+    return { created: 0, updated: 0, errors: 0, message: 'ClickUp disabled' };
+  }
+  async function linkExistingTasks() {
+    return { linked: 0, notFound: 0, error: 'ClickUp disabled' };
+  }
+  module.exports = { syncLessons, linkExistingTasks };
+  return; // Exit before loading ClickUp-dependent code below
+}
+
 const { getAllLessons, setTaskId } = require('./lesson-store');
 const { getLessons: getClassLessons, setTaskId: setClassTaskId } = require('./class-lesson-store');
 const {
