@@ -60,21 +60,26 @@ app.post('/orientation-feedback', async (req, res) => {
     return res.status(400).json({ error: 'Invalid payload' });
   }
   const { grader, weekLabel, weekDay, items, className } = payload;
-  if (!className) {
+  let clsName = className;
+  if (!USE_CLICKUP && !clsName) {
+    clsName = 'General';
+  }
+  if (USE_CLICKUP && !clsName) {
     return res.status(400).json({ error: 'Missing required field: className' });
   }
+  
   if (typeof grader !== 'string' || typeof weekLabel !== 'string' || typeof weekDay !== 'string' || !Array.isArray(items)) {
     return res.status(400).json({ error: 'Missing required fields' });
   }
-
-  // If ClickUp disabled, store locally
+  
+  // In local mode insert rows
   if (!USE_CLICKUP) {
     const insert = db.prepare(`INSERT INTO feedback (class_name, orientee_name, grader, week_label, week_day, effort, comprehension, client_app, comments) VALUES (?,?,?,?,?,?,?,?,?)`);
     const results = [];
     for (const item of items) {
       try {
         const { name: orienteeName, effort, comprehension, clientApp, feedback } = item;
-        insert.run(className, orienteeName, grader, weekLabel, weekDay, effort, comprehension, clientApp, feedback || '');
+        insert.run(clsName, orienteeName, grader, weekLabel, weekDay, effort, comprehension, clientApp, feedback || '');
         results.push({ orienteeName, success: true });
       } catch (err) {
         results.push({ orienteeName: item.name, success: false, error: err.message });
@@ -87,14 +92,14 @@ app.post('/orientation-feedback', async (req, res) => {
   // Fallback to old ClickUp logic if enabled
   let feedbackListId;
   try {
-    const classFolder = await findFolderByName(className);
+    const classFolder = await findFolderByName(clsName);
     if (!classFolder) {
-      throw new Error(`Class folder "${className}" not found.`);
+      throw new Error(`Class folder "${clsName}" not found.`);
     }
     const lists = await getFolderLists(classFolder.id);
     const feedbackList = lists.find(l => l.name === 'Daily Feedback');
     if (!feedbackList) {
-      throw new Error(`'Daily Feedback' list not found in class "${className}".`);
+      throw new Error(`'Daily Feedback' list not found in class "${clsName}".`);
     }
     feedbackListId = feedbackList.id;
   } catch(err) {
@@ -158,8 +163,14 @@ app.post('/orientation-feedback', async (req, res) => {
 // Endpoint to get current orientees from ClickUp
 app.get('/orientees', async (req, res) => {
   try {
+    if (!USE_CLICKUP) {
+      const { getAllInstructors } = require('./services/instructor-store');
+      const users = getAllInstructors().map(u => ({ name: u.name, id: u.id, email: u.email }));
+      return res.json(users);
+    }
+    // original ClickUp fetch (kept for flag true)
     const options = await fetchOrienteeOptions();
-    res.json(options);
+    res.json(options.map(o => ({ name: o.name, id: o.id })));
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

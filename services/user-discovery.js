@@ -1,5 +1,15 @@
-const { getSpaceMembers } = require('../utils/clickup-client');
 const { configLoader } = require('./config-loader');
+
+const USE_CLICKUP = process.env.USE_CLICKUP === 'true';
+
+let getSpaceMembers;
+if (USE_CLICKUP) {
+  // Dynamically import ClickUp client only if integration is enabled
+  ({ getSpaceMembers } = require('../utils/clickup-client'));
+} else {
+  // Fallback stub returns empty array; will be replaced once we load users from DB/cache
+  getSpaceMembers = async () => [];
+}
 
 /**
  * User Discovery Service
