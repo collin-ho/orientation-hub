@@ -1,3 +1,21 @@
+const USE_CLICKUP = process.env.USE_CLICKUP === 'true';
+if (!USE_CLICKUP) {
+  console.log('🎛️ dropdown-options: ClickUp disabled – stub loaded');
+  const stub = async () => ({}) ;
+  module.exports = {
+    DropdownOptionsService: class { async getAllDropdownOptions() {return {};} },
+    dropdownOptions: {
+      getAllDropdownOptions: stub,
+      getOptionsForField: stub,
+      getOptionsByCategory: stub,
+      searchOptions: stub,
+      getOptionsForUI: stub,
+      getOptionsSummary: stub,
+    }
+  };
+  return;
+}
+
 const { fieldDiscovery } = require('./field-discovery');
 
 /**
